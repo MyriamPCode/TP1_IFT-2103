@@ -311,11 +311,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97feb2740d9e6534087f137b58006a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 100
   gravity: -9.81
   jumpForce: 5
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
+  radius: 0.5
 --- !u!1 &1776041386
 GameObject:
   m_ObjectHideFlags: 0

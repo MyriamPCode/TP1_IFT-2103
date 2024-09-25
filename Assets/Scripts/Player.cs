@@ -7,7 +7,10 @@ public class Player : MonoBehaviour
     public float moveSpeed = 10f;
     public float gravity = -9.81f;      
     public float jumpForce = 5f;        
-    public LayerMask groundLayer;        
+    public LayerMask groundLayer;
+
+    public float radius = 0.5f;
+
 
     private float verticalVelocity = 0f; 
     private bool isGrounded;
@@ -61,5 +64,33 @@ public class Player : MonoBehaviour
             transform.position = new Vector2(transform.position.x, Mathf.Floor(transform.position.y));
             verticalVelocity = 0; // Réinitialiser la vitesse verticale pour éviter un rebond
         }
+
+        CheckCollisions();
+    }
+
+    private void CheckCollisions()
+    {
+        // Récupérer la position du centre du collider
+        Vector2 center = transform.position;
+        //Vector2 center = (Vector2)transform.position + new Vector2(0, -radius);
+
+        // Vérifier les collisions avec d'autres objets
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(center, radius);
+
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.gameObject != gameObject) // Ignorer le collider du joueur
+            {
+                Debug.Log("Collision avec : " + collider.gameObject.name);
+                // Logique de collision ici (ex: réduire la vie, rebondir, etc.)
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        // Visualiser le collider dans l'éditeur
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }
