@@ -14,12 +14,27 @@ public class Player : MonoBehaviour
 
     private float verticalVelocity = 0f; 
     private bool isGrounded;
+    private Rigidbody2D rb; // Déclaration du Rigidbody2D
+
+    private void Start()
+    {
+        // Ajouter un Rigidbody2D par code
+        rb = gameObject.AddComponent<Rigidbody2D>();
+        rb.gravityScale = 0; // Désactiver la gravité par défaut
+    }
 
 
     private void FixedUpdate()
     {
         float horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         transform.Translate(new Vector2(horizontalMovement, 0f));
+
+        // Rotation en fonction du mouvement horizontal
+        if (horizontalMovement != 0)
+        {
+            float angle = horizontalMovement > 0 ? -90 : 90; // Ajustez l'angle selon votre besoin
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
     }
     void Update()
     {
