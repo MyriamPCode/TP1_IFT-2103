@@ -14,97 +14,76 @@ public class Player : MonoBehaviour
 
     private float verticalVelocity = 0f; 
     private bool isGrounded;
-    private Rigidbody2D rb; // Déclaration du Rigidbody2D
+    private Rigidbody2D rb; // Declaration du Rigidbody2D
 
     private void Start()
     {
         // Ajouter un Rigidbody2D par code
         rb = gameObject.AddComponent<Rigidbody2D>();
-        rb.gravityScale = 0; // Désactiver la gravité par défaut
+        rb.gravityScale = 1f; // Desactiver la gravite par defaut
+        rb.freezeRotation = true; // desactiver la rotation
+        rb.mass = 2;
+        rb.drag = 2;
     }
 
 
-    private void FixedUpdate()
+private void FixedUpdate()
+{
+    float horizontalMovement = Input.GetAxis("Horizontal");
+    
+    Vector2 velocity = rb.velocity;
+    velocity.x = horizontalMovement * moveSpeed;  
+    rb.velocity = velocity;
+}
+
+   void Update()
+{
+    isGrounded = Physics2D.OverlapCircle(transform.position + new Vector3(0, -0.16f, 0), 0.17f, groundLayer);
+    Debug.Log("Is Grounded: " + isGrounded + " Position: " + transform.position); 
+
+
+    if (isGrounded && Input.GetButton("Jump")) 
     {
-        float horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-        transform.Translate(new Vector2(horizontalMovement, 0f));
-
-        // Rotation en fonction du mouvement horizontal
-        if (horizontalMovement != 0)
-        {
-            float angle = horizontalMovement > 0 ? -90 : 90; // Ajustez l'angle selon votre besoin
-            transform.rotation = Quaternion.Euler(0, 0, angle);
-        }
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce); 
     }
-    void Update()
+
+    if (!isGrounded)
     {
-        // Vérifie si le joueur est au sol
-        isGrounded = Physics2D.OverlapCircle(transform.position, 0.1f, groundLayer);
-
-        // Appliquer la gravité
-        if (isGrounded)
-        {
-            if (Input.GetButtonDown("Jump")) // La touche espace
-            {
-                verticalVelocity = jumpForce; // Applique la force de saut
-            }
-            else
-            {
-                verticalVelocity = 0; 
-            }
-        }
-        else
-        {
-            // Appliquer la gravité
-            verticalVelocity += gravity * Time.deltaTime; // La gravité continue à s'appliquer
-        }
-
-        // Appliquer le mouvement vertical
-        transform.Translate(new Vector2(0, verticalVelocity * Time.deltaTime));
-
-
-        /*
-        // Réinitialiser la position si le joueur est tombé en dessous d'un certain seuil 
-        if (transform.position.y < -10f)
-        {
-            transform.position = new Vector2(transform.position.x, 0);
-            verticalVelocity = 0;
-        }
-        */
-
-        // Appliquer une force normale si le joueur est au sol
-        if (isGrounded && verticalVelocity < 0)
-        {
-            // Simuler une force normale en réajustant la position
-            transform.position = new Vector2(transform.position.x, Mathf.Floor(transform.position.y));
-            verticalVelocity = 0; // Réinitialiser la vitesse verticale pour éviter un rebond
-        }
-
-        CheckCollisions();
+        rb.velocity += new Vector2(0, gravity * Time.deltaTime); 
     }
+
+    if (isGrounded && rb.velocity.y < 0)
+    {
+        rb.velocity = new Vector2(rb.velocity.x, 0); 
+    }
+
+    CheckCollisions(); 
+}
+
 
     private void CheckCollisions()
     {
-        // Récupérer la position du centre du collider
+        // Rï¿½cupï¿½rer la position du centre du collider
         Vector2 center = transform.position;
         //Vector2 center = (Vector2)transform.position + new Vector2(0, -radius);
 
-        // Vérifier les collisions avec d'autres objets
+        // Vï¿½rifier les collisions avec d'autres objets
         Collider2D[] colliders = Physics2D.OverlapCircleAll(center, radius);
+        
 
         foreach (Collider2D collider in colliders)
         {
             if (collider.gameObject != gameObject) // Ignorer le collider du joueur
             {
                 Debug.Log("Collision avec : " + collider.gameObject.name);
-                // Logique de collision ici (ex: réduire la vie, rebondir, etc.)
+                // Logique de collision ici (ex: rï¿½duire la vie, rebondir, etc.)
             }
         }
     }
 
     private void OnDrawGizmos()
     {
-        // Visualiser le collider dans l'éditeur
+        // Visualiser le collider dans l'ï¿½diteur
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radius);
     }
