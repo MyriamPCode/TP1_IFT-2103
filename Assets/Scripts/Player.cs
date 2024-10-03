@@ -11,19 +11,21 @@ public class Player : MonoBehaviour
 
     public float radius = 0.5f;
 
-
     private float verticalVelocity = 0f; 
     private bool isGrounded;
     private Rigidbody2D rb; // Declaration du Rigidbody2D
+
+    public float friction = 2f; // Frottement dynamique
 
     private void Start()
     {
         // Ajouter un Rigidbody2D par code
         rb = gameObject.AddComponent<Rigidbody2D>();
-        rb.gravityScale = 1f; // Desactiver la gravite par defaut
+        rb.gravityScale = 0f; // Desactiver la gravite par defaut
         rb.freezeRotation = true; // desactiver la rotation
         rb.mass = 2;
-        rb.drag = 2;
+        //rb.drag = 2;
+        rb.drag = 0;
     }
 
     private void FixedUpdate()
@@ -34,6 +36,20 @@ public class Player : MonoBehaviour
         // Gérer le mouvement horizontal
         float horizontalMovement = Input.GetAxis("Horizontal");
         Vector2 velocity = rb.velocity;
+
+        // Appliquer le frottement
+        if (isGrounded)
+        {
+            if (Mathf.Abs(horizontalMovement) < 0.1f) // Si le joueur est presque immobile
+            {
+                velocity.x *= friction; // Frottement statique
+            }
+            else
+            {
+                velocity.x *= friction;
+            }
+        }
+
         velocity.x = horizontalMovement * moveSpeed;
         rb.velocity = velocity;
 
