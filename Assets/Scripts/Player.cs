@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
-    public float moveSpeed = 10f;
+    public float moveSpeed = 6f;
     public float gravity = -9.81f;      
-    public float jumpForce = 5f;        
+    public float jumpForce = 3f;        
     public LayerMask groundLayer;
 
     public float radius = 0.5f;
@@ -17,6 +18,10 @@ public class Player : MonoBehaviour
 
     public float friction = 2f; // Frottement dynamique
 
+    private Vector2 spawnPoint; // Position du point de spawn
+
+    public TextMeshProUGUI victoryText; // Référence au texte UI
+
     private void Start()
     {
         // Ajouter un Rigidbody2D par code
@@ -26,6 +31,13 @@ public class Player : MonoBehaviour
         rb.mass = 2;
         //rb.drag = 2;
         rb.drag = 0;
+        spawnPoint = transform.position; // Initialisation de point de spawn
+
+        // Le texte de victoire est masqué au départ
+        if (victoryText != null)
+        {
+            victoryText.gameObject.SetActive(false);
+        }
     }
 
     private void FixedUpdate()
@@ -57,17 +69,27 @@ public class Player : MonoBehaviour
         if (!isGrounded)
         {
             verticalVelocity += gravity * Time.fixedDeltaTime;
-            rb.velocity = new Vector2(rb.velocity.x, verticalVelocity);
         }
         else
         {
             verticalVelocity = 0; // Réinitialiser la vitesse verticale si au sol
         }
+        // Appliquer la gravité accumulée
+        velocity.y += verticalVelocity;
+
+        // Appliquer les vitesses au Rigidbody
+        rb.velocity = velocity;
     }
 
     void Update()
     {
-        if (isGrounded && Input.GetButton("Jump"))
+        // Vérifier si le joueur est tombé sous un certain seuil
+        if (transform.position.y < -10f)
+        {
+            Respawn(); // Appeler la fonction de respawn
+        }
+
+        if (isGrounded && Input.GetButtonDown("Jump"))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
@@ -76,7 +98,6 @@ public class Player : MonoBehaviour
 
         CheckCollisions();
     }
-
 
 
     private void CheckCollisions()
@@ -93,10 +114,46 @@ public class Player : MonoBehaviour
         {
             if (collider.gameObject != gameObject) // Ignorer le collider du joueur
             {
-                Debug.Log("Collision avec : " + collider.gameObject.name);
-                // Logique de collision ici (ex: r�duire la vie, rebondir, etc.)
+                if (collider.CompareTag("Finish")) // Lorsque le joueur atteint le point de victoire
+                {
+                    Victory();
+                }
+                else
+                {
+                    Debug.Log("Collision avec : " + collider.gameObject.name);
+                    // Logique de collision ici (ex: r�duire la vie, rebondir, etc.)
+                }
             }
         }
+    }
+
+    private void Victory()
+    {
+        Debug.Log("Victory! You won the game!");
+
+        // On force la balle à s'arrêter
+        rb.velocity = Vector2.zero;
+        moveSpeed = 0f;
+        jumpForce = 0f;
+        
+        // Activer et afficher le texte de victoire
+        if (victoryText != null)
+        {
+            Debug.Log("Activating Victory Text");
+            victoryText.gameObject.SetActive(true);
+        }
+    }
+
+    private void Respawn()
+    {
+        Debug.Log("Respawn at spawn point");
+
+        // Réinitialiser la position du joueur au point de respawn
+        transform.position = spawnPoint;
+
+        // Réinitialiser la vélocité pour éviter des mouvements résiduels
+        rb.velocity = Vector2.zero;
+        verticalVelocity = 0f;
     }
 
     private void OnDrawGizmos()
