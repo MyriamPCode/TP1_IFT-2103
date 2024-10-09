@@ -5,7 +5,7 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
-    public float moveSpeed = 6f;
+    public float moveSpeed = 2f;
     public float gravity = -9.81f;      
     public float jumpForce = 3f;        
     public LayerMask groundLayer;
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     private Rigidbody2D rb; // Declaration du Rigidbody2D
 
-    public float friction = 2f; // Frottement dynamique
+    public float friction = 40000f; // Frottement dynamique
 
     private Vector2 spawnPoint; // Position du point de spawn
 
@@ -29,8 +29,8 @@ public class Player : MonoBehaviour
         rb.gravityScale = 0f; // Desactiver la gravite par defaut
         rb.freezeRotation = true; // desactiver la rotation
         rb.mass = 2;
-        //rb.drag = 2;
-        rb.drag = 0;
+        rb.drag = 2;
+        //rb.drag = 0;
         spawnPoint = transform.position; // Initialisation de point de spawn
 
         // Le texte de victoire est masqué au départ
@@ -52,18 +52,26 @@ public class Player : MonoBehaviour
         // Appliquer le frottement
         if (isGrounded)
         {
-            if (Mathf.Abs(horizontalMovement) < 0.1f) // Si le joueur est presque immobile
+            if (moveSpeed < 0.1f)
             {
-                velocity.x *= friction; // Frottement statique
+                Debug.Log("velocité avant friction immo:" + velocity.x);
+                velocity.x *= friction; // Appliquer le frottement si presque immobile
+                Debug.Log("velocité apres friction immo:" + velocity.x);
             }
             else
             {
+                Debug.Log("velocité avant friction dynamique:" + velocity.x);
+                // Appliquer le frottement sur le mouvement
+                velocity.x = horizontalMovement * moveSpeed; // Changer directement la vélocité
                 velocity.x *= friction;
+                Debug.Log("velocité apres friction dynamique:" + velocity.x);
             }
         }
-
-        velocity.x = horizontalMovement * moveSpeed;
-        rb.velocity = velocity;
+        else
+        {
+            velocity.x = horizontalMovement * moveSpeed;
+            velocity.x *= friction;
+        }
 
         // Gérer la gravité
         if (!isGrounded)
@@ -94,8 +102,6 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
 
-        Debug.Log("Is Grounded: " + isGrounded + " Position: " + transform.position);
-
         CheckCollisions();
     }
 
@@ -120,7 +126,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Collision avec : " + collider.gameObject.name);
+                    //Debug.Log("Collision avec : " + collider.gameObject.name);
                     // Logique de collision ici (ex: r�duire la vie, rebondir, etc.)
                 }
             }
@@ -129,8 +135,6 @@ public class Player : MonoBehaviour
 
     private void Victory()
     {
-        Debug.Log("Victory! You won the game!");
-
         // On force la balle à s'arrêter
         rb.velocity = Vector2.zero;
         moveSpeed = 0f;
@@ -139,7 +143,6 @@ public class Player : MonoBehaviour
         // Activer et afficher le texte de victoire
         if (victoryText != null)
         {
-            Debug.Log("Activating Victory Text");
             victoryText.gameObject.SetActive(true);
         }
     }
