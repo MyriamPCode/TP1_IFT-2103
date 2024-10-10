@@ -108,11 +108,11 @@ public class Player : MonoBehaviour
 
     private void CheckCollisions()
     {
-        // R�cup�rer la position du centre du collider
+        // Recuperer la position du centre du collider
         Vector2 center = transform.position;
         //Vector2 center = (Vector2)transform.position + new Vector2(0, -radius);
 
-        // V�rifier les collisions avec d'autres objets
+        // Verifier les collisions avec d'autres objets
         Collider2D[] colliders = Physics2D.OverlapCircleAll(center, radius);
         
 
@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
                 else
                 {
                     //Debug.Log("Collision avec : " + collider.gameObject.name);
-                    // Logique de collision ici (ex: r�duire la vie, rebondir, etc.)
+                    // Logique de collision ici (ex: reduire la vie, rebondir, etc.)
                 }
             }
         }
@@ -161,7 +161,7 @@ public class Player : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        // Visualiser le collider dans l'�diteur
+        // Visualiser le collider dans l'editeur
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radius);
     }
