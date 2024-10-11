@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     private Rigidbody2D rb; // Declaration du Rigidbody2D
 
-    public float friction = 40000f; // Frottement dynamique
+    public float friction = 0.9f; // Frottement dynamique
 
     private Vector2 spawnPoint; // Position du point de spawn
 
