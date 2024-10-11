@@ -14,24 +14,23 @@ public class Player : MonoBehaviour
 
     private float verticalVelocity = 0f; 
     private bool isGrounded;
-    private Rigidbody2D rb; // Declaration du Rigidbody2D
+    private Rigidbody2D rb; 
 
-    public float friction = 0.9f; // Frottement dynamique
+    public float friction = 0.9f; 
 
-    private Vector2 spawnPoint; // Position du point de spawn
+    private Vector2 spawnPoint; 
 
-    public TextMeshProUGUI victoryText; // Référence au texte UI
+    public TextMeshProUGUI victoryText; 
 
     private void Start()
     {
-        // Ajouter un Rigidbody2D par code
+        // Implémentation du RigidBody2D
         rb = gameObject.AddComponent<Rigidbody2D>();
-        rb.gravityScale = 0f; // Desactiver la gravite par defaut
+        rb.gravityScale = 0f; 
         rb.freezeRotation = true; // desactiver la rotation
         rb.mass = 2;
         rb.drag = 2;
-        //rb.drag = 0;
-        spawnPoint = transform.position; // Initialisation de point de spawn
+        spawnPoint = transform.position; // Initialisation du point d'apparition 
 
         // Le texte de victoire est masqué au départ
         if (victoryText != null)
@@ -54,28 +53,25 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Vérifier si le joueur est au sol
+        // On vérifie si le joueur est au sol
         isGrounded = IsGrounded();
 
-        // Gérer le mouvement horizontal
         float horizontalMovement = Input.GetAxis("Horizontal");
         Vector2 velocity = rb.velocity;
 
-        // Appliquer le frottement
         if (isGrounded)
         {
             if (moveSpeed < 0.1f)
             {
                 Debug.Log("velocité avant friction immo:" + velocity.x);
-                velocity.x *= friction; // Appliquer le frottement si presque immobile
+                velocity.x *= friction; // On applique le frottement statique
                 Debug.Log("velocité apres friction immo:" + velocity.x);
             }
             else
             {
                 Debug.Log("velocité avant friction dynamique:" + velocity.x);
-                // Appliquer le frottement sur le mouvement
-                velocity.x = horizontalMovement * moveSpeed; // Changer directement la vélocité
-                velocity.x *= friction;
+                velocity.x = horizontalMovement * moveSpeed; 
+                velocity.x *= friction; // On applique le frottement dynamique
                 Debug.Log("velocité apres friction dynamique:" + velocity.x);
             }
         }
@@ -85,28 +81,27 @@ public class Player : MonoBehaviour
             velocity.x *= friction;
         }
 
-        // Gérer la gravité
+        // On applique la gravité
         if (!isGrounded)
         {
             verticalVelocity += gravity * Time.fixedDeltaTime;
         }
         else
         {
-            verticalVelocity = 0; // Réinitialiser la vitesse verticale si au sol
+            verticalVelocity = 0; 
         }
-        // Appliquer la gravité accumulée
+
         velocity.y += verticalVelocity;
 
-        // Appliquer les vitesses au Rigidbody
         rb.velocity = velocity;
     }
 
     void Update()
     {
-        // Vérifier si le joueur est tombé sous un certain seuil
+        // À partir de y = -10, le joueur retourne au point d'apparition
         if (transform.position.y < -10f)
         {
-            Respawn(); // Appeler la fonction de respawn
+            Respawn(); 
         }
 
         if (isGrounded && Input.GetButtonDown("Jump"))
@@ -120,28 +115,25 @@ public class Player : MonoBehaviour
 
     private void CheckCollisions()
     {
-        // Centre du cercle (position du joueur)
+        // Initialisation du centre du cercle (position du joueur)
         Vector2 ballCenter = transform.position;
 
-        // Parcourir tous les objets susceptibles d'entrer en collision
         foreach (Collider2D collider in FindObjectsOfType<Collider2D>())
         {
-            // Ignorer les collisions avec soi-même
             if (collider.gameObject == gameObject)
                 continue;
 
-            // Obtenir les informations sur les limites du rectangle
             Bounds bounds = collider.bounds;
 
-            // Calculer le centre et la taille du rectangle
+            // On calcule le centre et la taille du rectangle
             Vector2 platformCenter = bounds.center;
             Vector2 platformSize = bounds.extents;
 
-            // Trouver le point le plus proche du centre du cercle par rapport au rectangle
+            // On trouve le point le plus proche du centre du cercle par rapport au rectangle
             float closestX = Mathf.Clamp(ballCenter.x, platformCenter.x - platformSize.x, platformCenter.x + platformSize.x);
             float closestY = Mathf.Clamp(ballCenter.y, platformCenter.y - platformSize.y, platformCenter.y + platformSize.y);
 
-            // Calculer la distance entre le point le plus proche et le centre du cercle
+            // Calcul de la distance entre le point le plus proche et le centre du cercle
             float distanceX = ballCenter.x - closestX;
             float distanceY = ballCenter.y - closestY;
             float distanceSquared = distanceX * distanceX + distanceY * distanceY;
@@ -152,11 +144,6 @@ public class Player : MonoBehaviour
                 if (collider.CompareTag("Finish"))
                 {
                     Victory();
-                }
-                else
-                {
-                    // Debug.Log("Collision avec : " + collider.gameObject.name);
-                    // Gérer ici la logique des autres collisions, par exemple réduire la vie, rebondir, etc.
                 }
             }
         }
@@ -170,7 +157,7 @@ public class Player : MonoBehaviour
         moveSpeed = 0f;
         jumpForce = 0f;
         
-        // Activer et afficher le texte de victoire
+        // On affiche le texte de victoire
         if (victoryText != null)
         {
             victoryText.gameObject.SetActive(true);
@@ -181,17 +168,17 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Respawn at spawn point");
 
-        // Réinitialiser la position du joueur au point de respawn
+        // On réinitialise la position du joueur au point de respawn
         transform.position = spawnPoint;
 
-        // Réinitialiser la vélocité pour éviter des mouvements résiduels
+        // On réinitialise la vélocité pour éviter des mouvements résiduels
         rb.velocity = Vector2.zero;
         verticalVelocity = 0f;
     }
 
     private void OnDrawGizmos()
     {
-        // Visualiser le collider dans l'editeur
+        // Pour visualiser le collider
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radius);
     }

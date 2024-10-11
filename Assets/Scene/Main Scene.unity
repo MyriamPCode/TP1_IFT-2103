@@ -224,37 +224,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &265520361
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 265520362}
-  m_Layer: 0
-  m_Name: Plant
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &265520362
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 265520361}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.0675633, y: -0.12, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 541550581}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &332458262
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +235,7 @@ GameObject:
   - component: {fileID: 332458263}
   - component: {fileID: 332458264}
   m_Layer: 0
-  m_Name: cloud (1)
+  m_Name: cloud2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -349,7 +318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 472406367}
   m_Layer: 0
-  m_Name: Obj
+  m_Name: Objets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -498,7 +467,6 @@ Transform:
   m_Children:
   - {fileID: 1169704268}
   - {fileID: 684628814}
-  - {fileID: 265520362}
   - {fileID: 472406367}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1052,7 +1020,7 @@ GameObject:
   - component: {fileID: 857388995}
   - component: {fileID: 857388996}
   m_Layer: 0
-  m_Name: PixelManObj_0 (2)
+  m_Name: Stand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1278,7 +1246,7 @@ GameObject:
   - component: {fileID: 1169704268}
   - component: {fileID: 1169704269}
   m_Layer: 3
-  m_Name: Platform
+  m_Name: Platformes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1639,7 +1607,7 @@ GameObject:
   - component: {fileID: 1572083006}
   - component: {fileID: 1572083008}
   m_Layer: 3
-  m_Name: PixelManPlant_10 (56)
+  m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1916,7 +1884,7 @@ GameObject:
   - component: {fileID: 2071580730}
   - component: {fileID: 2071580731}
   m_Layer: 0
-  m_Name: cloudb (1)
+  m_Name: cloud1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
