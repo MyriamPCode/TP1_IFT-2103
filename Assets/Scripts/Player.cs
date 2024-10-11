@@ -5,7 +5,7 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
-    public float moveSpeed = 2f;
+    public float moveSpeed = 1f;
     public float gravity = -9.81f;      
     public float jumpForce = 3f;        
     public LayerMask groundLayer;
@@ -40,10 +40,22 @@ public class Player : MonoBehaviour
         }
     }
 
+    private bool IsGrounded() 
+    {
+    // Longueur du rayon qui va être projeté vers le bas
+    float rayLength = 0.05f;
+
+    // Projeter un rayon vers le bas à partir de la position du joueur avec un léger décalage
+    RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, -0.5f, 0), Vector2.down, rayLength, groundLayer);
+
+    // Si le rayon touche un objet appartenant à la couche du sol, renvoyer true, sinon false
+    return hit.collider != null;
+    }
+
     private void FixedUpdate()
     {
         // Vérifier si le joueur est au sol
-        isGrounded = Physics2D.OverlapCircle(transform.position + new Vector3(0, -0.16f, 0), 0.17f, groundLayer);
+        isGrounded = IsGrounded();
 
         // Gérer le mouvement horizontal
         float horizontalMovement = Input.GetAxis("Horizontal");
@@ -108,30 +120,48 @@ public class Player : MonoBehaviour
 
     private void CheckCollisions()
     {
-        // Recuperer la position du centre du collider
-        Vector2 center = transform.position;
-        //Vector2 center = (Vector2)transform.position + new Vector2(0, -radius);
+        // Centre du cercle (position du joueur)
+        Vector2 ballCenter = transform.position;
 
-        // Verifier les collisions avec d'autres objets
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(center, radius);
-        
-
-        foreach (Collider2D collider in colliders)
+        // Parcourir tous les objets susceptibles d'entrer en collision
+        foreach (Collider2D collider in FindObjectsOfType<Collider2D>())
         {
-            if (collider.gameObject != gameObject) // Ignorer le collider du joueur
+            // Ignorer les collisions avec soi-même
+            if (collider.gameObject == gameObject)
+                continue;
+
+            // Obtenir les informations sur les limites du rectangle
+            Bounds bounds = collider.bounds;
+
+            // Calculer le centre et la taille du rectangle
+            Vector2 platformCenter = bounds.center;
+            Vector2 platformSize = bounds.extents;
+
+            // Trouver le point le plus proche du centre du cercle par rapport au rectangle
+            float closestX = Mathf.Clamp(ballCenter.x, platformCenter.x - platformSize.x, platformCenter.x + platformSize.x);
+            float closestY = Mathf.Clamp(ballCenter.y, platformCenter.y - platformSize.y, platformCenter.y + platformSize.y);
+
+            // Calculer la distance entre le point le plus proche et le centre du cercle
+            float distanceX = ballCenter.x - closestX;
+            float distanceY = ballCenter.y - closestY;
+            float distanceSquared = distanceX * distanceX + distanceY * distanceY;
+
+            // Si la distance est inférieure au rayon du cercle, cela signifie qu'il y a collision
+            if (distanceSquared < radius * radius)
             {
-                if (collider.CompareTag("Finish")) // Lorsque le joueur atteint le point de victoire
+                if (collider.CompareTag("Finish"))
                 {
                     Victory();
                 }
                 else
                 {
-                    //Debug.Log("Collision avec : " + collider.gameObject.name);
-                    // Logique de collision ici (ex: reduire la vie, rebondir, etc.)
+                    // Debug.Log("Collision avec : " + collider.gameObject.name);
+                    // Gérer ici la logique des autres collisions, par exemple réduire la vie, rebondir, etc.
                 }
             }
         }
     }
+
 
     private void Victory()
     {
