@@ -73,4 +73,9 @@ public class LogicManager : MonoBehaviour
         */
         victoryScreen.SetActive(true);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
