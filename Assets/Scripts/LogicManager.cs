@@ -1,0 +1,76 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class LogicManager : MonoBehaviour
+{
+    public static bool gameIsPaused = false;
+    public GameObject pauseMenu;
+    public Player player;
+    public GameObject victoryScreen;
+    //public TextMeshProUGUI victoryText;
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (gameIsPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Paused();
+            }
+        }
+    }
+
+    public void Paused()
+    {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0;
+        gameIsPaused = true;
+    }
+    public void restartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void mainMenu()
+    {
+        Resume();
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Resume()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+        gameIsPaused = false;
+    }
+
+    public void Victory()
+    {
+
+        if (player != null)
+        {
+            // On force la balle à s'arrêter
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            player.moveSpeed = 0f;
+            player.jumpForce = 0f;
+        }
+
+        /*
+        if (victoryText != null)
+        {
+            victoryText.gameObject.SetActive(true);
+            Debug.Log("Victory text activated.");
+        }
+        else
+        {
+            Debug.Log("Victory text is null.");
+        }
+        */
+        victoryScreen.SetActive(true);
+    }
+}

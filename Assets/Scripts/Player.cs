@@ -18,9 +18,9 @@ public class Player : MonoBehaviour
 
     public float friction = 0.9f; 
 
-    private Vector2 spawnPoint; 
+    private Vector2 spawnPoint;
 
-    public TextMeshProUGUI victoryText; 
+    public LogicManager logic;
 
     private void Start()
     {
@@ -32,11 +32,15 @@ public class Player : MonoBehaviour
         rb.drag = 2;
         spawnPoint = transform.position; // Initialisation du point d'apparition 
 
+        logic = FindObjectOfType<LogicManager>();
+
+        /*
         // Le texte de victoire est masqué au départ
         if (victoryText != null)
         {
             victoryText.gameObject.SetActive(false);
         }
+        */
     }
 
     private bool IsGrounded() 
@@ -143,26 +147,12 @@ public class Player : MonoBehaviour
             {
                 if (collider.CompareTag("Finish"))
                 {
-                    Victory();
+                    logic.Victory();
                 }
             }
         }
     }
 
-
-    private void Victory()
-    {
-        // On force la balle à s'arrêter
-        rb.velocity = Vector2.zero;
-        moveSpeed = 0f;
-        jumpForce = 0f;
-        
-        // On affiche le texte de victoire
-        if (victoryText != null)
-        {
-            victoryText.gameObject.SetActive(true);
-        }
-    }
 
     private void Respawn()
     {
