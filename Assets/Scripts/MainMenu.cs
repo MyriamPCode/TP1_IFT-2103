@@ -19,11 +19,23 @@ public class MainMenu : MonoBehaviour
 
     public void SettingsButton()
     {
-        settingsWindow.SetActive(true);
+        Debug.Log("Tentative d'ouverture de la fenêtre de paramètres");
+        if (SettingsWindow.Instance != null)
+        {
+            Debug.Log("L'instance de SettingsWindow est valide");
+            SettingsWindow.Instance.OpenSettings();
+        }
+        else
+        {
+            Debug.LogWarning("SettingsWindow.Instance est null");
+        }
     }
 
     public void CloseSettingsWindow()
     {
-        settingsWindow.SetActive(false);
+        if (SettingsWindow.Instance != null)
+        {
+            SettingsWindow.Instance.CloseSettings(); 
+        }
     }
 }

@@ -67,16 +67,16 @@ public class Player : MonoBehaviour
         {
             if (moveSpeed < 0.1f)
             {
-                Debug.Log("velocité avant friction immo:" + velocity.x);
+                //Debug.Log("velocité avant friction immo:" + velocity.x);
                 velocity.x *= friction; // On applique le frottement statique
-                Debug.Log("velocité apres friction immo:" + velocity.x);
+                //Debug.Log("velocité apres friction immo:" + velocity.x);
             }
             else
             {
-                Debug.Log("velocité avant friction dynamique:" + velocity.x);
+                //Debug.Log("velocité avant friction dynamique:" + velocity.x);
                 velocity.x = horizontalMovement * moveSpeed; 
                 velocity.x *= friction; // On applique le frottement dynamique
-                Debug.Log("velocité apres friction dynamique:" + velocity.x);
+                //Debug.Log("velocité apres friction dynamique:" + velocity.x);
             }
         }
         else
