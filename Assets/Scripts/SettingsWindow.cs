@@ -28,8 +28,10 @@ public class SettingsWindow : MonoBehaviour
     // Méthodes pour gérer votre fenêtre de paramètres
     public void OpenSettings()
     {
+        
         Debug.Log("OpenSettings() appelé, état avant activation : " + gameObject.activeSelf);
         gameObject.SetActive(true);
+
     }
 
     public void CloseSettings()
