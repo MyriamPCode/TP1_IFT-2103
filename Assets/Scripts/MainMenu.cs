@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public string levelToLoad;
     public GameObject settingsWindow;
+    public GameObject settingsWindowPrefab;
 
     public void StartGame()
     {
@@ -27,6 +28,8 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
+            GameObject settingsWindowInstance = Instantiate(settingsWindowPrefab);
+            DontDestroyOnLoad(settingsWindowInstance);
             Debug.LogWarning("SettingsWindow.Instance est null");
         }
     }
