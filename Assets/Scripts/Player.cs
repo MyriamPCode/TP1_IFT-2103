@@ -5,6 +5,7 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance { get; private set; }
     public float moveSpeed = 1f;
     public float gravity = -9.81f;      
     public float jumpForce = 3f;        
@@ -21,6 +22,19 @@ public class Player : MonoBehaviour
     private Vector2 spawnPoint;
 
     public LogicManager logic;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            rb = GetComponent<Rigidbody2D>();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -171,5 +185,11 @@ public class Player : MonoBehaviour
         // Pour visualiser le collider
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radius);
+    }
+
+    public void MovePlayer(Vector2 direction)
+    {
+        Vector2 movement = direction * moveSpeed * Time.deltaTime;
+        rb.MovePosition(rb.position + movement);
     }
 }

@@ -99,6 +99,7 @@ public class SettingsWindow : MonoBehaviour
     public void OnChangeKeyButtonClick(string actionName)
     {
         InputManager.Instance.ReassignKey(actionName);
+        InputManager.Instance.SaveKeyBindings();
     }
 }
 

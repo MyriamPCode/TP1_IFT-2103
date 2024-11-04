@@ -32,13 +32,17 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        LoadKeyBindings(); // Charger les mappages au démarrage
+        LoadKeyBindings();
         if (keyBindings.Count == 0)
         {
-            // Ajouter des mappages par défaut si aucun n'existe
             keyBindings.Add(new KeyBinding { actionName = "MoveLeft", key = KeyCode.A });
             keyBindings.Add(new KeyBinding { actionName = "MoveRight", key = KeyCode.D });
         }
+    }
+
+    private void Update()
+    {
+        ProcessInput();
     }
 
     public void ProcessInput()
@@ -47,7 +51,7 @@ public class InputManager : MonoBehaviour
         {
             if (Input.GetKey(binding.key))
             {
-                // Gérer l'action en fonction du nom
+                Debug.Log($"Action déclenchée : {binding.actionName} avec la touche {binding.key}");
                 HandleAction(binding.actionName);
             }
         }
@@ -58,10 +62,10 @@ public class InputManager : MonoBehaviour
         switch (action)
         {
             case "MoveLeft":
-                // Code pour avancer
+                Player.Instance.MovePlayer(Vector2.left);
                 break;
             case "MoveRight":
-                // Code pour reculer
+                Player.Instance.MovePlayer(Vector2.right);
                 break;
                 // Ajoutez d'autres actions
         }
@@ -99,6 +103,7 @@ public class InputManager : MonoBehaviour
             {
                 binding.key = newKey;
                 Debug.Log($"Changement de la touche pour {actionName} en {newKey}");
+                SaveKeyBindings();
                 break;
             }
         }
