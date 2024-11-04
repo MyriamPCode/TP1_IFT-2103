@@ -1,54 +1,129 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+
+[System.Serializable]
+public class KeyBinding
+{
+    public string actionName;
+    public KeyCode key;
+}
 
 public class InputManager : MonoBehaviour
 {
-    private PlayerInputActions inputActions;
+    public static InputManager Instance { get; private set; }
+
+    public List<KeyBinding> keyBindings = new List<KeyBinding>();
 
     private void Awake()
     {
-        inputActions = new PlayerInputActions();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        inputActions.Enable();
-        LoadKeyBindings();
+        LoadKeyBindings(); // Charger les mappages au démarrage
+        if (keyBindings.Count == 0)
+        {
+            // Ajouter des mappages par défaut si aucun n'existe
+            keyBindings.Add(new KeyBinding { actionName = "MoveLeft", key = KeyCode.A });
+            keyBindings.Add(new KeyBinding { actionName = "MoveRight", key = KeyCode.D });
+        }
     }
 
-    private void OnDisable()
+    public void ProcessInput()
     {
-        inputActions.Disable();
-    }
-
-    public void RebindMoveAction()
-    {
-        var moveAction = inputActions.Gameplay.Déplacement;
-
-        moveAction.PerformInteractiveRebinding()
-            .OnComplete(operation =>
+        foreach (var binding in keyBindings)
+        {
+            if (Input.GetKey(binding.key))
             {
-                operation.Dispose();
-                SaveKeyBindings();
-                Debug.Log("Rebind complété !");
-            })
-            .Start();
+                // Gérer l'action en fonction du nom
+                HandleAction(binding.actionName);
+            }
+        }
+    }
+
+    private void HandleAction(string action)
+    {
+        switch (action)
+        {
+            case "MoveLeft":
+                // Code pour avancer
+                break;
+            case "MoveRight":
+                // Code pour reculer
+                break;
+                // Ajoutez d'autres actions
+        }
+    }
+
+    public void ReassignKey(string actionName)
+    {
+        // Attendre que l'utilisateur appuie sur une nouvelle touche
+        StartCoroutine(WaitForKeyPress(actionName));
+    }
+
+    private IEnumerator WaitForKeyPress(string actionName)
+    {
+        bool keyPressed = false;
+        KeyCode newKey = KeyCode.None;
+
+        while (!keyPressed)
+        {
+            foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
+            {
+                if (Input.GetKeyDown(key) && key != KeyCode.Escape) // Évitez d'utiliser Échap pour réassignation
+                {
+                    newKey = key;
+                    keyPressed = true;
+                    break;
+                }
+            }
+            yield return null;
+        }
+
+        // Mettre à jour la clé dans les mappages
+        foreach (var binding in keyBindings)
+        {
+            if (binding.actionName == actionName)
+            {
+                binding.key = newKey;
+                break;
+            }
+        }
     }
 
     public void SaveKeyBindings()
     {
-        var moveAction = inputActions.Gameplay.Déplacement;
-        PlayerPrefs.SetString("MoveBinding", moveAction.bindings[0].effectivePath);
+        foreach (var binding in keyBindings)
+        {
+            PlayerPrefs.SetString(binding.actionName, binding.key.ToString());
+        }
         PlayerPrefs.Save();
     }
 
-    public void LoadKeyBindings()
+    private void LoadKeyBindings()
     {
-        if (PlayerPrefs.HasKey("MoveBinding"))
+        foreach (var binding in keyBindings)
         {
-            var moveBinding = PlayerPrefs.GetString("MoveBinding");
-            inputActions.Gameplay.Déplacement.ApplyBindingOverride(moveBinding);
+            if (PlayerPrefs.HasKey(binding.actionName))
+            {
+                string keyString = PlayerPrefs.GetString(binding.actionName);
+                if (System.Enum.TryParse(keyString, out KeyCode newKey))
+                {
+                    binding.key = newKey;
+                }
+            }
         }
     }
 }
