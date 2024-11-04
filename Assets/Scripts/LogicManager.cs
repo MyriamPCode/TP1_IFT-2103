@@ -11,6 +11,7 @@ public class LogicManager : MonoBehaviour
     public Player player;
     public GameObject victoryScreen;
     //public TextMeshProUGUI victoryText;
+    public GameObject settingsWindowPrefab;
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -77,5 +78,19 @@ public class LogicManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void ButtonSettings()
+    {
+        if (SettingsWindow.Instance != null)
+        {
+            SettingsWindow.Instance.OpenSettings();
+        }
+        else
+        {
+            Debug.LogWarning("SettingsWindow n'est pas encore instancié.");
+            GameObject settingsWindow = Instantiate(settingsWindowPrefab);
+            settingsWindow.SetActive(true);
+        }
     }
 }
