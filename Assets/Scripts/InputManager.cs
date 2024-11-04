@@ -98,9 +98,11 @@ public class InputManager : MonoBehaviour
             if (binding.actionName == actionName)
             {
                 binding.key = newKey;
+                Debug.Log($"Changement de la touche pour {actionName} en {newKey}");
                 break;
             }
         }
+        SettingsWindow.Instance.UpdateKeyBindingsDisplay();
     }
 
     public void SaveKeyBindings()

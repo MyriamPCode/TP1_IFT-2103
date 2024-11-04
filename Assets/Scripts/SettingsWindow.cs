@@ -1,11 +1,14 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SettingsWindow : MonoBehaviour
 {
     public static SettingsWindow Instance { get; private set; }
     public InputManager inputManager;
     public TMP_Text[] actionTexts;
+    public Button[] changeKeyButtons;
+    public int actionIndex;
 
     private void Start()
     {
@@ -37,7 +40,7 @@ public class SettingsWindow : MonoBehaviour
             return;
         }
 
-        Debug.Log("OpenSettings() appelé, état avant activation : " + gameObject.activeSelf);
+        //Debug.Log("OpenSettings() appelé, état avant activation : " + gameObject.activeSelf);
         Debug.Log($"Nombre de mappages de touches : {inputManager.keyBindings.Count}");
         UpdateKeyBindingsDisplay();
         gameObject.SetActive(true);
@@ -51,33 +54,22 @@ public class SettingsWindow : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void UpdateKeyBindingsDisplay()
+    public void UpdateKeyBindingsDisplay()
     {
-        Debug.Log("Mise à jour des mappages de touches");
-
-        if (inputManager == null)
+        if (inputManager.keyBindings.Count > actionTexts.Length || inputManager.keyBindings.Count > changeKeyButtons.Length)
         {
-            Debug.LogError("InputManager est nul !");
-            return; // Quittez la méthode si inputManager est nul
+            Debug.LogError("Les tableaux actionTexts ou changeKeyButtons ne sont pas correctement configurés. Vérifiez leurs tailles.");
+            return; // Sortir de la méthode si les tailles ne correspondent pas
         }
 
         for (int i = 0; i < inputManager.keyBindings.Count; i++)
         {
-            if (i < actionTexts.Length)
-            {
-                if (inputManager.keyBindings[i] != null)
-                {
-                    actionTexts[i].text = $"{inputManager.keyBindings[i].actionName}: {inputManager.keyBindings[i].key}";
-                }
-                else
-                {
-                    Debug.LogWarning($"Mappage de touche à l'indice {i} est nul.");
-                }
-            }
-            else
-            {
-                Debug.LogWarning($"Indice {i} dépasse la taille du tableau actionTexts.");
-            }
+            actionTexts[i].text = $"{inputManager.keyBindings[i].actionName}: {inputManager.keyBindings[i].key}";
+
+            // Capturer l'index dans une variable locale
+            int index = i;
+            changeKeyButtons[i].onClick.RemoveAllListeners(); // Supprimez les anciens listeners
+            changeKeyButtons[i].onClick.AddListener(() => OnChangeKeyButtonClick(inputManager.keyBindings[index].actionName));
         }
     }
 
@@ -106,7 +98,7 @@ public class SettingsWindow : MonoBehaviour
 
     public void OnChangeKeyButtonClick(string actionName)
     {
-        InputManager.Instance.ReassignKey(actionName); // Appeler la méthode de réassignation
+        InputManager.Instance.ReassignKey(actionName);
     }
 }
 
