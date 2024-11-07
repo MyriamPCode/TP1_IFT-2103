@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c344d84183ceb4ba9f275f4ee5ce84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToLoad: Main Scene
+  levelToLoad: ScenePartieLocale
   settingsWindow: {fileID: 1351133411}
 --- !u!114 &246355976
 MonoBehaviour:
@@ -392,7 +392,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Start Game
+  m_Text: 'Jouer
 
 '
 --- !u!222 &343664435
@@ -845,7 +845,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Settings
+  m_Text: 'Options
 
 '
 --- !u!222 &1124501951
@@ -1027,6 +1027,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b244139a9227e694b957d718892c2e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputManager: {fileID: 0}
+  actionTexts: []
+  changeKeyButtons: []
+  actionIndex: 0
 --- !u!1 &1354393569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,7 +1234,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Quit Game
+  m_Text: 'Quitter
 
 '
 --- !u!222 &1461084759
