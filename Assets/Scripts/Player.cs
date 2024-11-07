@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
         // On vérifie si le joueur est au sol
         isGrounded = IsGrounded();
 
-        float horizontalMovement = Input.GetAxis("Horizontal");
+        float horizontalMovement = GetCustomHorizontalInput();
         Vector2 velocity = rb.velocity;
 
         velocity.x = horizontalMovement * moveSpeed;
@@ -192,5 +192,22 @@ public class Player : MonoBehaviour
     {
         Vector2 movement = direction * moveSpeed * Time.deltaTime;
         rb.MovePosition(rb.position + movement);
+    }
+
+    private float GetCustomHorizontalInput()
+    {
+        float horizontalMovement = 0f;
+
+        // Vérifier les touches configurées
+        if (Input.GetKey(InputManager.Instance.keyBindings.Find(kb => kb.actionName == "MoveLeft").key))
+        {
+            horizontalMovement = -1f; // Déplacer à gauche
+        }
+        else if (Input.GetKey(InputManager.Instance.keyBindings.Find(kb => kb.actionName == "MoveRight").key))
+        {
+            horizontalMovement = 1f; // Déplacer à droite
+        }
+
+        return horizontalMovement;
     }
 }

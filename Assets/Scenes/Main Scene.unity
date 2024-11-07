@@ -655,7 +655,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Settings
+  m_Text: Options
 --- !u!222 &293062164
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1508,7 +1508,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Return main menu
+  m_Text: Menu principal
 --- !u!222 &783768566
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2201,6 +2201,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  friction: 0.9
   logic: {fileID: 1919633346}
 --- !u!212 &1081784153
 SpriteRenderer:
