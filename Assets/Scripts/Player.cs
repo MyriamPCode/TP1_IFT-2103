@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     private Rigidbody2D rb; 
 
-    //public float friction = 0.9f; 
+    public float friction = 0.9f; 
 
     private Vector2 spawnPoint;
 
@@ -80,51 +80,38 @@ public class Player : MonoBehaviour
         float horizontalMovement = Input.GetAxis("Horizontal");
         Vector2 velocity = rb.velocity;
 
-        /*
-        if (isGrounded)
-        {
-            if (moveSpeed < 0.1f)
-            {
-                //Debug.Log("velocité avant friction immo:" + velocity.x);
-                velocity.x *= friction; // On applique le frottement statique
-                //Debug.Log("velocité apres friction immo:" + velocity.x);
-            }
-            else
-            {
-                //Debug.Log("velocité avant friction dynamique:" + velocity.x);
-                velocity.x = horizontalMovement * moveSpeed; 
-                velocity.x *= friction; // On applique le frottement dynamique
-                //Debug.Log("velocité apres friction dynamique:" + velocity.x);
-            }
-        }
-        else
-        {
-            velocity.x = horizontalMovement * moveSpeed;
-            velocity.x *= friction;
-        }
-
-        // On applique la gravité
-        if (!isGrounded)
-        {
-            verticalVelocity += gravity * Time.fixedDeltaTime;
-        }
-        else
-        {
-            verticalVelocity = 0; 
-        }
-
-        velocity.y += verticalVelocity;
-
-        rb.velocity = velocity;
-        */
-
         velocity.x = horizontalMovement * moveSpeed;
-        rb.velocity = velocity; // Appliquez la vélocité directement
+        rb.velocity = velocity;
 
-        if (IsGrounded() && Input.GetButtonDown("Jump"))
+
+        if (horizontalMovement != 0 & IsGrounded())
         {
-            rb.velocity = new Vector2(velocity.x, jumpForce); // Saut
+            // Applique le mouvement horizontal normal
+            velocity.x = horizontalMovement * moveSpeed;
         }
+        else
+        {
+            // Si le joueur n'est pas en mouvement, appliquer la friction pour ralentir progressivement la vitesse horizontale
+            velocity.x = Mathf.MoveTowards(velocity.x, 0, friction * Time.fixedDeltaTime);
+        }
+
+    /*
+    // On applique la gravité
+    if (!isGrounded)
+    {
+        verticalVelocity += gravity * Time.fixedDeltaTime;
+    }
+    else
+    {
+        verticalVelocity = 0; 
+    }
+
+    velocity.y += verticalVelocity;
+
+    //rb.velocity = velocity;
+    */
+
+    rb.velocity = velocity;
 
     }
 
@@ -136,12 +123,12 @@ public class Player : MonoBehaviour
             Respawn(); 
         }
 
-        /*
+        
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-        */
+        
 
         CheckCollisions();
     }
@@ -190,7 +177,7 @@ public class Player : MonoBehaviour
             if (hit.CompareTag("Finish"))
             {
                 logic.Victory();
-                break; // Sortez de la boucle dès que vous trouvez un objet "Finish"
+                break;
             }
         }
     }
