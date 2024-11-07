@@ -6,18 +6,14 @@ using TMPro;
 public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
-    public float moveSpeed = 1f;
-    //public float gravity = -9.81f;      
+    public float moveSpeed = 1f;      
     public float jumpForce = 3f;        
     public LayerMask groundLayer;
 
-    //public float radius = 0.5f;
-
-    //private float verticalVelocity = 0f; 
     private bool isGrounded;
     private Rigidbody2D rb; 
 
-    public float friction = 0.9f; 
+    public float friction = 0.5f; 
 
     private Vector2 spawnPoint;
 
@@ -39,25 +35,10 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        /*
-        // Implémentation du RigidBody2D
-        rb = gameObject.AddComponent<Rigidbody2D>();
-        rb.gravityScale = 0f; 
-        rb.freezeRotation = true; // desactiver la rotation
-        rb.mass = 2;
-        rb.drag = 2;
-        */
         spawnPoint = transform.position; // Initialisation du point d'apparition 
 
         logic = FindObjectOfType<LogicManager>();
 
-        /*
-        // Le texte de victoire est masqué au départ
-        if (victoryText != null)
-        {
-            victoryText.gameObject.SetActive(false);
-        }
-        */
     }
 
     private bool IsGrounded() 
