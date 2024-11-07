@@ -7,13 +7,13 @@ public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
     public float moveSpeed = 1f;
-    public float gravity = -9.81f;      
+    //public float gravity = -9.81f;      
     public float jumpForce = 3f;        
     public LayerMask groundLayer;
 
-    public float radius = 0.5f;
+    //public float radius = 0.5f;
 
-    private float verticalVelocity = 0f; 
+    //private float verticalVelocity = 0f; 
     private bool isGrounded;
     private Rigidbody2D rb; 
 
@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
         {
             Instance = this;
             rb = GetComponent<Rigidbody2D>();
+            rb.gravityScale = 3f;
         }
         else
         {
@@ -38,12 +39,14 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        /*
         // Implémentation du RigidBody2D
         rb = gameObject.AddComponent<Rigidbody2D>();
         rb.gravityScale = 0f; 
         rb.freezeRotation = true; // desactiver la rotation
         rb.mass = 2;
         rb.drag = 2;
+        */
         spawnPoint = transform.position; // Initialisation du point d'apparition 
 
         logic = FindObjectOfType<LogicManager>();
@@ -77,41 +80,39 @@ public class Player : MonoBehaviour
         float horizontalMovement = Input.GetAxis("Horizontal");
         Vector2 velocity = rb.velocity;
 
-        if (isGrounded)
-        {
-            if (moveSpeed < 0.1f)
-            {
-                //Debug.Log("velocité avant friction immo:" + velocity.x);
-                velocity.x *= friction; // On applique le frottement statique
-                //Debug.Log("velocité apres friction immo:" + velocity.x);
-            }
-            else
-            {
-                //Debug.Log("velocité avant friction dynamique:" + velocity.x);
-                velocity.x = horizontalMovement * moveSpeed; 
-                velocity.x *= friction; // On applique le frottement dynamique
-                //Debug.Log("velocité apres friction dynamique:" + velocity.x);
-            }
-        }
-        else
-        {
-            velocity.x = horizontalMovement * moveSpeed;
-            velocity.x *= friction;
-        }
-
-        // On applique la gravité
-        if (!isGrounded)
-        {
-            verticalVelocity += gravity * Time.fixedDeltaTime;
-        }
-        else
-        {
-            verticalVelocity = 0; 
-        }
-
-        velocity.y += verticalVelocity;
-
+        velocity.x = horizontalMovement * moveSpeed;
         rb.velocity = velocity;
+
+
+        if (horizontalMovement != 0 & IsGrounded())
+        {
+            // Applique le mouvement horizontal normal
+            velocity.x = horizontalMovement * moveSpeed;
+        }
+        else
+        {
+            // Si le joueur n'est pas en mouvement, appliquer la friction pour ralentir progressivement la vitesse horizontale
+            velocity.x = Mathf.MoveTowards(velocity.x, 0, friction * Time.fixedDeltaTime);
+        }
+
+    /*
+    // On applique la gravité
+    if (!isGrounded)
+    {
+        verticalVelocity += gravity * Time.fixedDeltaTime;
+    }
+    else
+    {
+        verticalVelocity = 0; 
+    }
+
+    velocity.y += verticalVelocity;
+
+    //rb.velocity = velocity;
+    */
+
+    rb.velocity = velocity;
+
     }
 
     void Update()
@@ -122,10 +123,12 @@ public class Player : MonoBehaviour
             Respawn(); 
         }
 
+        
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
+        
 
         CheckCollisions();
     }
@@ -133,6 +136,7 @@ public class Player : MonoBehaviour
 
     private void CheckCollisions()
     {
+        /*
         // Initialisation du centre du cercle (position du joueur)
         Vector2 ballCenter = transform.position;
 
@@ -165,6 +169,17 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        */
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 0.5f, groundLayer);
+
+        foreach (var hit in hits)
+        {
+            if (hit.CompareTag("Finish"))
+            {
+                logic.Victory();
+                break;
+            }
+        }
     }
 
 
@@ -177,15 +192,17 @@ public class Player : MonoBehaviour
 
         // On réinitialise la vélocité pour éviter des mouvements résiduels
         rb.velocity = Vector2.zero;
-        verticalVelocity = 0f;
+        //verticalVelocity = 0f;
     }
 
+    /*
     private void OnDrawGizmos()
     {
         // Pour visualiser le collider
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radius);
     }
+    */
 
     public void MovePlayer(Vector2 direction)
     {
