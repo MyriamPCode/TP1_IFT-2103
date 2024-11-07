@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
         rb.velocity = velocity;
 
 
-        if (horizontalMovement != 0 & IsGrounded())
+        if (horizontalMovement != 0)
         {
             // Applique le mouvement horizontal normal
             velocity.x = horizontalMovement * moveSpeed;
@@ -94,22 +94,6 @@ public class Player : MonoBehaviour
             // Si le joueur n'est pas en mouvement, appliquer la friction pour ralentir progressivement la vitesse horizontale
             velocity.x = Mathf.MoveTowards(velocity.x, 0, friction * Time.fixedDeltaTime);
         }
-
-    /*
-    // On applique la gravité
-    if (!isGrounded)
-    {
-        verticalVelocity += gravity * Time.fixedDeltaTime;
-    }
-    else
-    {
-        verticalVelocity = 0; 
-    }
-
-    velocity.y += verticalVelocity;
-
-    //rb.velocity = velocity;
-    */
 
     rb.velocity = velocity;
 
