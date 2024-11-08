@@ -3,12 +3,14 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 [System.Serializable]
 public class KeyBinding
 {
     public string actionName;
     public KeyCode key;
+    public int playerID;
 }
 
 public class InputManager : MonoBehaviour
@@ -35,8 +37,13 @@ public class InputManager : MonoBehaviour
         LoadKeyBindings();
         if (keyBindings.Count == 0)
         {
-            keyBindings.Add(new KeyBinding { actionName = "MoveLeft", key = KeyCode.A });
-            keyBindings.Add(new KeyBinding { actionName = "MoveRight", key = KeyCode.D });
+            // Joueur 1 (par exemple A et D)
+            keyBindings.Add(new KeyBinding { actionName = "MoveLeft", key = KeyCode.A, playerID = 1 });
+            keyBindings.Add(new KeyBinding { actionName = "MoveRight", key = KeyCode.D, playerID = 1 });
+
+            // Joueur 2 (par exemple flèches gauche et droite)
+            keyBindings.Add(new KeyBinding { actionName = "MoveLeft", key = KeyCode.LeftArrow, playerID = 2 });
+            keyBindings.Add(new KeyBinding { actionName = "MoveRight", key = KeyCode.RightArrow, playerID = 2 });
         }
     }
 
@@ -49,25 +56,38 @@ public class InputManager : MonoBehaviour
     {
         foreach (var binding in keyBindings)
         {
-            if (Input.GetKey(binding.key))
+            if (Input.GetKey(binding.key)) // Si la touche est pressée
             {
-                Debug.Log($"Action déclenchée : {binding.actionName} avec la touche {binding.key}");
-                HandleAction(binding.actionName);
+                HandleAction(binding.actionName, binding.playerID); // Appeler la fonction selon l'action et le joueur
             }
         }
     }
 
-    private void HandleAction(string action)
+    private void HandleAction(string action, int playerID)
     {
-        switch (action)
+        if (playerID == 1)
         {
-            case "MoveLeft":
-                Player.Instance.MovePlayer(Vector2.left);
-                break;
-            case "MoveRight":
-                Player.Instance.MovePlayer(Vector2.right);
-                break;
-                // Ajoutez d'autres actions
+            switch (action)
+            {
+                case "MoveLeft":
+                    Player.Instance.MovePlayer(Vector2.left); // Utiliser une instance pour Player1
+                    break;
+                case "MoveRight":
+                    Player.Instance.MovePlayer(Vector2.right); // Utiliser une instance pour Player1
+                    break;
+            }
+        }
+        else if (playerID == 2)
+        {
+            switch (action)
+            {
+                case "MoveLeft":
+                    Player2.Instance.MovePlayer(Vector2.left); // Utiliser une instance pour Player2
+                    break;
+                case "MoveRight":
+                    Player2.Instance.MovePlayer(Vector2.right); // Utiliser une instance pour Player2
+                    break;
+            }
         }
     }
 

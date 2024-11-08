@@ -1,19 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
-public class Player : MonoBehaviour
+public class Player2 : MonoBehaviour
 {
-    public static Player Instance { get; private set; }
-    public float moveSpeed = 1f;      
-    public float jumpForce = 3f;        
+    public static Player2 Instance { get; private set; }
+    public float moveSpeed = 1f;
+    public float jumpForce = 3f;
     public LayerMask groundLayer;
 
     private bool isGrounded;
-    private Rigidbody2D rb; 
+    private Rigidbody2D rb;
 
-    public float friction = 0.5f; 
+    public float friction = 0.5f;
 
     private Vector2 spawnPoint;
 
@@ -43,21 +42,21 @@ public class Player : MonoBehaviour
 
     }
 
-    private bool IsGrounded() 
+    private bool IsGrounded()
     {
-    // Longueur du rayon qui va Ãªtre projetÃ© vers le bas
-    float rayLength = 0.05f;
+        // Longueur du rayon qui va être projeté vers le bas
+        float rayLength = 0.05f;
 
-    // Projeter un rayon vers le bas Ã  partir de la position du joueur avec un lÃ©ger dÃ©calage
-    RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, -0.5f, 0), Vector2.down, rayLength, groundLayer);
+        // Projeter un rayon vers le bas à partir de la position du joueur avec un léger décalage
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, -0.5f, 0), Vector2.down, rayLength, groundLayer);
 
-    // Si le rayon touche un objet appartenant Ã  la couche du sol, renvoyer true, sinon false
-    return hit.collider != null;
+        // Si le rayon touche un objet appartenant à la couche du sol, renvoyer true, sinon false
+        return hit.collider != null;
     }
 
     private void FixedUpdate()
     {
-        // On vÃ©rifie si le joueur est au sol
+        // On vérifie si le joueur est au sol
         isGrounded = IsGrounded();
 
         float horizontalMovement = GetCustomHorizontalInput();
@@ -78,24 +77,24 @@ public class Player : MonoBehaviour
             velocity.x = Mathf.MoveTowards(velocity.x, 0, friction * Time.fixedDeltaTime);
         }
 
-    rb.velocity = velocity;
+        rb.velocity = velocity;
 
     }
 
     void Update()
     {
-        // Ã€ partir de y = -10, le joueur retourne au point d'apparition
+        // À partir de y = -10, le joueur retourne au point d'apparition
         if (transform.position.y < -10f)
         {
-            Respawn(); 
+            Respawn();
         }
 
-        
-        if (isGrounded && Input.GetButtonDown("Jump"))
+
+        if (IsGrounded() && Input.GetKeyDown(KeyCode.Return))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-        
+
 
         CheckCollisions();
     }
@@ -120,10 +119,10 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Respawn at spawn point");
 
-        // On rÃ©initialise la position du joueur au point de respawn
+        // On réinitialise la position du joueur au point de respawn
         transform.position = spawnPoint;
 
-        // On rÃ©initialise la vÃ©locitÃ© pour Ã©viter des mouvements rÃ©siduels
+        // On réinitialise la vélocité pour éviter des mouvements résiduels
         rb.velocity = Vector2.zero;
         //verticalVelocity = 0f;
     }
@@ -138,21 +137,21 @@ public class Player : MonoBehaviour
     {
         float horizontalMovement = 0f;
 
-        // VÃ©rifier les touches configurÃ©es
+        // Vérifier les touches configurées
         if (Input.GetKey(InputManager.Instance.keyBindings.Find(kb => kb.actionName == "MoveLeft").key))
         {
-            horizontalMovement = -1f; // DÃ©placer Ã  gauche
+            horizontalMovement = -1f; // Déplacer à gauche
         }
         else if (Input.GetKey(InputManager.Instance.keyBindings.Find(kb => kb.actionName == "MoveRight").key))
         {
-            horizontalMovement = 1f; // DÃ©placer Ã  droite
+            horizontalMovement = 1f; // Déplacer à droite
         }
 
         else if (playerIndex == 2)
         {
-            if (Input.GetKey(KeyCode.LeftArrow))  // Joueur 2, touche flÃ¨che gauche
+            if (Input.GetKey(KeyCode.LeftArrow))  // Joueur 2, touche flèche gauche
                 horizontalMovement = -1f;
-            if (Input.GetKey(KeyCode.RightArrow)) // Joueur 2, touche flÃ¨che droite
+            if (Input.GetKey(KeyCode.RightArrow)) // Joueur 2, touche flèche droite
                 horizontalMovement = 1f;
         }
 
