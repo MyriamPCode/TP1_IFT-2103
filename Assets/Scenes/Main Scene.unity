@@ -758,11 +758,11 @@ GameObject:
   m_Component:
   - component: {fileID: 465730194}
   - component: {fileID: 465730193}
-  - component: {fileID: 465730192}
   - component: {fileID: 465730191}
   - component: {fileID: 465730190}
   - component: {fileID: 465730189}
   - component: {fileID: 465730188}
+  - component: {fileID: 465730195}
   m_Layer: 6
   m_Name: Player2
   m_TagString: Respawn
@@ -870,26 +870,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &465730192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465730187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97feb2740d9e6534087f137b58006a4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  jumpForce: 10
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  friction: 0.9
-  logic: {fileID: 1919633346}
-  playerIndex: 2
 --- !u!212 &465730193
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -961,6 +941,26 @@ RectTransform:
   m_AnchoredPosition: {x: 11.75, y: 0.45}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &465730195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465730187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e167114d8018245a4a289b00539bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  jumpForce: 3
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  friction: 0.5
+  logic: {fileID: 1919633346}
+  playerIndex: 1
 --- !u!1 &472406366
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,7 +1103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1081784154}
   smoothSpeed: 0.125
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: 0, z: -10}
 --- !u!1 &541550580
 GameObject:
   m_ObjectHideFlags: 0
@@ -2404,7 +2404,7 @@ Camera:
   m_GameObject: {fileID: 1022097924}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -2429,8 +2429,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 43.2
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 3.38
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2440,10 +2440,10 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!114 &1022097928
@@ -3892,8 +3892,8 @@ Transform:
   m_GameObject: {fileID: 1482479671}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.041481, y: -0.24549675, z: 1.4340038}
-  m_LocalScale: {x: 4.4604, y: 2.908256, z: 1.1697}
+  m_LocalPosition: {x: 16.4592, y: 0.8191, z: 1.4340038}
+  m_LocalScale: {x: 5.5320473, y: 3.9077883, z: 1.1697}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
