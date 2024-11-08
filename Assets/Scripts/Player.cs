@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
 
     public LogicManager logic;
 
+    public int playerIndex = 1;
+
     private void Awake()
     {
         if (Instance == null)
@@ -101,40 +103,6 @@ public class Player : MonoBehaviour
 
     private void CheckCollisions()
     {
-        /*
-        // Initialisation du centre du cercle (position du joueur)
-        Vector2 ballCenter = transform.position;
-
-        foreach (Collider2D collider in FindObjectsOfType<Collider2D>())
-        {
-            if (collider.gameObject == gameObject)
-                continue;
-
-            Bounds bounds = collider.bounds;
-
-            // On calcule le centre et la taille du rectangle
-            Vector2 platformCenter = bounds.center;
-            Vector2 platformSize = bounds.extents;
-
-            // On trouve le point le plus proche du centre du cercle par rapport au rectangle
-            float closestX = Mathf.Clamp(ballCenter.x, platformCenter.x - platformSize.x, platformCenter.x + platformSize.x);
-            float closestY = Mathf.Clamp(ballCenter.y, platformCenter.y - platformSize.y, platformCenter.y + platformSize.y);
-
-            // Calcul de la distance entre le point le plus proche et le centre du cercle
-            float distanceX = ballCenter.x - closestX;
-            float distanceY = ballCenter.y - closestY;
-            float distanceSquared = distanceX * distanceX + distanceY * distanceY;
-
-            // Si la distance est inférieure au rayon du cercle, cela signifie qu'il y a collision
-            if (distanceSquared < radius * radius)
-            {
-                if (collider.CompareTag("Finish"))
-                {
-                    logic.Victory();
-                }
-            }
-        }
-        */
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 0.5f, groundLayer);
 
         foreach (var hit in hits)
@@ -160,15 +128,6 @@ public class Player : MonoBehaviour
         //verticalVelocity = 0f;
     }
 
-    /*
-    private void OnDrawGizmos()
-    {
-        // Pour visualiser le collider
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, radius);
-    }
-    */
-
     public void MovePlayer(Vector2 direction)
     {
         Vector2 movement = direction * moveSpeed * Time.deltaTime;
@@ -187,6 +146,14 @@ public class Player : MonoBehaviour
         else if (Input.GetKey(InputManager.Instance.keyBindings.Find(kb => kb.actionName == "MoveRight").key))
         {
             horizontalMovement = 1f; // Déplacer à droite
+        }
+
+        else if (playerIndex == 2)
+        {
+            if (Input.GetKey(KeyCode.LeftArrow))  // Joueur 2, touche flèche gauche
+                horizontalMovement = -1f;
+            if (Input.GetKey(KeyCode.RightArrow)) // Joueur 2, touche flèche droite
+                horizontalMovement = 1f;
         }
 
         return horizontalMovement;
