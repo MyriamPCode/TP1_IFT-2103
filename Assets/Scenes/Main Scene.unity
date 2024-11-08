@@ -953,14 +953,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e167114d8018245a4a289b00539bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  jumpForce: 3
+  moveSpeed: 10
+  jumpForce: 10
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   friction: 0.5
   logic: {fileID: 1919633346}
-  playerIndex: 1
+  playerIndex: 2
 --- !u!1 &472406366
 GameObject:
   m_ObjectHideFlags: 0
