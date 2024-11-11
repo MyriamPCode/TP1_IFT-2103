@@ -91,13 +91,18 @@ public class Player : MonoBehaviour
         }
 
         
-        if (isGrounded && Input.GetButtonDown("Jump"))
+        if (isGrounded && Input.GetKeyDown(GetJumpKey()))
         {
             Jump();
         }
         
 
         CheckCollisions();
+    }
+
+    private KeyCode GetJumpKey()
+    {
+        return InputManager.Instance.keyBindings.Find(kb => kb.actionName == "Jump" && kb.playerID == playerIndex).key;
     }
 
 
