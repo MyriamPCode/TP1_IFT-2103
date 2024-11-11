@@ -18,7 +18,7 @@ public class Player2 : MonoBehaviour
 
     public LogicManager logic;
 
-    public int playerIndex = 1;
+    public int playerIndex = 2;
 
     private void Awake()
     {
@@ -92,7 +92,7 @@ public class Player2 : MonoBehaviour
 
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Return))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            Jump();
         }
 
 
@@ -137,24 +137,18 @@ public class Player2 : MonoBehaviour
     {
         float horizontalMovement = 0f;
 
-        // Vérifier les touches configurées
-        if (Input.GetKey(InputManager.Instance.keyBindings.Find(kb => kb.actionName == "MoveLeft").key))
-        {
-            horizontalMovement = -1f; // Déplacer à gauche
-        }
-        else if (Input.GetKey(InputManager.Instance.keyBindings.Find(kb => kb.actionName == "MoveRight").key))
-        {
-            horizontalMovement = 1f; // Déplacer à droite
-        }
-
-        else if (playerIndex == 2)
-        {
-            if (Input.GetKey(KeyCode.LeftArrow))  // Joueur 2, touche flèche gauche
-                horizontalMovement = -1f;
-            if (Input.GetKey(KeyCode.RightArrow)) // Joueur 2, touche flèche droite
+        
+        if (Input.GetKey(KeyCode.LeftArrow))  // Joueur 2, touche flèche gauche
+            horizontalMovement = -1f;
+        if (Input.GetKey(KeyCode.RightArrow)) // Joueur 2, touche flèche droite
                 horizontalMovement = 1f;
-        }
-
+        
         return horizontalMovement;
+    }
+
+    public void Jump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+
     }
 }

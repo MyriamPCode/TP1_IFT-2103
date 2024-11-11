@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            Jump();
         }
         
 
@@ -157,5 +157,10 @@ public class Player : MonoBehaviour
         }
 
         return horizontalMovement;
+    }
+
+    public void Jump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
 }
