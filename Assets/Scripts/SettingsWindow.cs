@@ -62,6 +62,7 @@ public class SettingsWindow : MonoBehaviour
             return; // Sortir de la méthode si les tailles ne correspondent pas
         }
 
+        /*
         for (int i = 0; i < inputManager.keyBindings.Count; i++)
         {
             actionTexts[i].text = $"{inputManager.keyBindings[i].actionName}: {inputManager.keyBindings[i].key}";
@@ -70,6 +71,21 @@ public class SettingsWindow : MonoBehaviour
             int index = i;
             changeKeyButtons[i].onClick.RemoveAllListeners(); // Supprimez les anciens listeners
             changeKeyButtons[i].onClick.AddListener(() => OnChangeKeyButtonClick(inputManager.keyBindings[index].actionName));
+        }
+        */
+        for (int i = 0; i < inputManager.keyBindings.Count; i++)
+        {
+            KeyBinding binding = inputManager.keyBindings[i];
+            string keyName = binding.key.ToString();  // Le nom de la touche associée à l'action
+            string playerLabel = (binding.playerID == 1) ? "Joueur 1" : "Joueur 2";  // Affiche quel joueur utilise cette touche
+
+            // Afficher le nom de l'action, le joueur et la touche associée
+            actionTexts[i].text = $"{playerLabel} - {binding.actionName} ({keyName})";
+
+            // Capturer l'index dans une variable locale pour l'utiliser dans le listener
+            int index = i;
+            changeKeyButtons[i].onClick.RemoveAllListeners();  // Supprimer les anciens listeners
+            changeKeyButtons[i].onClick.AddListener(() => OnChangeKeyButtonClick(binding.actionName, index));
         }
     }
 
@@ -96,10 +112,18 @@ public class SettingsWindow : MonoBehaviour
         Debug.Log("Paramètres sauvegardés");
     }
 
+    /*
     public void OnChangeKeyButtonClick(string actionName)
     {
         InputManager.Instance.ReassignKey(actionName);
         InputManager.Instance.SaveKeyBindings();
+    }
+    */
+
+    public void OnChangeKeyButtonClick(string actionName, int index)
+    {
+        InputManager.Instance.ReassignKey(actionName);  // Réassigner la touche pour l'action
+        UpdateKeyBindingsDisplay();  // Mettre à jour l'affichage des touches
     }
 }
 

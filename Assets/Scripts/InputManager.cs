@@ -67,6 +67,7 @@ public class InputManager : MonoBehaviour
 
     private void HandleAction(string action, int playerID)
     {
+        
         if (playerID == 1)
         {
             switch (action)
@@ -97,7 +98,32 @@ public class InputManager : MonoBehaviour
                     break;
             }
         }
+
+        /*
+        PlayerController player = FindPlayerByID(playerID);
+
+        if (player != null)
+        {
+            switch (action)
+            {
+                case "MoveLeft":
+                    player.MovePlayer(Vector2.left);
+                    break;
+                case "MoveRight":
+                    player.MovePlayer(Vector2.right);
+                    break;
+                case "Jump":
+                    player.Jump();
+                    break;
+            }
+        }*/
     }
+        
+        /*
+    private PlayerController FindPlayerByID(int playerID)
+    {
+        return FindObjectOfType<PlayerController>();  // Si un seul joueur par scène, retourner cette instance
+    }*/
 
     public void ReassignKey(string actionName)
     {
