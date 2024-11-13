@@ -143,6 +143,7 @@ public class Player : MonoBehaviour
     {
         float horizontalMovement = 0f;
 
+        /*
         // Vérifier les touches configurées
         if (Input.GetKey(InputManager.Instance.keyBindings.Find(kb => kb.actionName == "MoveLeft").key))
         {
@@ -159,6 +160,21 @@ public class Player : MonoBehaviour
                 horizontalMovement = -1f;
             if (Input.GetKey(KeyCode.RightArrow)) // Joueur 2, touche flèche droite
                 horizontalMovement = 1f;
+        }
+        */
+        foreach (var keyBinding in InputManager.Instance.keyBindings)
+        {
+            if (keyBinding.playerID == playerIndex) // Si la clé appartient au bon joueur
+            {
+                if (keyBinding.actionName == "MoveLeft" && Input.GetKey(keyBinding.key))
+                {
+                    horizontalMovement = -1f;
+                }
+                else if (keyBinding.actionName == "MoveRight" && Input.GetKey(keyBinding.key))
+                {
+                    horizontalMovement = 1f;
+                }
+            }
         }
 
         return horizontalMovement;

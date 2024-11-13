@@ -122,8 +122,13 @@ public class SettingsWindow : MonoBehaviour
 
     public void OnChangeKeyButtonClick(string actionName, int index)
     {
-        InputManager.Instance.ReassignKey(actionName);  // Réassigner la touche pour l'action
-        UpdateKeyBindingsDisplay();  // Mettre à jour l'affichage des touches
+        int playerID = inputManager.keyBindings[index].playerID;
+
+        // Appeler ReassignKey en passant actionName et playerID
+        InputManager.Instance.ReassignKey(actionName, playerID);
+
+        // Mettre à jour l'affichage des touches
+        SettingsWindow.Instance.UpdateKeyBindingsDisplay();
     }
 }
 

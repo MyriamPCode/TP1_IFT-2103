@@ -39,12 +39,12 @@ public class InputManager : MonoBehaviour
         LoadKeyBindings();
         if (keyBindings.Count == 0)
         {
-            // Par défaut : Configurer les touches de chaque joueur
             keyBindings.Add(new KeyBinding { actionName = "MoveLeft", key = KeyCode.A, playerID = 1 });
             keyBindings.Add(new KeyBinding { actionName = "MoveRight", key = KeyCode.D, playerID = 1 });
+            keyBindings.Add(new KeyBinding { actionName = "Jump", key = KeyCode.Space, playerID = 1 });
+
             keyBindings.Add(new KeyBinding { actionName = "MoveLeft", key = KeyCode.LeftArrow, playerID = 2 });
             keyBindings.Add(new KeyBinding { actionName = "MoveRight", key = KeyCode.RightArrow, playerID = 2 });
-            keyBindings.Add(new KeyBinding { actionName = "Jump", key = KeyCode.Space, playerID = 1 });
             keyBindings.Add(new KeyBinding { actionName = "Jump", key = KeyCode.Return, playerID = 2 });
         }
     }
@@ -125,13 +125,13 @@ public class InputManager : MonoBehaviour
         return FindObjectOfType<PlayerController>();  // Si un seul joueur par scène, retourner cette instance
     }*/
 
-    public void ReassignKey(string actionName)
+    public void ReassignKey(string actionName, int playerID)
     {
         // Attendre que l'utilisateur appuie sur une nouvelle touche
-        StartCoroutine(WaitForKeyPress(actionName));
+        StartCoroutine(WaitForKeyPress(actionName, playerID));
     }
 
-    private IEnumerator WaitForKeyPress(string actionName)
+    private IEnumerator WaitForKeyPress(string actionName, int playerID)
     {
         bool keyPressed = false;
         KeyCode newKey = KeyCode.None;
@@ -153,15 +153,17 @@ public class InputManager : MonoBehaviour
         // Mettre à jour la clé dans les mappages
         foreach (var binding in keyBindings)
         {
-            if (binding.actionName == actionName)
+            /*if (binding.actionName == actionName)
+             */
+            if (binding.actionName == actionName && binding.playerID == playerID)
             {
                 binding.key = newKey;
-                Debug.Log($"Changement de la touche pour {actionName} en {newKey}");
-                SaveKeyBindings();
+                Debug.Log($"Changement de la touche pour {actionName} du joueur {playerID} en {newKey}");
                 break;
             }
         }
         SettingsWindow.Instance.UpdateKeyBindingsDisplay();
+        SaveKeyBindings();
     }
 
     public void SaveKeyBindings()

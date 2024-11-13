@@ -375,16 +375,16 @@ MonoBehaviour:
   actionTexts:
   - {fileID: 1474506072}
   - {fileID: 752212974}
+  - {fileID: 2090206108}
   - {fileID: 603094213}
   - {fileID: 1082216302}
-  - {fileID: 2090206108}
   - {fileID: 1692150526}
   changeKeyButtons:
   - {fileID: 732240154}
   - {fileID: 1147465106}
+  - {fileID: 1737899118}
   - {fileID: 1049686216}
   - {fileID: 1658281286}
-  - {fileID: 1737899118}
   - {fileID: 1302447314}
   actionIndex: 0
 --- !u!114 &141345822
