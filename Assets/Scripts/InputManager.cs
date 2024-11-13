@@ -18,6 +18,8 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance { get; private set; }
 
     public List<KeyBinding> keyBindings = new List<KeyBinding>();
+    public Player player1; 
+    public Player2 player2;
 
     private void Awake()
     {
@@ -37,13 +39,13 @@ public class InputManager : MonoBehaviour
         LoadKeyBindings();
         if (keyBindings.Count == 0)
         {
-            // Joueur 1 (par exemple A et D)
             keyBindings.Add(new KeyBinding { actionName = "MoveLeft", key = KeyCode.A, playerID = 1 });
             keyBindings.Add(new KeyBinding { actionName = "MoveRight", key = KeyCode.D, playerID = 1 });
+            keyBindings.Add(new KeyBinding { actionName = "Jump", key = KeyCode.Space, playerID = 1 });
 
-            // Joueur 2 (par exemple flèches gauche et droite)
             keyBindings.Add(new KeyBinding { actionName = "MoveLeft", key = KeyCode.LeftArrow, playerID = 2 });
             keyBindings.Add(new KeyBinding { actionName = "MoveRight", key = KeyCode.RightArrow, playerID = 2 });
+            keyBindings.Add(new KeyBinding { actionName = "Jump", key = KeyCode.Return, playerID = 2 });
         }
     }
 
@@ -65,6 +67,7 @@ public class InputManager : MonoBehaviour
 
     private void HandleAction(string action, int playerID)
     {
+        
         if (playerID == 1)
         {
             switch (action)
@@ -74,6 +77,9 @@ public class InputManager : MonoBehaviour
                     break;
                 case "MoveRight":
                     Player.Instance.MovePlayer(Vector2.right); // Utiliser une instance pour Player1
+                    break;
+                case "Jump":
+                    Player.Instance.Jump(); 
                     break;
             }
         }
@@ -87,17 +93,45 @@ public class InputManager : MonoBehaviour
                 case "MoveRight":
                     Player2.Instance.MovePlayer(Vector2.right); // Utiliser une instance pour Player2
                     break;
+                case "Jump":
+                    Player2.Instance.Jump(); 
+                    break;
             }
         }
-    }
 
-    public void ReassignKey(string actionName)
+        /*
+        PlayerController player = FindPlayerByID(playerID);
+
+        if (player != null)
+        {
+            switch (action)
+            {
+                case "MoveLeft":
+                    player.MovePlayer(Vector2.left);
+                    break;
+                case "MoveRight":
+                    player.MovePlayer(Vector2.right);
+                    break;
+                case "Jump":
+                    player.Jump();
+                    break;
+            }
+        }*/
+    }
+        
+        /*
+    private PlayerController FindPlayerByID(int playerID)
+    {
+        return FindObjectOfType<PlayerController>();  // Si un seul joueur par scène, retourner cette instance
+    }*/
+
+    public void ReassignKey(string actionName, int playerID)
     {
         // Attendre que l'utilisateur appuie sur une nouvelle touche
-        StartCoroutine(WaitForKeyPress(actionName));
+        StartCoroutine(WaitForKeyPress(actionName, playerID));
     }
 
-    private IEnumerator WaitForKeyPress(string actionName)
+    private IEnumerator WaitForKeyPress(string actionName, int playerID)
     {
         bool keyPressed = false;
         KeyCode newKey = KeyCode.None;
@@ -119,15 +153,17 @@ public class InputManager : MonoBehaviour
         // Mettre à jour la clé dans les mappages
         foreach (var binding in keyBindings)
         {
-            if (binding.actionName == actionName)
+            /*if (binding.actionName == actionName)
+             */
+            if (binding.actionName == actionName && binding.playerID == playerID)
             {
                 binding.key = newKey;
-                Debug.Log($"Changement de la touche pour {actionName} en {newKey}");
-                SaveKeyBindings();
+                Debug.Log($"Changement de la touche pour {actionName} du joueur {playerID} en {newKey}");
                 break;
             }
         }
         SettingsWindow.Instance.UpdateKeyBindingsDisplay();
+        SaveKeyBindings();
     }
 
     public void SaveKeyBindings()
