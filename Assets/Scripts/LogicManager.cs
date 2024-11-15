@@ -55,7 +55,7 @@ public class LogicManager : MonoBehaviour
 
         if (player != null)
         {
-            // On force la balle à s'arrêter
+            // On force la balle ï¿½ s'arrï¿½ter
             player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             player.moveSpeed = 0f;
             player.jumpForce = 0f;
@@ -82,15 +82,7 @@ public class LogicManager : MonoBehaviour
 
     public void ButtonSettings()
     {
-        if (SettingsWindow.Instance != null)
-        {
-            SettingsWindow.Instance.OpenSettings();
-        }
-        else
-        {
-            Debug.LogWarning("SettingsWindow n'est pas encore instancié.");
-            GameObject settingsWindow = Instantiate(settingsWindowPrefab);
-            settingsWindow.SetActive(true);
-        }
+        Resume();
+        SceneManager.LoadScene("Settings");
     }
 }
