@@ -58,7 +58,7 @@ public class InputManager : MonoBehaviour
     {
         foreach (var binding in keyBindings)
         {
-            if (Input.GetKey(binding.key)) // Si la touche est pressée
+            if (Input.GetKey(binding.key)) // Si la touche est pressï¿½e
             {
                 HandleAction(binding.actionName, binding.playerID); // Appeler la fonction selon l'action et le joueur
             }
@@ -122,7 +122,7 @@ public class InputManager : MonoBehaviour
         /*
     private PlayerController FindPlayerByID(int playerID)
     {
-        return FindObjectOfType<PlayerController>();  // Si un seul joueur par scène, retourner cette instance
+        return FindObjectOfType<PlayerController>();  // Si un seul joueur par scï¿½ne, retourner cette instance
     }*/
 
     public void ReassignKey(string actionName, int playerID)
@@ -140,7 +140,7 @@ public class InputManager : MonoBehaviour
         {
             foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
             {
-                if (Input.GetKeyDown(key) && key != KeyCode.Escape) // Évitez d'utiliser Échap pour réassignation
+                if (Input.GetKeyDown(key) && key != KeyCode.Escape) // ï¿½vitez d'utiliser ï¿½chap pour rï¿½assignation
                 {
                     newKey = key;
                     keyPressed = true;
@@ -150,7 +150,7 @@ public class InputManager : MonoBehaviour
             yield return null;
         }
 
-        // Mettre à jour la clé dans les mappages
+        // Mettre ï¿½ jour la clï¿½ dans les mappages
         foreach (var binding in keyBindings)
         {
             /*if (binding.actionName == actionName)
@@ -162,7 +162,7 @@ public class InputManager : MonoBehaviour
                 break;
             }
         }
-        SettingsWindow.Instance.UpdateKeyBindingsDisplay();
+        //SettingsWindow.Instance.UpdateKeyBindingsDisplay();
         SaveKeyBindings();
     }
 

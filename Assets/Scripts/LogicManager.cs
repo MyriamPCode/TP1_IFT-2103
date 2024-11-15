@@ -11,7 +11,7 @@ public class LogicManager : MonoBehaviour
     public Player player;
     public GameObject victoryScreen;
     //public TextMeshProUGUI victoryText;
-    public GameObject settingsWindowPrefab;
+    //public GameObject settingsWindowPrefab;
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -80,7 +80,7 @@ public class LogicManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void ButtonSettings()
+    public void SettingsGame()
     {
         Resume();
         SceneManager.LoadScene("Settings");

@@ -277,10 +277,10 @@ RectTransform:
   - {fileID: 746631668}
   m_Father: {fileID: 246355979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -295}
-  m_SizeDelta: {x: 150, y: 25}
+  m_SizeDelta: {x: -1770, y: -1129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &482545759
 MonoBehaviour:
@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 516622108}
   - component: {fileID: 516622107}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TextStartGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -410,7 +410,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000022888184, y: 0.02904892}
+  m_AnchoredPosition: {x: 0, y: 0.029052734}
   m_SizeDelta: {x: 0.000015259, y: 0.058102}
   m_Pivot: {x: 0.5, y: 0.4999998}
 --- !u!114 &516622107
@@ -639,7 +639,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 294.5967
+  orthographic size: 297.78085
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -664,7 +664,7 @@ Transform:
   m_GameObject: {fileID: 656073062}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 488, y: 297, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 746631670}
   - component: {fileID: 746631669}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TextQuitGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -704,7 +704,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.0000038146973}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.000030518, y: 0.0000019073}
   m_Pivot: {x: 0.5, y: 0.4999998}
 --- !u!114 &746631669
@@ -838,10 +838,10 @@ RectTransform:
   - {fileID: 1825945963}
   m_Father: {fileID: 246355979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030518, y: -167}
-  m_SizeDelta: {x: 150, y: 25}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.000061035156, y: -167}
+  m_SizeDelta: {x: -1770, y: -1129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1354393571
 MonoBehaviour:
@@ -949,7 +949,7 @@ GameObject:
   - component: {fileID: 1513428616}
   - component: {fileID: 1513428615}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -971,8 +971,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -10.3183, y: 0}
+  m_SizeDelta: {x: 20.6367, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1513428615
 MonoBehaviour:
@@ -1046,10 +1046,10 @@ RectTransform:
   - {fileID: 516622106}
   m_Father: {fileID: 246355979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030518, y: -42.788}
-  m_SizeDelta: {x: 150, y: 25}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.000061035156, y: -42.788025}
+  m_SizeDelta: {x: -1770, y: -1129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1650631315
 MonoBehaviour:
@@ -1157,7 +1157,7 @@ GameObject:
   - component: {fileID: 1714982883}
   - component: {fileID: 1714982882}
   m_Layer: 5
-  m_Name: TextTitreJeu (TMP)
+  m_Name: TextTitreJeu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1177,10 +1177,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 246355979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00022854704, y: 268.43}
-  m_SizeDelta: {x: 480, y: 143.11}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.00024414062, y: 268.4299}
+  m_SizeDelta: {x: -1440, y: -1010.89}
   m_Pivot: {x: 0.5, y: 0.50000006}
 --- !u!114 &1714982882
 MonoBehaviour:
@@ -1202,7 +1202,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TP2
+  m_text: 'IFT2103A24 TP2
+
+    Equipe 17'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1229,12 +1231,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 30
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 30
-  m_fontSizeMax: 50
+  m_fontSizeMax: 30
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 4096
@@ -1291,7 +1293,7 @@ GameObject:
   - component: {fileID: 1825945965}
   - component: {fileID: 1825945964}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TextSettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1313,7 +1315,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0.029014587}
+  m_AnchoredPosition: {x: 0, y: 0.029052734}
   m_SizeDelta: {x: 0.000030518, y: 0.058029}
   m_Pivot: {x: 0.5, y: 0.4999998}
 --- !u!114 &1825945964
