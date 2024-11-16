@@ -38,9 +38,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         spawnPoint = transform.position; // Initialisation du point d'apparition 
-
         logic = FindObjectOfType<LogicManager>();
-
     }
 
     private bool IsGrounded() 
@@ -61,8 +59,8 @@ public class Player : MonoBehaviour
         isGrounded = IsGrounded();
 
         float horizontalMovement = GetCustomHorizontalInput();
-        Vector2 velocity = rb.velocity;
 
+        Vector2 velocity = rb.velocity;
         velocity.x = horizontalMovement * moveSpeed;
         rb.velocity = velocity;
 
@@ -78,7 +76,7 @@ public class Player : MonoBehaviour
             velocity.x = Mathf.MoveTowards(velocity.x, 0, friction * Time.fixedDeltaTime);
         }
 
-    rb.velocity = velocity;
+        rb.velocity = velocity;
 
     }
 
@@ -143,25 +141,6 @@ public class Player : MonoBehaviour
     {
         float horizontalMovement = 0f;
 
-        /*
-        // Vérifier les touches configurées
-        if (Input.GetKey(InputManager.Instance.keyBindings.Find(kb => kb.actionName == "MoveLeft").key))
-        {
-            horizontalMovement = -1f; // Déplacer à gauche
-        }
-        else if (Input.GetKey(InputManager.Instance.keyBindings.Find(kb => kb.actionName == "MoveRight").key))
-        {
-            horizontalMovement = 1f; // Déplacer à droite
-        }
-
-        else if (playerIndex == 2)
-        {
-            if (Input.GetKey(KeyCode.LeftArrow))  // Joueur 2, touche flèche gauche
-                horizontalMovement = -1f;
-            if (Input.GetKey(KeyCode.RightArrow)) // Joueur 2, touche flèche droite
-                horizontalMovement = 1f;
-        }
-        */
         foreach (var keyBinding in InputManager.Instance.keyBindings)
         {
             if (keyBinding.playerID == playerIndex) // Si la clé appartient au bon joueur

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -124,7 +125,7 @@ public class SettingsWindow : MonoBehaviour
     {
         int playerID = inputManager.keyBindings[index].playerID;
 
-        // Appeler ReassignKey en passant actionName et playerID
+        // Activer le mode de capture pour la manette ou le clavier
         InputManager.Instance.ReassignKey(actionName, playerID);
 
         // Mettre à jour l'affichage des touches
