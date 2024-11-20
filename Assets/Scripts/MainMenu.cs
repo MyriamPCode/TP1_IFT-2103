@@ -5,16 +5,22 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject subMenu;
+    public Button buttonLocal;
+    public Button buttonHost;
+    public Button buttonJoin;
 
     private void Start()
     {
-        subMenu.SetActive(false);
+        buttonLocal.gameObject.SetActive(false);
+        buttonHost.gameObject.SetActive(false);
+        buttonJoin.gameObject.SetActive(false);
     }
 
     public void ShowSubMenu()
     {
-        subMenu.SetActive(true);
+        buttonLocal.gameObject.SetActive(true);
+        buttonHost.gameObject.SetActive(true);
+        buttonJoin.gameObject.SetActive(true);
     }
 
     public void StartLocalGame()
@@ -24,14 +30,13 @@ public class MainMenu : MonoBehaviour
 
     public void StartOnlineGame()
     {
-        SceneLoader.LoadScene("MenuEnLigne");  // Charger la scène du menu en ligne
+        SceneLoader.LoadScene("MenuEnLigne");
     }
 
     public void OpenSettings()
     {
         SceneLoader.LoadScene("Settings");
     }
-
 
     public void QuitGame()
     {

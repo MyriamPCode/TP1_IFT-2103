@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public float friction = 0.5f; 
 
     private Vector2 spawnPoint;
+    private static int playerHealth = 100;
 
     public LogicManager logic;
 
@@ -89,13 +90,11 @@ public class Player : MonoBehaviour
             Respawn(); 
         }
 
-        
         if (isGrounded && Input.GetKeyDown(GetJumpKey()))
         {
             Jump();
         }
         
-
         CheckCollisions();
     }
 
@@ -119,17 +118,10 @@ public class Player : MonoBehaviour
         }
     }
 
-
     private void Respawn()
     {
-        Debug.Log("Respawn at spawn point");
-
-        // On réinitialise la position du joueur au point de respawn
         transform.position = spawnPoint;
-
-        // On réinitialise la vélocité pour éviter des mouvements résiduels
         rb.velocity = Vector2.zero;
-        //verticalVelocity = 0f;
     }
 
     public void MovePlayer(Vector2 direction)
@@ -183,4 +175,20 @@ public class Player : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
+
+    public static int GetPlayerHealth()
+    {
+        return playerHealth;
+    }
+
+    public void ReducePlayerHealth()
+    {
+        playerHealth -= 50;
+        if (playerHealth == 0)
+        {
+            Respawn();
+        }
+    }
+
+
 }
