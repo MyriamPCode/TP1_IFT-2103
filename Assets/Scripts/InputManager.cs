@@ -42,10 +42,12 @@ public class InputManager : MonoBehaviour
             keyBindings.Add(new KeyBinding { actionName = "MoveLeft", key = KeyCode.A, playerID = 1 });
             keyBindings.Add(new KeyBinding { actionName = "MoveRight", key = KeyCode.D, playerID = 1 });
             keyBindings.Add(new KeyBinding { actionName = "Jump", key = KeyCode.Space, playerID = 1 });
+            keyBindings.Add(new KeyBinding { actionName = "Interaction", key = KeyCode.E, playerID = 1 });
 
             keyBindings.Add(new KeyBinding { actionName = "MoveLeft", key = KeyCode.LeftArrow, playerID = 2 });
             keyBindings.Add(new KeyBinding { actionName = "MoveRight", key = KeyCode.RightArrow, playerID = 2 });
             keyBindings.Add(new KeyBinding { actionName = "Jump", key = KeyCode.Return, playerID = 2 });
+            keyBindings.Add(new KeyBinding { actionName = "Interaction", key = KeyCode.E, playerID = 2 });
         }
     }
 
