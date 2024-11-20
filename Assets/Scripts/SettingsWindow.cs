@@ -10,9 +10,38 @@ public class SettingsWindow : MonoBehaviour
     public Button[] changeKeyButtons;
     public int actionIndex;
 
+    public TMP_Dropdown keyboardLayoutDropdown;
+
     private void Start()
     {
         Debug.Log($"SettingsWindow.Instance dans Start: {SettingsWindow.Instance}");
+        keyboardLayoutDropdown.onValueChanged.AddListener(OnKeyboardLayoutChanged);
+
+        LoadKeyboardPreference();
+    }
+
+    private void LoadKeyboardPreference()
+    {
+        if (inputManager != null)
+        {
+            inputManager.LoadKeyboardPreference();  // Charger la préférence du clavier dans InputManager
+        }
+    }
+
+    private void OnKeyboardLayoutChanged(int index)
+    {
+        // Vérifier l'index sélectionné et appliquer la disposition du clavier correspondante
+        if (index == 0)  // 0 pour AZERTY
+        {
+            InputManager.Instance.SwitchKeyboardLayout(KeyboardLayout.AZERTY);
+        }
+        else  // 1 pour QWERTY
+        {
+            InputManager.Instance.SwitchKeyboardLayout(KeyboardLayout.QWERTY);
+        }
+
+        // Sauvegarder la préférence de disposition du clavier
+        InputManager.Instance.SaveKeyboardPreference();
     }
 
     private void Awake()
@@ -62,17 +91,7 @@ public class SettingsWindow : MonoBehaviour
             return; // Sortir de la méthode si les tailles ne correspondent pas
         }
 
-        /*
-        for (int i = 0; i < inputManager.keyBindings.Count; i++)
-        {
-            actionTexts[i].text = $"{inputManager.keyBindings[i].actionName}: {inputManager.keyBindings[i].key}";
-
-            // Capturer l'index dans une variable locale
-            int index = i;
-            changeKeyButtons[i].onClick.RemoveAllListeners(); // Supprimez les anciens listeners
-            changeKeyButtons[i].onClick.AddListener(() => OnChangeKeyButtonClick(inputManager.keyBindings[index].actionName));
-        }
-        */
+    
         for (int i = 0; i < inputManager.keyBindings.Count; i++)
         {
             KeyBinding binding = inputManager.keyBindings[i];
@@ -112,13 +131,6 @@ public class SettingsWindow : MonoBehaviour
         Debug.Log("Paramètres sauvegardés");
     }
 
-    /*
-    public void OnChangeKeyButtonClick(string actionName)
-    {
-        InputManager.Instance.ReassignKey(actionName);
-        InputManager.Instance.SaveKeyBindings();
-    }
-    */
 
     public void OnChangeKeyButtonClick(string actionName, int index)
     {
