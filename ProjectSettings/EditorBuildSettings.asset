@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 23256b436ee540d488d63841efad9c3c
   - enabled: 1
-    path: Assets/Scenes/ScenePartieLocale.unity
+    path: Assets/Scenes/MenuLocal.unity
     guid: 7a6619a0b9a9c6648990e9823fee39ec
   - enabled: 1
     path: Assets/Scenes/LoadingScreen.unity
@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Settings.unity
     guid: 6ddcd0790774b614885846ca955156a7
+  - enabled: 1
+    path: Assets/Scenes/MenuEnLigne.unity
+    guid: 456a63c0ee518da468f7894c03f47c80
   m_configObjects: {}

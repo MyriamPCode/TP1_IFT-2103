@@ -1,53 +1,65 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class SettingsMenu : MonoBehaviour
 {
     public InputManager inputManager;
+    public TMP_Text[] actionTexts;
     public Button[] changeKeyButtons;
+    public int actionIndex;
 
     private void Start()
     {
-        
+        Debug.Log("SettingsMenu Start()");
     }
 
+    private void Awake()
+    {
+        // Supprime la logique de DontDestroyOnLoad et Instance
+        // Le script se comporte maintenant comme un comportement normal attaché à un GameObject dans la scène
+        Debug.Log("SettingsMenu Awake()");
+    }
+
+    // Méthodes pour gérer votre fenêtre de paramètres
     public void OpenSettings()
     {
+        if (inputManager == null)
+        {
+            Debug.LogError("inputManager est nul lors de l'ouverture des paramètres.");
+            return;
+        }
+
+        Debug.Log($"Nombre de mappages de touches : {inputManager.keyBindings.Count}");
         UpdateKeyBindingsDisplay();
+        gameObject.SetActive(true);
     }
 
     public void CloseSettings()
     {
         SaveSettings();
         InputManager.Instance.SaveKeyBindings();
+        gameObject.SetActive(false);
     }
 
     public void UpdateKeyBindingsDisplay()
     {
-        
-        /*
-        for (int i = 0; i < inputManager.keyBindings.Count; i++)
+        if (inputManager.keyBindings.Count > actionTexts.Length || inputManager.keyBindings.Count > changeKeyButtons.Length)
         {
-            actionTexts[i].text = $"{inputManager.keyBindings[i].actionName}: {inputManager.keyBindings[i].key}";
-
-            // Capturer l'index dans une variable locale
-            int index = i;
-            changeKeyButtons[i].onClick.RemoveAllListeners(); // Supprimez les anciens listeners
-            changeKeyButtons[i].onClick.AddListener(() => OnChangeKeyButtonClick(inputManager.keyBindings[index].actionName));
+            Debug.LogError("Les tableaux actionTexts ou changeKeyButtons ne sont pas correctement configurés. Vérifiez leurs tailles.");
+            return;
         }
-        */
+
         for (int i = 0; i < inputManager.keyBindings.Count; i++)
         {
             KeyBinding binding = inputManager.keyBindings[i];
-            string keyName = binding.key.ToString();  // Le nom de la touche associ�e � l'action
-            string playerLabel = (binding.playerID == 1) ? "Joueur 1" : "Joueur 2";  // Affiche quel joueur utilise cette touche
+            string keyName = binding.key.ToString();
+            string playerLabel = (binding.playerID == 1) ? "Joueur 1" : "Joueur 2"; 
 
-            // Capturer l'index dans une variable locale pour l'utiliser dans le listener
+            actionTexts[i].text = $"{playerLabel} - {binding.actionName} ({keyName})";
+
             int index = i;
-            changeKeyButtons[i].onClick.RemoveAllListeners();  // Supprimer les anciens listeners
+            changeKeyButtons[i].onClick.RemoveAllListeners();
             changeKeyButtons[i].onClick.AddListener(() => OnChangeKeyButtonClick(binding.actionName, index));
         }
     }
@@ -58,7 +70,7 @@ public class SettingsMenu : MonoBehaviour
         {
             if (binding.actionName == action)
             {
-                binding.key = newKey; // Change la touche associ�e
+                binding.key = newKey;
                 Debug.Log($"Changement de la touche pour {action} en {newKey}");
                 break;
             }
@@ -71,27 +83,14 @@ public class SettingsMenu : MonoBehaviour
         {
             PlayerPrefs.SetString(binding.actionName, binding.key.ToString());
         }
-        PlayerPrefs.Save(); // Sauvegarde les param�tres
-        Debug.Log("Param�tres sauvegard�s");
+        PlayerPrefs.Save();
+        Debug.Log("Paramètres sauvegardés");
     }
-
-    /*
-    public void OnChangeKeyButtonClick(string actionName)
-    {
-        InputManager.Instance.ReassignKey(actionName);
-        InputManager.Instance.SaveKeyBindings();
-    }
-    */
 
     public void OnChangeKeyButtonClick(string actionName, int index)
     {
         int playerID = inputManager.keyBindings[index].playerID;
-
-        // Appeler ReassignKey en passant actionName et playerID
         InputManager.Instance.ReassignKey(actionName, playerID);
-
-        // Mettre � jour l'affichage des touches
-        //SettingsWindow.Instance.UpdateKeyBindingsDisplay();
+        UpdateKeyBindingsDisplay();
     }
 }
-

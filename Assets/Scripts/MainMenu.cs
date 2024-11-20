@@ -1,25 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public string levelToLoad;
-    public LoadingManager loadingManager;
+    public GameObject subMenu;
 
-    public void StartGame()
+    private void Start()
     {
-        loadingManager.LoadScene(levelToLoad);
+        subMenu.SetActive(false);
     }
+
+    public void ShowSubMenu()
+    {
+        subMenu.SetActive(true);
+    }
+
+    public void StartLocalGame()
+    {
+        SceneLoader.LoadScene("MenuLocal");
+    }
+
+    public void StartOnlineGame()
+    {
+        SceneLoader.LoadScene("MenuEnLigne");  // Charger la scène du menu en ligne
+    }
+
+    public void OpenSettings()
+    {
+        SceneLoader.LoadScene("Settings");
+    }
+
+
     public void QuitGame()
     {
         Application.Quit();
     }
-
-    public void SettingsGame()
-    {
-        SceneManager.LoadScene("Settings");
-    }
-
 }
