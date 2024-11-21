@@ -34,7 +34,7 @@ public class InputManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            Debug.LogWarning("Une autre instance d'InputManager a été détruite");
+            Debug.LogWarning("Une autre instance d'InputManager a ï¿½tï¿½ dï¿½truite");
         }
     }
 
@@ -43,14 +43,14 @@ public class InputManager : MonoBehaviour
         LoadKeyBindings();
         if (keyBindings.Count == 0)
         {
-            // Mappages de touches par défaut pour QWERTY
+            // Mappages de touches par dï¿½faut pour QWERTY
             AddKeyBindings(KeyboardLayout.QWERTY);
         }
     }
 
     private void AddKeyBindings(KeyboardLayout layout)
     {
-        keyBindings.Clear();  // Réinitialiser les mappages existants
+        keyBindings.Clear();  // Rï¿½initialiser les mappages existants
         if (layout == KeyboardLayout.QWERTY)
         {
             // Ajout des touches QWERTY
@@ -88,7 +88,7 @@ public class InputManager : MonoBehaviour
     {
         foreach (var binding in keyBindings)
         {
-            if (Input.GetKey(binding.key)) // Si la touche est pressée
+            if (Input.GetKey(binding.key)) // Si la touche est pressï¿½e
             {
                 HandleAction(binding.actionName, binding.playerID); // Appeler la fonction selon l'action et le joueur
             }
@@ -146,7 +146,7 @@ public class InputManager : MonoBehaviour
         {
             foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
             {
-                if (Input.GetKeyDown(key) && key != KeyCode.Escape) // Évitez d'utiliser Échap pour réassignation
+                if (Input.GetKeyDown(key) && key != KeyCode.Escape) // ï¿½vitez d'utiliser ï¿½chap pour rï¿½assignation
                 {
                     newKey = key;
                     keyPressed = true;
@@ -156,7 +156,7 @@ public class InputManager : MonoBehaviour
             yield return null;
         }
 
-        // Mettre à jour la clé dans les mappages
+        // Mettre ï¿½ jour la clï¿½ dans les mappages
         foreach (var binding in keyBindings)
         {
             /*if (binding.actionName == actionName)
@@ -168,7 +168,7 @@ public class InputManager : MonoBehaviour
                 break;
             }
         }
-        SettingsWindow.Instance.UpdateKeyBindingsDisplay();
+        //SettingsWindow.Instance.UpdateKeyBindingsDisplay();
         SaveKeyBindings();
     }
 
@@ -199,7 +199,7 @@ public class InputManager : MonoBehaviour
     public void LoadKeyboardPreferenceForPlayer(int playerID)
     {
         string key = $"KeyboardLayout_Player{playerID}";
-        string layout = PlayerPrefs.GetString(key, "AZERTY");  // Valeur par défaut "AZERTY"
+        string layout = PlayerPrefs.GetString(key, "AZERTY");  // Valeur par dï¿½faut "AZERTY"
 
         if (playerID == 1)
         {
@@ -210,7 +210,7 @@ public class InputManager : MonoBehaviour
             currentLayoutForPlayer2 = (layout == "AZERTY") ? KeyboardLayout.AZERTY : KeyboardLayout.QWERTY;
         }
 
-        Debug.Log($"Préférence de clavier pour le joueur {playerID} chargée : {layout}");
+        Debug.Log($"Prï¿½fï¿½rence de clavier pour le joueur {playerID} chargï¿½e : {layout}");
     }
 
     public void SaveKeyboardPreferenceForPlayer(int playerID)
