@@ -10,9 +10,54 @@ public class SettingsWindow : MonoBehaviour
     public Button[] changeKeyButtons;
     public int actionIndex;
 
+    public TMP_Dropdown joueur1KeyboardLayoutDropdown;
+    public TMP_Dropdown joueur2KeyboardLayoutDropdown;
+
     private void Start()
     {
         Debug.Log($"SettingsWindow.Instance dans Start: {SettingsWindow.Instance}");
+        joueur1KeyboardLayoutDropdown.onValueChanged.AddListener(OnJoueur1KeyboardLayoutChanged);
+        joueur2KeyboardLayoutDropdown.onValueChanged.AddListener(OnJoueur2KeyboardLayoutChanged);
+
+        LoadKeyboardPreferences();
+    }
+
+    private void LoadKeyboardPreferences()
+    {
+        if (inputManager == null)
+        {
+            Debug.LogError("inputManager est null dans LoadKeyboardPreferences!");
+            return;
+        }
+
+        // Vérifier si les dropdowns sont assignés
+        if (joueur1KeyboardLayoutDropdown == null || joueur2KeyboardLayoutDropdown == null)
+        {
+            Debug.LogError("Les Dropdowns pour les claviers ne sont pas assignés !");
+            return;
+        }
+
+        // Charger les préférences de clavier pour chaque joueur
+        inputManager.LoadKeyboardPreferenceForPlayer(1);  // Charge les préférences pour le joueur 1
+        inputManager.LoadKeyboardPreferenceForPlayer(2);  // Charge les préférences pour le joueur 2
+
+        // Affecter les valeurs aux dropdowns
+        joueur1KeyboardLayoutDropdown.value = (inputManager.currentLayoutForPlayer1 == KeyboardLayout.AZERTY) ? 0 : 1;
+        joueur2KeyboardLayoutDropdown.value = (inputManager.currentLayoutForPlayer2 == KeyboardLayout.AZERTY) ? 0 : 1;
+    }
+
+    private void OnJoueur1KeyboardLayoutChanged(int index)
+    {
+        KeyboardLayout layout = (index == 0) ? KeyboardLayout.AZERTY : KeyboardLayout.QWERTY;
+        InputManager.Instance.SwitchKeyboardLayoutForPlayer(layout, 1);
+        InputManager.Instance.SaveKeyboardPreferenceForPlayer(1);
+    }
+
+    private void OnJoueur2KeyboardLayoutChanged(int index)
+    {
+        KeyboardLayout layout = (index == 0) ? KeyboardLayout.AZERTY : KeyboardLayout.QWERTY;
+        InputManager.Instance.SwitchKeyboardLayoutForPlayer(layout, 2);
+        InputManager.Instance.SaveKeyboardPreferenceForPlayer(2);
     }
 
     private void Awake()
@@ -43,6 +88,8 @@ public class SettingsWindow : MonoBehaviour
         //Debug.Log("OpenSettings() appelé, état avant activation : " + gameObject.activeSelf);
         Debug.Log($"Nombre de mappages de touches : {inputManager.keyBindings.Count}");
         UpdateKeyBindingsDisplay();
+
+        LoadKeyboardPreferences();
         gameObject.SetActive(true);
 
     }
@@ -62,17 +109,7 @@ public class SettingsWindow : MonoBehaviour
             return; // Sortir de la méthode si les tailles ne correspondent pas
         }
 
-        /*
-        for (int i = 0; i < inputManager.keyBindings.Count; i++)
-        {
-            actionTexts[i].text = $"{inputManager.keyBindings[i].actionName}: {inputManager.keyBindings[i].key}";
-
-            // Capturer l'index dans une variable locale
-            int index = i;
-            changeKeyButtons[i].onClick.RemoveAllListeners(); // Supprimez les anciens listeners
-            changeKeyButtons[i].onClick.AddListener(() => OnChangeKeyButtonClick(inputManager.keyBindings[index].actionName));
-        }
-        */
+    
         for (int i = 0; i < inputManager.keyBindings.Count; i++)
         {
             KeyBinding binding = inputManager.keyBindings[i];
@@ -112,13 +149,6 @@ public class SettingsWindow : MonoBehaviour
         Debug.Log("Paramètres sauvegardés");
     }
 
-    /*
-    public void OnChangeKeyButtonClick(string actionName)
-    {
-        InputManager.Instance.ReassignKey(actionName);
-        InputManager.Instance.SaveKeyBindings();
-    }
-    */
 
     public void OnChangeKeyButtonClick(string actionName, int index)
     {
@@ -130,5 +160,7 @@ public class SettingsWindow : MonoBehaviour
         // Mettre à jour l'affichage des touches
         SettingsWindow.Instance.UpdateKeyBindingsDisplay();
     }
+
+   
 }
 
