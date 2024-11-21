@@ -14,6 +14,9 @@ public class MainMenu : MonoBehaviour
         buttonLocal.gameObject.SetActive(false);
         buttonHost.gameObject.SetActive(false);
         buttonJoin.gameObject.SetActive(false);
+        buttonLocal.onClick.AddListener(() => StartLocalGame());
+        buttonHost.onClick.AddListener(() => StartOnlineGame());
+        buttonJoin.onClick.AddListener(() => StartOnlineGame());
     }
 
     public void ShowSubMenu()
@@ -25,21 +28,25 @@ public class MainMenu : MonoBehaviour
 
     public void StartLocalGame()
     {
+        Debug.Log("Chargement du menu local");
         SceneLoader.LoadScene("MenuLocal");
     }
 
     public void StartOnlineGame()
     {
+        Debug.Log("Chargement du menu en ligne");
         SceneLoader.LoadScene("MenuEnLigne");
     }
 
     public void OpenSettings()
     {
+        Debug.Log("Chargement des paramètres");
         SceneLoader.LoadScene("Settings");
     }
 
     public void QuitGame()
     {
+        Debug.Log("Quitter le jeu");
         Application.Quit();
     }
 }
