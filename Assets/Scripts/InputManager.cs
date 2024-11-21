@@ -17,6 +17,9 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager Instance { get; private set; }
 
+    public KeyboardLayout currentLayoutForPlayer1 = KeyboardLayout.QWERTY;
+    public KeyboardLayout currentLayoutForPlayer2 = KeyboardLayout.QWERTY;
+
     public List<KeyBinding> keyBindings = new List<KeyBinding>();
     public Player player1; 
     public Player2 player2;
@@ -31,6 +34,7 @@ public class InputManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            Debug.LogWarning("Une autre instance d'InputManager a été détruite");
         }
     }
 
@@ -39,7 +43,31 @@ public class InputManager : MonoBehaviour
         LoadKeyBindings();
         if (keyBindings.Count == 0)
         {
+            // Mappages de touches par défaut pour QWERTY
+            AddKeyBindings(KeyboardLayout.QWERTY);
+        }
+    }
+
+    private void AddKeyBindings(KeyboardLayout layout)
+    {
+        keyBindings.Clear();  // Réinitialiser les mappages existants
+        if (layout == KeyboardLayout.QWERTY)
+        {
+            // Ajout des touches QWERTY
             keyBindings.Add(new KeyBinding { actionName = "MoveLeft", key = KeyCode.A, playerID = 1 });
+            keyBindings.Add(new KeyBinding { actionName = "MoveRight", key = KeyCode.D, playerID = 1 });
+            keyBindings.Add(new KeyBinding { actionName = "Jump", key = KeyCode.Space, playerID = 1 });
+            keyBindings.Add(new KeyBinding { actionName = "Interaction", key = KeyCode.E, playerID = 1 });
+
+            keyBindings.Add(new KeyBinding { actionName = "MoveLeft", key = KeyCode.LeftArrow, playerID = 2 });
+            keyBindings.Add(new KeyBinding { actionName = "MoveRight", key = KeyCode.RightArrow, playerID = 2 });
+            keyBindings.Add(new KeyBinding { actionName = "Jump", key = KeyCode.Return, playerID = 2 });
+            keyBindings.Add(new KeyBinding { actionName = "Interaction", key = KeyCode.E, playerID = 2 });
+        }
+        else if (layout == KeyboardLayout.AZERTY)
+        {
+            // Ajout des touches AZERTY
+            keyBindings.Add(new KeyBinding { actionName = "MoveLeft", key = KeyCode.Q, playerID = 1 });
             keyBindings.Add(new KeyBinding { actionName = "MoveRight", key = KeyCode.D, playerID = 1 });
             keyBindings.Add(new KeyBinding { actionName = "Jump", key = KeyCode.Space, playerID = 1 });
             keyBindings.Add(new KeyBinding { actionName = "Interaction", key = KeyCode.E, playerID = 1 });
@@ -100,32 +128,8 @@ public class InputManager : MonoBehaviour
                     break;
             }
         }
-
-        /*
-        PlayerController player = FindPlayerByID(playerID);
-
-        if (player != null)
-        {
-            switch (action)
-            {
-                case "MoveLeft":
-                    player.MovePlayer(Vector2.left);
-                    break;
-                case "MoveRight":
-                    player.MovePlayer(Vector2.right);
-                    break;
-                case "Jump":
-                    player.Jump();
-                    break;
-            }
-        }*/
     }
-        
-        /*
-    private PlayerController FindPlayerByID(int playerID)
-    {
-        return FindObjectOfType<PlayerController>();  // Si un seul joueur par scène, retourner cette instance
-    }*/
+
 
     public void ReassignKey(string actionName, int playerID)
     {
@@ -190,5 +194,43 @@ public class InputManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void LoadKeyboardPreferenceForPlayer(int playerID)
+    {
+        string key = $"KeyboardLayout_Player{playerID}";
+        string layout = PlayerPrefs.GetString(key, "AZERTY");  // Valeur par défaut "AZERTY"
+
+        if (playerID == 1)
+        {
+            currentLayoutForPlayer1 = (layout == "AZERTY") ? KeyboardLayout.AZERTY : KeyboardLayout.QWERTY;
+        }
+        else if (playerID == 2)
+        {
+            currentLayoutForPlayer2 = (layout == "AZERTY") ? KeyboardLayout.AZERTY : KeyboardLayout.QWERTY;
+        }
+
+        Debug.Log($"Préférence de clavier pour le joueur {playerID} chargée : {layout}");
+    }
+
+    public void SaveKeyboardPreferenceForPlayer(int playerID)
+    {
+        int layout = (playerID == 1) ? (int)currentLayoutForPlayer1 : (int)currentLayoutForPlayer2;
+        PlayerPrefs.SetInt($"KeyboardLayoutPlayer{playerID}", layout);
+        PlayerPrefs.Save();
+    }
+
+    public void SwitchKeyboardLayoutForPlayer(KeyboardLayout layout, int playerID)
+    {
+        if (playerID == 1)
+        {
+            currentLayoutForPlayer1 = layout;
+        }
+        else if (playerID == 2)
+        {
+            currentLayoutForPlayer2 = layout;
+        }
+
+        AddKeyBindings(layout);
     }
 }
