@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 [System.Serializable]
 public class KeyBinding

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -16,10 +18,12 @@ public class Player : MonoBehaviour
 
     private Vector2 spawnPoint;
     private static int playerHealth = 100;
+    public  TextMeshProUGUI healthText;
 
     public LogicManager logic;
 
     public int playerIndex = 1;
+
 
     private void Awake()
     {
@@ -38,26 +42,23 @@ public class Player : MonoBehaviour
     private void Start()
     {
         spawnPoint = transform.position; // Initialisation du point d'apparition 
-
         logic = FindObjectOfType<LogicManager>();
 
+        if (healthText != null)
+        {
+            healthText.text = $"Vie : {playerHealth}";
+        }
     }
 
     private bool IsGrounded() 
     {
-    // Longueur du rayon qui va être projeté vers le bas
-    float rayLength = 0.05f;
-
-    // Projeter un rayon vers le bas à partir de la position du joueur avec un léger décalage
-    RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, -0.5f, 0), Vector2.down, rayLength, groundLayer);
-
-    // Si le rayon touche un objet appartenant à la couche du sol, renvoyer true, sinon false
-    return hit.collider != null;
+        float rayLength = 0.05f;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, -0.5f, 0), Vector2.down, rayLength, groundLayer);
+        return hit.collider != null;
     }
 
     private void FixedUpdate()
     {
-        // On vérifie si le joueur est au sol
         isGrounded = IsGrounded();
 
         float horizontalMovement = GetCustomHorizontalInput();
@@ -66,26 +67,21 @@ public class Player : MonoBehaviour
         velocity.x = horizontalMovement * moveSpeed;
         rb.velocity = velocity;
 
-
         if (horizontalMovement != 0)
         {
-            // Applique le mouvement horizontal normal
             velocity.x = horizontalMovement * moveSpeed;
         }
         else
         {
-            // Si le joueur n'est pas en mouvement, appliquer la friction pour ralentir progressivement la vitesse horizontale
             velocity.x = Mathf.MoveTowards(velocity.x, 0, friction * Time.fixedDeltaTime);
         }
 
-    rb.velocity = velocity;
-
+        rb.velocity = velocity;
     }
 
     void Update()
     {
-        // À partir de y = -10, le joueur retourne au point d'apparition
-        if (transform.position.y < -10f)
+        if (transform.position.y < -5f)
         {
             Respawn(); 
         }
@@ -94,15 +90,19 @@ public class Player : MonoBehaviour
         {
             Jump();
         }
-        
+
         CheckCollisions();
+        
+        if (healthText != null)
+        {
+            healthText.text = $"Vie : {playerHealth}";
+        }
     }
 
     private KeyCode GetJumpKey()
     {
         return InputManager.Instance.keyBindings.Find(kb => kb.actionName == "Jump" && kb.playerID == playerIndex).key;
     }
-
 
     private void CheckCollisions()
     {
@@ -134,28 +134,9 @@ public class Player : MonoBehaviour
     {
         float horizontalMovement = 0f;
 
-        /*
-        // Vérifier les touches configurées
-        if (Input.GetKey(InputManager.Instance.keyBindings.Find(kb => kb.actionName == "MoveLeft").key))
-        {
-            horizontalMovement = -1f; // Déplacer à gauche
-        }
-        else if (Input.GetKey(InputManager.Instance.keyBindings.Find(kb => kb.actionName == "MoveRight").key))
-        {
-            horizontalMovement = 1f; // Déplacer à droite
-        }
-
-        else if (playerIndex == 2)
-        {
-            if (Input.GetKey(KeyCode.LeftArrow))  // Joueur 2, touche flèche gauche
-                horizontalMovement = -1f;
-            if (Input.GetKey(KeyCode.RightArrow)) // Joueur 2, touche flèche droite
-                horizontalMovement = 1f;
-        }
-        */
         foreach (var keyBinding in InputManager.Instance.keyBindings)
         {
-            if (keyBinding.playerID == playerIndex) // Si la clé appartient au bon joueur
+            if (keyBinding.playerID == playerIndex) 
             {
                 if (keyBinding.actionName == "MoveLeft" && Input.GetKey(keyBinding.key))
                 {
@@ -181,14 +162,23 @@ public class Player : MonoBehaviour
         return playerHealth;
     }
 
-    public void ReducePlayerHealth()
+    public void TakeDamage()
     {
         playerHealth -= 50;
+        playerHealth = Mathf.Max(playerHealth, 0);
+
         if (playerHealth == 0)
         {
             Respawn();
+            playerHealth = 100;
         }
     }
 
-
+    public void UpdateHealthUI()
+    {
+        if (healthText != null)
+        {
+            healthText.text = $"Vie : {playerHealth}";
+        }
+    }
 }

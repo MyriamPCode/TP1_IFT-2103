@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player2 : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Player2 : MonoBehaviour
     public float friction = 0.5f;
 
     private Vector2 spawnPoint;
+    private static int playerHealth = 100;
+    public  TextMeshProUGUI healthText;
 
     public LogicManager logic;
 
@@ -39,24 +42,28 @@ public class Player2 : MonoBehaviour
         spawnPoint = transform.position; // Initialisation du point d'apparition 
 
         logic = FindObjectOfType<LogicManager>();
+        if (healthText != null)
+        {
+            healthText.text = $"Vie : {playerHealth}";
+        }
 
     }
 
     private bool IsGrounded()
     {
-        // Longueur du rayon qui va être projeté vers le bas
+        // Longueur du rayon qui va ï¿½tre projetï¿½ vers le bas
         float rayLength = 0.05f;
 
-        // Projeter un rayon vers le bas à partir de la position du joueur avec un léger décalage
+        // Projeter un rayon vers le bas ï¿½ partir de la position du joueur avec un lï¿½ger dï¿½calage
         RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, -0.5f, 0), Vector2.down, rayLength, groundLayer);
 
-        // Si le rayon touche un objet appartenant à la couche du sol, renvoyer true, sinon false
+        // Si le rayon touche un objet appartenant ï¿½ la couche du sol, renvoyer true, sinon false
         return hit.collider != null;
     }
 
     private void FixedUpdate()
     {
-        // On vérifie si le joueur est au sol
+        // On vï¿½rifie si le joueur est au sol
         isGrounded = IsGrounded();
 
         float horizontalMovement = GetCustomHorizontalInput();
@@ -83,8 +90,8 @@ public class Player2 : MonoBehaviour
 
     void Update()
     {
-        // À partir de y = -10, le joueur retourne au point d'apparition
-        if (transform.position.y < -10f)
+        // ï¿½ partir de y = -10, le joueur retourne au point d'apparition
+        if (transform.position.y < -5f)
         {
             Respawn();
         }
@@ -99,8 +106,12 @@ public class Player2 : MonoBehaviour
             }
         }
 
-
         CheckCollisions();
+        
+        if (healthText != null)
+        {
+            healthText.text = $"Vie : {playerHealth}";
+        }
     }
 
 
@@ -123,10 +134,10 @@ public class Player2 : MonoBehaviour
     {
         Debug.Log("Respawn at spawn point");
 
-        // On réinitialise la position du joueur au point de respawn
+        // On rï¿½initialise la position du joueur au point de respawn
         transform.position = spawnPoint;
 
-        // On réinitialise la vélocité pour éviter des mouvements résiduels
+        // On rï¿½initialise la vï¿½locitï¿½ pour ï¿½viter des mouvements rï¿½siduels
         rb.velocity = Vector2.zero;
         //verticalVelocity = 0f;
     }
@@ -142,14 +153,14 @@ public class Player2 : MonoBehaviour
         float horizontalMovement = 0f;
 
         /*
-        if (Input.GetKey(KeyCode.LeftArrow))  // Joueur 2, touche flèche gauche
+        if (Input.GetKey(KeyCode.LeftArrow))  // Joueur 2, touche flï¿½che gauche
             horizontalMovement = -1f;
-        if (Input.GetKey(KeyCode.RightArrow)) // Joueur 2, touche flèche droite
+        if (Input.GetKey(KeyCode.RightArrow)) // Joueur 2, touche flï¿½che droite
                 horizontalMovement = 1f;
         */
         foreach (var keyBinding in InputManager.Instance.keyBindings)
         {
-            if (keyBinding.playerID == playerIndex) // Si la clé appartient au bon joueur
+            if (keyBinding.playerID == playerIndex) // Si la clï¿½ appartient au bon joueur
             {
                 if (keyBinding.actionName == "MoveLeft" && Input.GetKey(keyBinding.key))
                 {
@@ -168,5 +179,30 @@ public class Player2 : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 
+    }
+
+    public static int GetPlayerHealth()
+    {
+        return playerHealth;
+    }
+
+    public void TakeDamage()
+    {
+        playerHealth -= 50;
+        playerHealth = Mathf.Max(playerHealth, 0);
+
+        if (playerHealth == 0)
+        {
+            Respawn();
+            playerHealth = 100;
+        }
+    }
+
+    public void UpdateHealthUI()
+    {
+        if (healthText != null)
+        {
+            healthText.text = $"Vie : {playerHealth}";
+        }
     }
 }
