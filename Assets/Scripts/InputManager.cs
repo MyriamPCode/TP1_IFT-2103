@@ -17,7 +17,8 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager Instance { get; private set; }
 
-    public KeyboardLayout currentLayout = KeyboardLayout.QWERTY;
+    public KeyboardLayout currentLayoutForPlayer1 = KeyboardLayout.QWERTY;
+    public KeyboardLayout currentLayoutForPlayer2 = KeyboardLayout.QWERTY;
 
     public List<KeyBinding> keyBindings = new List<KeyBinding>();
     public Player player1; 
@@ -33,6 +34,7 @@ public class InputManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            Debug.LogWarning("Une autre instance d'InputManager a été détruite");
         }
     }
 
@@ -194,28 +196,41 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public void LoadKeyboardPreference()
+    public void LoadKeyboardPreferenceForPlayer(int playerID)
     {
-        int layout = PlayerPrefs.GetInt("KeyboardLayout", (int)KeyboardLayout.QWERTY);
-        if (layout == (int)KeyboardLayout.AZERTY)
+        string key = $"KeyboardLayout_Player{playerID}";
+        string layout = PlayerPrefs.GetString(key, "AZERTY");  // Valeur par défaut "AZERTY"
+
+        if (playerID == 1)
         {
-            SwitchKeyboardLayout(KeyboardLayout.AZERTY);
+            currentLayoutForPlayer1 = (layout == "AZERTY") ? KeyboardLayout.AZERTY : KeyboardLayout.QWERTY;
         }
-        else
+        else if (playerID == 2)
         {
-            SwitchKeyboardLayout(KeyboardLayout.QWERTY);
+            currentLayoutForPlayer2 = (layout == "AZERTY") ? KeyboardLayout.AZERTY : KeyboardLayout.QWERTY;
         }
+
+        Debug.Log($"Préférence de clavier pour le joueur {playerID} chargée : {layout}");
     }
-    public void SaveKeyboardPreference()
+
+    public void SaveKeyboardPreferenceForPlayer(int playerID)
     {
-        PlayerPrefs.SetInt("KeyboardLayout", (int)currentLayout);
+        int layout = (playerID == 1) ? (int)currentLayoutForPlayer1 : (int)currentLayoutForPlayer2;
+        PlayerPrefs.SetInt($"KeyboardLayoutPlayer{playerID}", layout);
         PlayerPrefs.Save();
     }
 
-    public void SwitchKeyboardLayout(KeyboardLayout layout)
+    public void SwitchKeyboardLayoutForPlayer(KeyboardLayout layout, int playerID)
     {
-        currentLayout = layout;
+        if (playerID == 1)
+        {
+            currentLayoutForPlayer1 = layout;
+        }
+        else if (playerID == 2)
+        {
+            currentLayoutForPlayer2 = layout;
+        }
+
         AddKeyBindings(layout);
-        SaveKeyboardPreference();  // Sauvegarder immédiatement après le changement de disposition
     }
 }
