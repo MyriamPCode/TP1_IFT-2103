@@ -14,9 +14,6 @@ public class MainMenu : MonoBehaviour
         buttonLocal.gameObject.SetActive(false);
         buttonHost.gameObject.SetActive(false);
         buttonJoin.gameObject.SetActive(false);
-        buttonLocal.onClick.AddListener(() => StartLocalGame());
-        buttonHost.onClick.AddListener(() => StartOnlineGame());
-        buttonJoin.onClick.AddListener(() => StartOnlineGame());
     }
 
     public void ShowSubMenu()
