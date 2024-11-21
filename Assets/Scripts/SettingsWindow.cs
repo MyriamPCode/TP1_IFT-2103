@@ -10,38 +10,54 @@ public class SettingsWindow : MonoBehaviour
     public Button[] changeKeyButtons;
     public int actionIndex;
 
-    public TMP_Dropdown keyboardLayoutDropdown;
+    public TMP_Dropdown joueur1KeyboardLayoutDropdown;
+    public TMP_Dropdown joueur2KeyboardLayoutDropdown;
 
     private void Start()
     {
         Debug.Log($"SettingsWindow.Instance dans Start: {SettingsWindow.Instance}");
-        keyboardLayoutDropdown.onValueChanged.AddListener(OnKeyboardLayoutChanged);
+        joueur1KeyboardLayoutDropdown.onValueChanged.AddListener(OnJoueur1KeyboardLayoutChanged);
+        joueur2KeyboardLayoutDropdown.onValueChanged.AddListener(OnJoueur2KeyboardLayoutChanged);
 
-        LoadKeyboardPreference();
+        LoadKeyboardPreferences();
     }
 
-    private void LoadKeyboardPreference()
+    private void LoadKeyboardPreferences()
     {
-        if (inputManager != null)
+        if (inputManager == null)
         {
-            inputManager.LoadKeyboardPreference();  // Charger la préférence du clavier dans InputManager
+            Debug.LogError("inputManager est null dans LoadKeyboardPreferences!");
+            return;
         }
+
+        // Vérifier si les dropdowns sont assignés
+        if (joueur1KeyboardLayoutDropdown == null || joueur2KeyboardLayoutDropdown == null)
+        {
+            Debug.LogError("Les Dropdowns pour les claviers ne sont pas assignés !");
+            return;
+        }
+
+        // Charger les préférences de clavier pour chaque joueur
+        inputManager.LoadKeyboardPreferenceForPlayer(1);  // Charge les préférences pour le joueur 1
+        inputManager.LoadKeyboardPreferenceForPlayer(2);  // Charge les préférences pour le joueur 2
+
+        // Affecter les valeurs aux dropdowns
+        joueur1KeyboardLayoutDropdown.value = (inputManager.currentLayoutForPlayer1 == KeyboardLayout.AZERTY) ? 0 : 1;
+        joueur2KeyboardLayoutDropdown.value = (inputManager.currentLayoutForPlayer2 == KeyboardLayout.AZERTY) ? 0 : 1;
     }
 
-    private void OnKeyboardLayoutChanged(int index)
+    private void OnJoueur1KeyboardLayoutChanged(int index)
     {
-        // Vérifier l'index sélectionné et appliquer la disposition du clavier correspondante
-        if (index == 0)  // 0 pour AZERTY
-        {
-            InputManager.Instance.SwitchKeyboardLayout(KeyboardLayout.AZERTY);
-        }
-        else  // 1 pour QWERTY
-        {
-            InputManager.Instance.SwitchKeyboardLayout(KeyboardLayout.QWERTY);
-        }
+        KeyboardLayout layout = (index == 0) ? KeyboardLayout.AZERTY : KeyboardLayout.QWERTY;
+        InputManager.Instance.SwitchKeyboardLayoutForPlayer(layout, 1);
+        InputManager.Instance.SaveKeyboardPreferenceForPlayer(1);
+    }
 
-        // Sauvegarder la préférence de disposition du clavier
-        InputManager.Instance.SaveKeyboardPreference();
+    private void OnJoueur2KeyboardLayoutChanged(int index)
+    {
+        KeyboardLayout layout = (index == 0) ? KeyboardLayout.AZERTY : KeyboardLayout.QWERTY;
+        InputManager.Instance.SwitchKeyboardLayoutForPlayer(layout, 2);
+        InputManager.Instance.SaveKeyboardPreferenceForPlayer(2);
     }
 
     private void Awake()
@@ -72,6 +88,8 @@ public class SettingsWindow : MonoBehaviour
         //Debug.Log("OpenSettings() appelé, état avant activation : " + gameObject.activeSelf);
         Debug.Log($"Nombre de mappages de touches : {inputManager.keyBindings.Count}");
         UpdateKeyBindingsDisplay();
+
+        LoadKeyboardPreferences();
         gameObject.SetActive(true);
 
     }
@@ -142,5 +160,7 @@ public class SettingsWindow : MonoBehaviour
         // Mettre à jour l'affichage des touches
         SettingsWindow.Instance.UpdateKeyBindingsDisplay();
     }
+
+   
 }
 
