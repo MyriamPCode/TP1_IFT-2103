@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class PartieEnLigne : MonoBehaviour
 {
     public string levelToLoad;
-    public string levelToLoad2;
 
     public void StartGame()
     {
@@ -14,6 +13,6 @@ public class PartieEnLigne : MonoBehaviour
     }
     public void ReturnMenu()
     {
-        SceneLoader.LoadScene(levelToLoad2);
+        SceneLoader.LoadScene("MainMenu");
     }
 }
