@@ -55,23 +55,11 @@ public class LogicManager : MonoBehaviour
 
         if (player != null)
         {
-            // On force la balle � s'arr�ter
             player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             player.moveSpeed = 0f;
             player.jumpForce = 0f;
         }
-
-        /*
-        if (victoryText != null)
-        {
-            victoryText.gameObject.SetActive(true);
-            Debug.Log("Victory text activated.");
-        }
-        else
-        {
-            Debug.Log("Victory text is null.");
-        }
-        */
+        
         victoryScreen.SetActive(true);
     }
 
@@ -81,16 +69,26 @@ public class LogicManager : MonoBehaviour
     }
 
     public void ButtonSettings()
+{
+    if (SettingsWindow.Instance != null)
     {
-        if (SettingsWindow.Instance != null)
+        SettingsWindow.Instance.OpenSettings();
+    }
+    else
+    {
+        Debug.LogWarning("SettingsWindow n'est pas encore instancié. Création de l'instance...");
+        
+        // Recherche d'un prefab SettingsWindow
+        if (settingsWindowPrefab != null)
         {
-            SettingsWindow.Instance.OpenSettings();
-        }
-        else
-        {
-            Debug.LogWarning("SettingsWindow n'est pas encore instanci�.");
             GameObject settingsWindow = Instantiate(settingsWindowPrefab);
             settingsWindow.SetActive(true);
         }
+        else
+        {
+            Debug.LogError("settingsWindowPrefab n'est pas assigné !");
+        }
     }
+}
+
 }
