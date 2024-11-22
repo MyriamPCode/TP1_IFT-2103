@@ -38,7 +38,7 @@ public class MainMenu : MonoBehaviour
     public void OpenSettings()
     {
         Debug.Log("Chargement des paramètres");
-        SceneLoader.LoadScene("Settings");
+        // a coder
     }
 
     public void QuitGame()
