@@ -9,11 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Main Scene.unity
-    guid: f908eb331d30f5b49b6767bdd86b43f3
+    path: Assets/Scenes/EcranAccueil.unity
+    guid: 23e7f8f971953274f86a0eb89b2e7e7e
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
-    guid: 23256b436ee540d488d63841efad9c3c
+    guid: b88c4e6e3fba3f3429b217e806eefac0
+  - enabled: 1
+    path: Assets/Scenes/Main Scene.unity
+    guid: f908eb331d30f5b49b6767bdd86b43f3
   - enabled: 1
     path: Assets/Scenes/ScenePartieLocale.unity
     guid: 7a6619a0b9a9c6648990e9823fee39ec
@@ -23,7 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MenuEnLigne.unity
     guid: 456a63c0ee518da468f7894c03f47c80
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Settings.unity
     guid: 6ddcd0790774b614885846ca955156a7
   m_configObjects: {}
