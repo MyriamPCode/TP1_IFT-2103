@@ -146,7 +146,7 @@ public class SettingsWindow : MonoBehaviour
         {
             PlayerPrefs.SetString(binding.actionName, binding.key.ToString());
         }
-        PlayerPrefs.Save(); // Sauvegarde les param�tres
+        PlayerPrefs.Save();
         Debug.Log("Param�tres sauvegard�s");
     }
 
