@@ -6,14 +6,13 @@ using UnityEngine.SceneManagement;
 public class PartieLocale : MonoBehaviour
 {
     public string levelToLoad;
-    public string levelToLoad2;
 
     public void StartGame()
     {
-        SceneManager.LoadScene(levelToLoad);
+        SceneLoader.LoadScene(levelToLoad);
     }
     public void ReturnMenu()
     {
-        SceneManager.LoadScene(levelToLoad2);
+        SceneLoader.LoadScene("MainMenu");
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+public class MainMenuManager : MonoBehaviour
 {
     public Button buttonLocal;
     public Button buttonHost;
@@ -38,7 +38,7 @@ public class MainMenu : MonoBehaviour
     public void OpenSettings()
     {
         Debug.Log("Chargement des paramètres");
-        SceneLoader.LoadScene("Settings");
+        // a coder
     }
 
     public void QuitGame()

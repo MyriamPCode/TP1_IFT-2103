@@ -117,7 +117,8 @@ public class SettingsWindow : MonoBehaviour
             string playerLabel = (binding.playerID == 1) ? "Joueur 1" : "Joueur 2";  // Affiche quel joueur utilise cette touche
 
             // Afficher le nom de l'action, le joueur et la touche associ�e
-            actionTexts[i].text = $"{playerLabel} - {binding.actionName} ({keyName})";
+            //actionTexts[i].text = $"{playerLabel} - {binding.actionName} ({keyName})"; (j'ai modifié parce que c'était moche)
+            actionTexts[i].text = $"{keyName}";
 
             // Capturer l'index dans une variable locale pour l'utiliser dans le listener
             int index = i;
