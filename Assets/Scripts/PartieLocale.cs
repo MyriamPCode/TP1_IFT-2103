@@ -10,10 +10,10 @@ public class PartieLocale : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(levelToLoad);
+        SceneLoader.LoadScene(levelToLoad);
     }
     public void ReturnMenu()
     {
-        SceneManager.LoadScene(levelToLoad2);
+        SceneLoader.LoadScene(levelToLoad2);
     }
 }

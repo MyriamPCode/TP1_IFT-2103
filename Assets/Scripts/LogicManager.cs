@@ -35,12 +35,12 @@ public class LogicManager : MonoBehaviour
     }
     public void restartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneLoader.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void mainMenu()
     {
         Resume();
-        SceneManager.LoadScene("MainMenu");
+        SceneLoader.LoadScene("MainMenu");
     }
 
     public void Resume()
@@ -55,7 +55,7 @@ public class LogicManager : MonoBehaviour
 
         if (player != null)
         {
-            // On force la balle à s'arrêter
+            // On force la balle ï¿½ s'arrï¿½ter
             player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             player.moveSpeed = 0f;
             player.jumpForce = 0f;
@@ -88,7 +88,7 @@ public class LogicManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("SettingsWindow n'est pas encore instancié.");
+            Debug.LogWarning("SettingsWindow n'est pas encore instanciï¿½.");
             GameObject settingsWindow = Instantiate(settingsWindowPrefab);
             settingsWindow.SetActive(true);
         }
