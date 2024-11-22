@@ -52,9 +52,14 @@ public class Player : MonoBehaviour
 
     private bool IsGrounded() 
     {
-        float rayLength = 0.05f;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, -0.5f, 0), Vector2.down, rayLength, groundLayer);
-        return hit.collider != null;
+        float rayLength = 0.1f;
+        Vector2 position = transform.position;
+
+        RaycastHit2D hitCenter = Physics2D.Raycast(position, Vector2.down, rayLength, groundLayer);
+        RaycastHit2D hitLeft = Physics2D.Raycast(position + new Vector2(-0.3f, 0), Vector2.down, rayLength, groundLayer);
+        RaycastHit2D hitRight = Physics2D.Raycast(position + new Vector2(0.3f, 0), Vector2.down, rayLength, groundLayer);
+
+        return hitCenter.collider != null || hitLeft.collider != null || hitRight.collider != null;
     }
 
     private void FixedUpdate()
@@ -65,7 +70,6 @@ public class Player : MonoBehaviour
         Vector2 velocity = rb.velocity;
 
         velocity.x = horizontalMovement * moveSpeed;
-        rb.velocity = velocity;
 
         if (horizontalMovement != 0)
         {
