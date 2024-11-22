@@ -1122,7 +1122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelToLoad: Main Scene
-  levelToLoad2: MainMenu
 --- !u!114 &800748356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1285,6 +1284,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 805585332}
   m_CullTransparentMesh: 1
+--- !u!1 &838009089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 838009091}
+  - component: {fileID: 838009090}
+  m_Layer: 0
+  m_Name: PartieEnLigne
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &838009090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838009089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c378e60b391da84a8b03a5f8c6aa386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelToLoad: Main Scene
+--- !u!4 &838009091
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838009089}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1009.2386, y: 529.1614, z: -5.8841085}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &939675713
 GameObject:
   m_ObjectHideFlags: 0
@@ -1803,7 +1847,7 @@ GameObject:
   - component: {fileID: 1443393145}
   - component: {fileID: 1443393144}
   m_Layer: 5
-  m_Name: TextPartieEnLigne (TMP)
+  m_Name: TextPartieEnLigne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2083,8 +2127,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 800748355}
-        m_TargetAssemblyTypeName: PartieLocale, Assembly-CSharp
+      - m_Target: {fileID: 838009090}
+        m_TargetAssemblyTypeName: PartieEnLigne, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -2520,8 +2564,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 800748355}
-        m_TargetAssemblyTypeName: PartieLocale, Assembly-CSharp
+      - m_Target: {fileID: 838009090}
+        m_TargetAssemblyTypeName: PartieEnLigne, Assembly-CSharp
         m_MethodName: ReturnMenu
         m_Mode: 1
         m_Arguments:
@@ -2973,3 +3017,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 1138889017}
   - {fileID: 800748359}
+  - {fileID: 838009091}
