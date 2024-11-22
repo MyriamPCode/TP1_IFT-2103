@@ -30,16 +30,16 @@ public class SettingsWindow : MonoBehaviour
             return;
         }
 
-        // Vérifier si les dropdowns sont assignés
+        // Vï¿½rifier si les dropdowns sont assignï¿½s
         if (joueur1KeyboardLayoutDropdown == null || joueur2KeyboardLayoutDropdown == null)
         {
-            Debug.LogError("Les Dropdowns pour les claviers ne sont pas assignés !");
+            Debug.LogError("Les Dropdowns pour les claviers ne sont pas assignï¿½s !");
             return;
         }
 
-        // Charger les préférences de clavier pour chaque joueur
-        inputManager.LoadKeyboardPreferenceForPlayer(1);  // Charge les préférences pour le joueur 1
-        inputManager.LoadKeyboardPreferenceForPlayer(2);  // Charge les préférences pour le joueur 2
+        // Charger les prï¿½fï¿½rences de clavier pour chaque joueur
+        inputManager.LoadKeyboardPreferenceForPlayer(1);  // Charge les prï¿½fï¿½rences pour le joueur 1
+        inputManager.LoadKeyboardPreferenceForPlayer(2);  // Charge les prï¿½fï¿½rences pour le joueur 2
 
         // Affecter les valeurs aux dropdowns
         joueur1KeyboardLayoutDropdown.value = (inputManager.currentLayoutForPlayer1 == KeyboardLayout.AZERTY) ? 0 : 1;
@@ -67,25 +67,25 @@ public class SettingsWindow : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             gameObject.SetActive(false);
-            Debug.Log("SettingsWindow instance créée");
+            Debug.Log("SettingsWindow instance crï¿½ï¿½e");
         }
         else
         {
-            Destroy(gameObject); // Détruire les doublons
-            Debug.LogWarning("Une autre instance de SettingsWindow a été détruite");
+            Destroy(gameObject); // Dï¿½truire les doublons
+            Debug.LogWarning("Une autre instance de SettingsWindow a ï¿½tï¿½ dï¿½truite");
         }
     }
 
-    // Méthodes pour gérer votre fenêtre de paramètres
+    // Mï¿½thodes pour gï¿½rer votre fenï¿½tre de paramï¿½tres
     public void OpenSettings()
     {
         if (inputManager == null)
         {
-            Debug.LogError("inputManager est nul lors de l'ouverture des paramètres.");
+            Debug.LogError("inputManager est nul lors de l'ouverture des paramï¿½tres.");
             return;
         }
 
-        //Debug.Log("OpenSettings() appelé, état avant activation : " + gameObject.activeSelf);
+        //Debug.Log("OpenSettings() appelï¿½, ï¿½tat avant activation : " + gameObject.activeSelf);
         Debug.Log($"Nombre de mappages de touches : {inputManager.keyBindings.Count}");
         UpdateKeyBindingsDisplay();
 
@@ -105,18 +105,18 @@ public class SettingsWindow : MonoBehaviour
     {
         if (inputManager.keyBindings.Count > actionTexts.Length || inputManager.keyBindings.Count > changeKeyButtons.Length)
         {
-            Debug.LogError("Les tableaux actionTexts ou changeKeyButtons ne sont pas correctement configurés. Vérifiez leurs tailles.");
-            return; // Sortir de la méthode si les tailles ne correspondent pas
+            Debug.LogError("Les tableaux actionTexts ou changeKeyButtons ne sont pas correctement configurï¿½s. Vï¿½rifiez leurs tailles.");
+            return; // Sortir de la mï¿½thode si les tailles ne correspondent pas
         }
 
     
         for (int i = 0; i < inputManager.keyBindings.Count; i++)
         {
             KeyBinding binding = inputManager.keyBindings[i];
-            string keyName = binding.key.ToString();  // Le nom de la touche associée à l'action
+            string keyName = binding.key.ToString();  // Le nom de la touche associï¿½e ï¿½ l'action
             string playerLabel = (binding.playerID == 1) ? "Joueur 1" : "Joueur 2";  // Affiche quel joueur utilise cette touche
 
-            // Afficher le nom de l'action, le joueur et la touche associée
+            // Afficher le nom de l'action, le joueur et la touche associï¿½e
             actionTexts[i].text = $"{playerLabel} - {binding.actionName} ({keyName})";
 
             // Capturer l'index dans une variable locale pour l'utiliser dans le listener
@@ -132,7 +132,7 @@ public class SettingsWindow : MonoBehaviour
         {
             if (binding.actionName == action)
             {
-                binding.key = newKey; // Change la touche associée
+                binding.key = newKey; // Change la touche associï¿½e
                 Debug.Log($"Changement de la touche pour {action} en {newKey}");
                 break;
             }
@@ -145,8 +145,8 @@ public class SettingsWindow : MonoBehaviour
         {
             PlayerPrefs.SetString(binding.actionName, binding.key.ToString());
         }
-        PlayerPrefs.Save(); // Sauvegarde les paramètres
-        Debug.Log("Paramètres sauvegardés");
+        PlayerPrefs.Save(); // Sauvegarde les paramï¿½tres
+        Debug.Log("Paramï¿½tres sauvegardï¿½s");
     }
 
 
@@ -157,7 +157,7 @@ public class SettingsWindow : MonoBehaviour
         // Appeler ReassignKey en passant actionName et playerID
         InputManager.Instance.ReassignKey(actionName, playerID);
 
-        // Mettre à jour l'affichage des touches
+        // Mettre ï¿½ jour l'affichage des touches
         SettingsWindow.Instance.UpdateKeyBindingsDisplay();
     }
 
