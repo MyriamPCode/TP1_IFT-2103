@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class PartieEnLigne : MonoBehaviour
 {
+    public string levelToLoad;
+
     public void StartGame()
     {
-        SceneLoader.LoadScene("Online Main Scene");
+        SceneLoader.LoadScene(levelToLoad);
     }
+    
     public void ReturnMenu()
     {
         SceneLoader.LoadScene("MainMenu");
