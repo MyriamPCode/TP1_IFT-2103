@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SettingsWindow : MonoBehaviour
 {
@@ -10,15 +11,83 @@ public class SettingsWindow : MonoBehaviour
     public Button[] changeKeyButtons;
     public int actionIndex;
 
-    public TMP_Dropdown joueur1KeyboardLayoutDropdown;
-    public TMP_Dropdown joueur2KeyboardLayoutDropdown;
+    public Dropdown joueur1KeyboardLayoutDropdown;
+
+    private void OnEnable()
+    {
+        // Abonnez-vous à l'événement de chargement de la scène
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        // Se désabonner de l'événement lorsque le script est désactivé
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Cette méthode sera appelée à chaque fois qu'une scène est chargée
+        if (InputManager.Instance == null)
+        {
+            Debug.LogError("L'instance de InputManager a été détruite lors du changement de scène !");
+        }
+        else
+        {
+            Debug.Log("InputManager est toujours présent.");
+        }
+    }
 
     private void Start()
     {
         Debug.Log($"SettingsWindow.Instance dans Start: {SettingsWindow.Instance}");
-        joueur1KeyboardLayoutDropdown.onValueChanged.AddListener(OnJoueur1KeyboardLayoutChanged);
-        joueur2KeyboardLayoutDropdown.onValueChanged.AddListener(OnJoueur2KeyboardLayoutChanged);
 
+        if (InputManager.Instance == null)
+        {
+            Debug.LogError("L'instance de InputManager est nulle!");
+            return;
+        }
+
+        // Vérifier si le joueur1KeyboardLayoutDropdown est assigné
+        if (joueur1KeyboardLayoutDropdown == null)
+        {
+            // Rechercher le CanvasJoueur1 dans la scène
+            GameObject canvasJoueur1 = GameObject.Find("CanvasJoueur1");
+            if (canvasJoueur1 != null)
+            {
+                // Trouver le Dropdown dans le CanvasJoueur1
+                joueur1KeyboardLayoutDropdown = canvasJoueur1.transform.Find("Joueur1KeyboardLayoutDropdown").GetComponent<Dropdown>();
+
+                if (joueur1KeyboardLayoutDropdown == null)
+                {
+                    Debug.LogError("Le Dropdown Joueur1 n'a pas été trouvé dans le CanvasJoueur1 !");
+                }
+                else
+                {
+                    Debug.Log("Dropdown Joueur1 trouvé dans le CanvasJoueur1.");
+                }
+            }
+            else
+            {
+                Debug.LogError("Le CanvasJoueur1 n'a pas été trouvé dans la scène.");
+            }
+        }
+        else
+        {
+            Debug.Log("Le Dropdown Joueur1 est déjà assigné.");
+        }
+
+        // Ajouter le listener si le Dropdown est correctement assigné
+        if (joueur1KeyboardLayoutDropdown != null)
+        {
+            joueur1KeyboardLayoutDropdown.onValueChanged.AddListener(OnJoueur1KeyboardLayoutChanged);
+        }
+        else
+        {
+            Debug.LogError("Le Dropdown Joueur1 est toujours null, impossible d'ajouter le listener.");
+        }
+
+        // Charger les préférences de clavier
         LoadKeyboardPreferences();
     }
 
@@ -30,35 +99,30 @@ public class SettingsWindow : MonoBehaviour
             return;
         }
 
-        // V�rifier si les dropdowns sont assign�s
-        if (joueur1KeyboardLayoutDropdown == null || joueur2KeyboardLayoutDropdown == null)
+        if (InputManager.Instance == null)
         {
-            Debug.LogError("Les Dropdowns pour les claviers ne sont pas assign�s !");
-            return;
+            Debug.LogError("InputManager n'est pas initialisé ! Assurez-vous qu'il est bien présent dans la scène.");
+            return;  // Sortir de la fonction si InputManager n'est pas initialisé
         }
 
-        // Charger les pr�f�rences de clavier pour chaque joueur
-        inputManager.LoadKeyboardPreferenceForPlayer(1);  // Charge les pr�f�rences pour le joueur 1
-        inputManager.LoadKeyboardPreferenceForPlayer(2);  // Charge les pr�f�rences pour le joueur 2
+        inputManager.LoadKeyboardPreferenceForPlayer(1);  // Charger les préférences pour le joueur 1
 
-        // Affecter les valeurs aux dropdowns
-        joueur1KeyboardLayoutDropdown.value = (inputManager.currentLayoutForPlayer1 == KeyboardLayout.AZERTY) ? 0 : 1;
-        joueur2KeyboardLayoutDropdown.value = (inputManager.currentLayoutForPlayer2 == KeyboardLayout.AZERTY) ? 0 : 1;
+        // Debugging : Vérifier si le clavier a bien été chargé
+        Debug.Log($"Clavier du joueur 1 chargé : {inputManager.currentLayoutForPlayer1}");
+
+        // Mettre à jour le dropdown avec la valeur de préférence
+        joueur1KeyboardLayoutDropdown.value = (inputManager.currentLayoutForPlayer1 == KeyboardLayout.QWERTY) ? 0 : 1;
+
     }
 
     private void OnJoueur1KeyboardLayoutChanged(int index)
     {
-        KeyboardLayout layout = (index == 0) ? KeyboardLayout.AZERTY : KeyboardLayout.QWERTY;
+        KeyboardLayout layout = (index == 0) ? KeyboardLayout.QWERTY : KeyboardLayout.QWERTY;
         InputManager.Instance.SwitchKeyboardLayoutForPlayer(layout, 1);
         InputManager.Instance.SaveKeyboardPreferenceForPlayer(1);
     }
 
-    private void OnJoueur2KeyboardLayoutChanged(int index)
-    {
-        KeyboardLayout layout = (index == 0) ? KeyboardLayout.AZERTY : KeyboardLayout.QWERTY;
-        InputManager.Instance.SwitchKeyboardLayoutForPlayer(layout, 2);
-        InputManager.Instance.SaveKeyboardPreferenceForPlayer(2);
-    }
+    
 
     private void Awake()
     {
@@ -71,12 +135,12 @@ public class SettingsWindow : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject); // D�truire les doublons
+            Destroy(gameObject); 
             Debug.LogWarning("Une autre instance de SettingsWindow a �t� d�truite");
         }
     }
 
-    // M�thodes pour g�rer votre fen�tre de param�tres
+
     public void OpenSettings()
     {
         if (inputManager == null)
@@ -105,20 +169,21 @@ public class SettingsWindow : MonoBehaviour
     {
         if (inputManager.keyBindings.Count > actionTexts.Length || inputManager.keyBindings.Count > changeKeyButtons.Length)
         {
-            Debug.LogError("Les tableaux actionTexts ou changeKeyButtons ne sont pas correctement configur�s. V�rifiez leurs tailles.");
-            return; // Sortir de la m�thode si les tailles ne correspondent pas
+            Debug.LogError("Les tableaux actionTexts ou changeKeyButtons ne sont pas correctement configurés. Vérifiez leurs tailles.");
+            return; // Sortir de la méthode si les tailles ne correspondent pas
         }
 
-    
         for (int i = 0; i < inputManager.keyBindings.Count; i++)
         {
             KeyBinding binding = inputManager.keyBindings[i];
-            string keyName = binding.key.ToString();  // Le nom de la touche associ�e � l'action
+            string keyName = binding.key.ToString();  // Le nom de la touche associée à l'action
             string playerLabel = (binding.playerID == 1) ? "Joueur 1" : "Joueur 2";  // Affiche quel joueur utilise cette touche
 
-            // Afficher le nom de l'action, le joueur et la touche associ�e
-            //actionTexts[i].text = $"{playerLabel} - {binding.actionName} ({keyName})"; (j'ai modifié parce que c'était moche)
-            actionTexts[i].text = $"{keyName}";
+            // Debugger pour vérifier les valeurs des touches
+            Debug.Log($"Action: {binding.actionName}, Touche: {keyName}");
+
+            // Mettre à jour le texte du bouton avec la touche
+            actionTexts[i].text = $"{keyName}";  // Vérifiez que vous mettez bien à jour la propriété text du TMP_Text
 
             // Capturer l'index dans une variable locale pour l'utiliser dans le listener
             int index = i;
@@ -155,10 +220,8 @@ public class SettingsWindow : MonoBehaviour
     {
         int playerID = inputManager.keyBindings[index].playerID;
 
-        // Appeler ReassignKey en passant actionName et playerID
         InputManager.Instance.ReassignKey(actionName, playerID);
 
-        // Mettre � jour l'affichage des touches
         SettingsWindow.Instance.UpdateKeyBindingsDisplay();
     }
 

@@ -17,7 +17,6 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance { get; private set; }
 
     public KeyboardLayout currentLayoutForPlayer1 = KeyboardLayout.QWERTY;
-    public KeyboardLayout currentLayoutForPlayer2 = KeyboardLayout.QWERTY;
 
     public List<KeyBinding> keyBindings = new List<KeyBinding>();
     public Player player1; 
@@ -45,6 +44,7 @@ public class InputManager : MonoBehaviour
             // Mappages de touches par d�faut pour QWERTY
             AddKeyBindings(KeyboardLayout.QWERTY);
         }
+
     }
 
     private void AddKeyBindings(KeyboardLayout layout)
@@ -132,7 +132,6 @@ public class InputManager : MonoBehaviour
 
     public void ReassignKey(string actionName, int playerID)
     {
-        // Attendre que l'utilisateur appuie sur une nouvelle touche
         StartCoroutine(WaitForKeyPress(actionName, playerID));
     }
 
@@ -198,15 +197,11 @@ public class InputManager : MonoBehaviour
     public void LoadKeyboardPreferenceForPlayer(int playerID)
     {
         string key = $"KeyboardLayout_Player{playerID}";
-        string layout = PlayerPrefs.GetString(key, "AZERTY");  // Valeur par d�faut "AZERTY"
+        string layout = PlayerPrefs.GetString(key, "QWERTY");  
 
         if (playerID == 1)
         {
-            currentLayoutForPlayer1 = (layout == "AZERTY") ? KeyboardLayout.AZERTY : KeyboardLayout.QWERTY;
-        }
-        else if (playerID == 2)
-        {
-            currentLayoutForPlayer2 = (layout == "AZERTY") ? KeyboardLayout.AZERTY : KeyboardLayout.QWERTY;
+            currentLayoutForPlayer1 = (layout == "QWERTY") ? KeyboardLayout.QWERTY : KeyboardLayout.AZERTY;
         }
 
         Debug.Log($"Pr�f�rence de clavier pour le joueur {playerID} charg�e : {layout}");
@@ -214,9 +209,12 @@ public class InputManager : MonoBehaviour
 
     public void SaveKeyboardPreferenceForPlayer(int playerID)
     {
-        int layout = (playerID == 1) ? (int)currentLayoutForPlayer1 : (int)currentLayoutForPlayer2;
-        PlayerPrefs.SetInt($"KeyboardLayoutPlayer{playerID}", layout);
-        PlayerPrefs.Save();
+        if (playerID == 1)
+        {
+            int layout = (int)currentLayoutForPlayer1;
+            PlayerPrefs.SetInt($"KeyboardLayoutPlayer{playerID}", layout);
+            PlayerPrefs.Save();
+        }
     }
 
     public void SwitchKeyboardLayoutForPlayer(KeyboardLayout layout, int playerID)
@@ -224,10 +222,6 @@ public class InputManager : MonoBehaviour
         if (playerID == 1)
         {
             currentLayoutForPlayer1 = layout;
-        }
-        else if (playerID == 2)
-        {
-            currentLayoutForPlayer2 = layout;
         }
 
         AddKeyBindings(layout);
