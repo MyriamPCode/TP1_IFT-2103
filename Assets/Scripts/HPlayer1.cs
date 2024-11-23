@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Player : MonoBehaviour
+public class HPlayer1 : MonoBehaviour
 {
-    public static Player Instance { get; private set; }
+    public static HPlayer1 Instance { get; private set; }
     public float moveSpeed = 1f;      
     public float jumpForce = 3f;        
     public LayerMask groundLayer;
@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        spawnPoint = transform.position; // Initialisation du point d'apparition 
+        spawnPoint = transform.position;
         logic = FindObjectOfType<LogicManager>();
 
         if (healthText != null)

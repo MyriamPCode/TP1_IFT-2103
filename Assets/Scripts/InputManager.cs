@@ -17,10 +17,11 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance { get; private set; }
 
     public KeyboardLayout currentLayoutForPlayer1 = KeyboardLayout.QWERTY;
+    public KeyboardLayout currentLayoutForPlayer2 = KeyboardLayout.QWERTY;
 
     public List<KeyBinding> keyBindings = new List<KeyBinding>();
-    public Player player1; 
-    public Player2 player2;
+    public HPlayer1 player1; 
+    public HPlayer2 player2;
 
     private void Awake()
     {
@@ -47,7 +48,7 @@ public class InputManager : MonoBehaviour
 
     private void AddKeyBindings(KeyboardLayout layout)
     {
-        keyBindings.Clear();  
+        keyBindings.Clear();
         if (layout == KeyboardLayout.QWERTY)
         {
             keyBindings.Add(new KeyBinding { actionName = "MoveLeft", key = KeyCode.A, playerID = 1 });
@@ -85,7 +86,7 @@ public class InputManager : MonoBehaviour
         {
             if (Input.GetKey(binding.key))
             {
-                HandleAction(binding.actionName, binding.playerID); 
+                HandleAction(binding.actionName, binding.playerID);
             }
         }
     }
@@ -98,13 +99,13 @@ public class InputManager : MonoBehaviour
             switch (action)
             {
                 case "MoveLeft":
-                    Player.Instance.MovePlayer(Vector2.left); 
+                    HPlayer1.Instance.MovePlayer(Vector2.left);
                     break;
                 case "MoveRight":
-                    Player.Instance.MovePlayer(Vector2.right); 
+                    HPlayer1.Instance.MovePlayer(Vector2.right);
                     break;
                 case "Jump":
-                    Player.Instance.Jump(); 
+                    HPlayer1.Instance.Jump(); 
                     break;
             }
         }
@@ -113,13 +114,13 @@ public class InputManager : MonoBehaviour
             switch (action)
             {
                 case "MoveLeft":
-                    Player2.Instance.MovePlayer(Vector2.left);
+                    HPlayer2.Instance.MovePlayer(Vector2.left);
                     break;
                 case "MoveRight":
-                    Player2.Instance.MovePlayer(Vector2.right); 
+                    HPlayer2.Instance.MovePlayer(Vector2.right);
                     break;
                 case "Jump":
-                    Player2.Instance.Jump(); 
+                    HPlayer2.Instance.Jump(); 
                     break;
             }
         }
@@ -140,7 +141,7 @@ public class InputManager : MonoBehaviour
         {
             foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
             {
-                if (Input.GetKeyDown(key) && key != KeyCode.Escape) 
+                if (Input.GetKeyDown(key) && key != KeyCode.Escape)
                 {
                     newKey = key;
                     keyPressed = true;
@@ -189,19 +190,23 @@ public class InputManager : MonoBehaviour
     public void LoadKeyboardPreferenceForPlayer(int playerID)
     {
         string key = $"KeyboardLayout_Player{playerID}";
-        string layout = PlayerPrefs.GetString(key, "AZERTY");  
+        string layout = PlayerPrefs.GetString(key, "AZERTY");
 
         if (playerID == 1)
         {
             currentLayoutForPlayer1 = (layout == "AZERTY") ? KeyboardLayout.AZERTY : KeyboardLayout.QWERTY;
         }
-        
+        else if (playerID == 2)
+        {
+            currentLayoutForPlayer2 = (layout == "AZERTY") ? KeyboardLayout.AZERTY : KeyboardLayout.QWERTY;
+        }
+
         Debug.Log($"Pr�f�rence de clavier pour le joueur {playerID} charg�e : {layout}");
     }
 
     public void SaveKeyboardPreferenceForPlayer(int playerID)
     {
-        int layout = (playerID == 1) ? (int)currentLayoutForPlayer1 : 0; 
+        int layout = (playerID == 1) ? (int)currentLayoutForPlayer1 : (int)currentLayoutForPlayer2;
         PlayerPrefs.SetInt($"KeyboardLayoutPlayer{playerID}", layout);
         PlayerPrefs.Save();
     }
@@ -211,6 +216,10 @@ public class InputManager : MonoBehaviour
         if (playerID == 1)
         {
             currentLayoutForPlayer1 = layout;
+        }
+        else if (playerID == 2)
+        {
+            currentLayoutForPlayer2 = layout;
         }
 
         AddKeyBindings(layout);

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Player2 : MonoBehaviour
+public class HPlayer2 : MonoBehaviour
 {
-    public static Player2 Instance { get; private set; }
+    public static HPlayer2 Instance { get; private set; }
     public float moveSpeed = 1f;
     public float jumpForce = 3f;
     public LayerMask groundLayer;
@@ -39,7 +39,7 @@ public class Player2 : MonoBehaviour
 
     private void Start()
     {
-        spawnPoint = transform.position;  
+        spawnPoint = transform.position;
 
         logic = FindObjectOfType<LogicManager>();
         if (healthText != null)
@@ -60,7 +60,6 @@ public class Player2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         isGrounded = IsGrounded();
 
         float horizontalMovement = GetCustomHorizontalInput();
@@ -96,7 +95,7 @@ public class Player2 : MonoBehaviour
             if (binding.playerID == playerIndex && binding.actionName == "Jump" && Input.GetKeyDown(binding.key))
             {
                 Jump();
-                break; 
+                break;
             }
         }
 
@@ -142,7 +141,6 @@ public class Player2 : MonoBehaviour
     private float GetCustomHorizontalInput()
     {
         float horizontalMovement = 0f;
-
         foreach (var keyBinding in InputManager.Instance.keyBindings)
         {
             if (keyBinding.playerID == playerIndex) // Si la cl� appartient au bon joueur
@@ -163,7 +161,6 @@ public class Player2 : MonoBehaviour
     public void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-
     }
 
     public static int GetPlayerHealth()
