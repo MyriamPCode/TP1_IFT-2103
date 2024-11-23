@@ -8,16 +8,19 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scenes/EcranAccueil.unity
+    guid: 23e7f8f971953274f86a0eb89b2e7e7e
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: b88c4e6e3fba3f3429b217e806eefac0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Main Scene.unity
     guid: f908eb331d30f5b49b6767bdd86b43f3
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MenuLocal.unity
     guid: 7a6619a0b9a9c6648990e9823fee39ec
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/LoadingScreen.unity
     guid: 41bb17177683e8241a9a1d7b5aecc5eb
   - enabled: 1
@@ -26,15 +29,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Settings.unity
     guid: 6ddcd0790774b614885846ca955156a7
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SecondScene.unity
     guid: 676632e873dd46048be8815a3b22d10f
   - enabled: 1
     path: Assets/Scenes/Online Main Scene.unity
     guid: bd3a5c5e53c3cc74ca4a92c3da9e5b52
-  - enabled: 0
-    path: Assets/Scenes/EcranAccueil.unity
-    guid: 23e7f8f971953274f86a0eb89b2e7e7e
   - enabled: 1
     path: Assets/Scenes/Online SecondScene.unity
     guid: f301c9b63307ac743a26ab8e2f403d43
