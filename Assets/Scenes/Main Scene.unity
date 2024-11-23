@@ -585,7 +585,6 @@ MonoBehaviour:
   - {fileID: 1084015982}
   actionIndex: 0
   joueur1KeyboardLayoutDropdown: {fileID: 0}
-  joueur2KeyboardLayoutDropdown: {fileID: 0}
 --- !u!114 &141345822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1308,11 +1307,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a7a7f408406a54397451b0b2a4974d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  jumpForce: 3
+  moveSpeed: 10
+  jumpForce: 5
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   friction: 0.5
   healthText: {fileID: 1520929999}
   logic: {fileID: 1919633346}
@@ -4411,11 +4410,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6d2eeb779128994984d325e6dc29608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  jumpForce: 3
+  moveSpeed: 10
+  jumpForce: 5
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   friction: 0.5
   healthText: {fileID: 796052161}
   logic: {fileID: 1919633346}
