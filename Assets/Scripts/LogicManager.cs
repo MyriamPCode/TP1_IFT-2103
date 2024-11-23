@@ -10,7 +10,6 @@ public class LogicManager : MonoBehaviour
     public GameObject pauseMenu;
     public Player player;
     public GameObject victoryScreen;
-    //public TextMeshProUGUI victoryText;
     public GameObject settingsWindowPrefab;
     public void Update()
     {
@@ -78,7 +77,6 @@ public class LogicManager : MonoBehaviour
     {
         Debug.LogWarning("SettingsWindow n'est pas encore instancié. Création de l'instance...");
         
-        // Recherche d'un prefab SettingsWindow
         if (settingsWindowPrefab != null)
         {
             GameObject settingsWindow = Instantiate(settingsWindowPrefab);

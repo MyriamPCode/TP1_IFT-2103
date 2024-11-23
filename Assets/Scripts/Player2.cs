@@ -39,7 +39,7 @@ public class Player2 : MonoBehaviour
 
     private void Start()
     {
-        spawnPoint = transform.position; // Initialisation du point d'apparition 
+        spawnPoint = transform.position;  
 
         logic = FindObjectOfType<LogicManager>();
         if (healthText != null)
@@ -51,19 +51,16 @@ public class Player2 : MonoBehaviour
 
     private bool IsGrounded()
     {
-        // Longueur du rayon qui va �tre projet� vers le bas
         float rayLength = 0.05f;
 
-        // Projeter un rayon vers le bas � partir de la position du joueur avec un l�ger d�calage
         RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, -0.5f, 0), Vector2.down, rayLength, groundLayer);
 
-        // Si le rayon touche un objet appartenant � la couche du sol, renvoyer true, sinon false
         return hit.collider != null;
     }
 
     private void FixedUpdate()
     {
-        // On v�rifie si le joueur est au sol
+
         isGrounded = IsGrounded();
 
         float horizontalMovement = GetCustomHorizontalInput();
@@ -75,12 +72,10 @@ public class Player2 : MonoBehaviour
 
         if (horizontalMovement != 0)
         {
-            // Applique le mouvement horizontal normal
             velocity.x = horizontalMovement * moveSpeed;
         }
         else
         {
-            // Si le joueur n'est pas en mouvement, appliquer la friction pour ralentir progressivement la vitesse horizontale
             velocity.x = Mathf.MoveTowards(velocity.x, 0, friction * Time.fixedDeltaTime);
         }
 
@@ -90,7 +85,6 @@ public class Player2 : MonoBehaviour
 
     void Update()
     {
-        // � partir de y = -10, le joueur retourne au point d'apparition
         if (transform.position.y < -5f)
         {
             Respawn();
@@ -102,7 +96,7 @@ public class Player2 : MonoBehaviour
             if (binding.playerID == playerIndex && binding.actionName == "Jump" && Input.GetKeyDown(binding.key))
             {
                 Jump();
-                break; // On ne veut pas que le joueur saute plus d'une fois par appui de touche
+                break; 
             }
         }
 
@@ -134,12 +128,9 @@ public class Player2 : MonoBehaviour
     {
         Debug.Log("Respawn at spawn point");
 
-        // On r�initialise la position du joueur au point de respawn
         transform.position = spawnPoint;
 
-        // On r�initialise la v�locit� pour �viter des mouvements r�siduels
         rb.velocity = Vector2.zero;
-        //verticalVelocity = 0f;
     }
 
     public void MovePlayer(Vector2 direction)
@@ -152,12 +143,6 @@ public class Player2 : MonoBehaviour
     {
         float horizontalMovement = 0f;
 
-        /*
-        if (Input.GetKey(KeyCode.LeftArrow))  // Joueur 2, touche fl�che gauche
-            horizontalMovement = -1f;
-        if (Input.GetKey(KeyCode.RightArrow)) // Joueur 2, touche fl�che droite
-                horizontalMovement = 1f;
-        */
         foreach (var keyBinding in InputManager.Instance.keyBindings)
         {
             if (keyBinding.playerID == playerIndex) // Si la cl� appartient au bon joueur
