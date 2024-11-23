@@ -671,8 +671,8 @@ MonoBehaviour:
   currentLayoutForPlayer1: 1
   currentLayoutForPlayer2: 1
   keyBindings: []
-  player1: {fileID: 0}
-  player2: {fileID: 0}
+  player1: {fileID: 1081784158}
+  player2: {fileID: 465730195}
 --- !u!1 &289376733
 GameObject:
   m_ObjectHideFlags: 0
@@ -8222,7 +8222,7 @@ MonoBehaviour:
   settingsWindowPrefab: {fileID: 141345819}
   player1Config:
     isHuman: 1
-    playerPrefab: {fileID: 919751460}
+    playerPrefab: {fileID: 1081784151}
   player2Config:
     isHuman: 1
     playerPrefab: {fileID: 465730187}
