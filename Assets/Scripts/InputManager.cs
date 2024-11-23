@@ -16,7 +16,8 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager Instance { get; private set; }
 
-    public KeyboardLayout currentLayoutForPlayer1 = KeyboardLayout.QWERTY;
+    //public KeyboardLayout currentLayoutForPlayer1 = KeyboardLayout.QWERTY;
+    public KeyboardLayout currentLayoutForPlayer1;
 
     public List<KeyBinding> keyBindings = new List<KeyBinding>();
     public Player player1; 

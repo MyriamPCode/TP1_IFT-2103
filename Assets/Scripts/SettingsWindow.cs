@@ -169,21 +169,20 @@ public class SettingsWindow : MonoBehaviour
     {
         if (inputManager.keyBindings.Count > actionTexts.Length || inputManager.keyBindings.Count > changeKeyButtons.Length)
         {
-            Debug.LogError("Les tableaux actionTexts ou changeKeyButtons ne sont pas correctement configurés. Vérifiez leurs tailles.");
-            return; // Sortir de la méthode si les tailles ne correspondent pas
+            Debug.LogError("Les tableaux actionTexts ou changeKeyButtons ne sont pas correctement configur�s. V�rifiez leurs tailles.");
+            return; // Sortir de la m�thode si les tailles ne correspondent pas
         }
+
 
         for (int i = 0; i < inputManager.keyBindings.Count; i++)
         {
             KeyBinding binding = inputManager.keyBindings[i];
-            string keyName = binding.key.ToString();  // Le nom de la touche associée à l'action
+            string keyName = binding.key.ToString();  // Le nom de la touche associ�e � l'action
             string playerLabel = (binding.playerID == 1) ? "Joueur 1" : "Joueur 2";  // Affiche quel joueur utilise cette touche
 
-            // Debugger pour vérifier les valeurs des touches
-            Debug.Log($"Action: {binding.actionName}, Touche: {keyName}");
-
-            // Mettre à jour le texte du bouton avec la touche
-            actionTexts[i].text = $"{keyName}";  // Vérifiez que vous mettez bien à jour la propriété text du TMP_Text
+            // Afficher le nom de l'action, le joueur et la touche associ�e
+            //actionTexts[i].text = $"{playerLabel} - {binding.actionName} ({keyName})"; (j'ai modifié parce que c'était moche)
+            actionTexts[i].text = $"{keyName}";
 
             // Capturer l'index dans une variable locale pour l'utiliser dans le listener
             int index = i;

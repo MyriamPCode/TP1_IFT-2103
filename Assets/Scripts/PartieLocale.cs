@@ -10,6 +10,8 @@ public class PartieLocale : MonoBehaviour
     public Dropdown controllerDropdown;
     public InputManager inputManager;
 
+    public bool isQwerty = true;
+
     private void Start()
     {
         if (inputManager == null)
@@ -32,18 +34,18 @@ public class PartieLocale : MonoBehaviour
 
     public void OnControllerChanged(int index)
     {
-        // Enregistrez la préférence de clavier dans les PlayerPrefs
         string layout = (index == 0) ? "QWERTY" : "AZERTY";
         PlayerPrefs.SetString("KeyboardLayout", layout);
         PlayerPrefs.Save();
 
+        // Mettez à jour la préférence dans le booléen
+        isQwerty = (index == 0); // Si l'utilisateur choisit QWERTY, isQwerty devient true, sinon false
+
         // Mettez à jour l'InputManager pour appliquer le changement
         InputManager.Instance.SwitchKeyboardLayoutForPlayer(
-            layout == "QWERTY" ? KeyboardLayout.QWERTY : KeyboardLayout.AZERTY, 1
+            isQwerty ? KeyboardLayout.QWERTY : KeyboardLayout.AZERTY, 1
         );
-        InputManager.Instance.SwitchKeyboardLayoutForPlayer(
-            layout == "QWERTY" ? KeyboardLayout.QWERTY : KeyboardLayout.AZERTY, 2
-        );
+
     }
 
     private void LoadKeyboardPreference()
