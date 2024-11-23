@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum KeyboardLayout
-{
-    AZERTY,
-    QWERTY
-}
-
 public class KeyboardManager : MonoBehaviour
 {
     public static KeyboardManager Instance { get; private set; }
 
-    public KeyboardLayout currentLayout = KeyboardLayout.QWERTY;  // Par défaut, QWERTY
+    public KeyboardLayout currentLayout = KeyboardLayout.QWERTY;  // Par dï¿½faut, QWERTY
     private Dictionary<string, KeyCode> keyBindingsAZERTY = new Dictionary<string, KeyCode>();
     private Dictionary<string, KeyCode> keyBindingsQWERTY = new Dictionary<string, KeyCode>();
 
@@ -39,7 +33,7 @@ public class KeyboardManager : MonoBehaviour
         keyBindingsQWERTY["Jump"] = KeyCode.Space;
     }
 
-    // Récupérer la touche pour une action spécifique en fonction du type de clavier
+    // Rï¿½cupï¿½rer la touche pour une action spï¿½cifique en fonction du type de clavier
     public KeyCode GetKeyForAction(string action)
     {
         if (currentLayout == KeyboardLayout.AZERTY)
@@ -52,7 +46,7 @@ public class KeyboardManager : MonoBehaviour
         }
     }
 
-    // Méthode pour changer la disposition du clavier
+    // Mï¿½thode pour changer la disposition du clavier
     public void SwitchToAZERTY()
     {
         currentLayout = KeyboardLayout.AZERTY;

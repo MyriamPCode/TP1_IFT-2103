@@ -1,6 +1,6 @@
 using UnityEngine;
-using TMPro;  // Utilisation de TextMeshPro
-using System.Collections; 
+using TMPro;
+using System.Collections;
 
 public class DialogueNPC : MonoBehaviour
 {

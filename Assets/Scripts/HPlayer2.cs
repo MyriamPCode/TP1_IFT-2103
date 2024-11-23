@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Player2 : MonoBehaviour
+public class HPlayer2 : MonoBehaviour
 {
-    public static Player2 Instance { get; private set; }
+    public static HPlayer2 Instance { get; private set; }
     public float moveSpeed = 1f;
     public float jumpForce = 3f;
     public LayerMask groundLayer;
@@ -39,7 +39,7 @@ public class Player2 : MonoBehaviour
 
     private void Start()
     {
-        spawnPoint = transform.position; // Initialisation du point d'apparition 
+        spawnPoint = transform.position;
 
         logic = FindObjectOfType<LogicManager>();
         if (healthText != null)
@@ -178,7 +178,6 @@ public class Player2 : MonoBehaviour
     public void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-
     }
 
     public static int GetPlayerHealth()

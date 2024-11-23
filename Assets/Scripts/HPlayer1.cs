@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Player : MonoBehaviour
+public class HPlayer1 : MonoBehaviour
 {
-    public static Player Instance { get; private set; }
+    public static HPlayer1 Instance { get; private set; }
     public float moveSpeed = 1f;      
     public float jumpForce = 3f;        
     public LayerMask groundLayer;
