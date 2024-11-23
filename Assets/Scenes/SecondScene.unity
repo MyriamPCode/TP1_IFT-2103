@@ -522,6 +522,8 @@ MonoBehaviour:
   - {fileID: 1658281286}
   - {fileID: 1302447314}
   actionIndex: 0
+  joueur1KeyboardLayoutDropdown: {fileID: 0}
+  joueur2KeyboardLayoutDropdown: {fileID: 0}
 --- !u!114 &141345822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,6 +606,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e99ec60279f40749913bb1a21096b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentLayoutForPlayer1: 1
+  currentLayoutForPlayer2: 1
   keyBindings: []
   player1: {fileID: 1081784152}
   player2: {fileID: 465730195}
@@ -1290,6 +1294,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   friction: 0.5
+  healthText: {fileID: 0}
   logic: {fileID: 1919633346}
   playerIndex: 2
 --- !u!1 &472406366
@@ -3295,7 +3300,7 @@ GameObject:
   - component: {fileID: 1081784156}
   - component: {fileID: 1081784157}
   m_Layer: 6
-  m_Name: Player
+  m_Name: Player1
   m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3319,6 +3324,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   friction: 0.9
+  healthText: {fileID: 0}
   logic: {fileID: 1919633346}
   playerIndex: 1
 --- !u!212 &1081784153
