@@ -32,6 +32,7 @@ public class HPlayer1 : MonoBehaviour
             Instance = this;
             rb = GetComponent<Rigidbody2D>();
             rb.gravityScale = 3f;
+            rb.freezeRotation = true;
         }
         else
         {

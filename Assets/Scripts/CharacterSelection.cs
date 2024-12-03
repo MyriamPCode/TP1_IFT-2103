@@ -14,6 +14,8 @@ public class CharacterSelection : MonoBehaviour
     public Button leftButton;
     public Button rightButton;
 
+    private bool isSwitchingCharacter = false;
+
     void Start()
     {
         // Charger le personnage sélectionné (si un choix a été sauvegardé)
