@@ -74,13 +74,24 @@ public class HPlayer1 : MonoBehaviour
         velocity.x = horizontalMovement * moveSpeed;
         rb.velocity = velocity;
 
+        if (horizontalMovement < 0)
+        {
+            spriteRenderer.flipX = true;  
+        }
+        else if (horizontalMovement > 0)
+        {
+            spriteRenderer.flipX = false;  
+        }
+
         if (horizontalMovement != 0)
         {
             velocity.x = horizontalMovement * moveSpeed;
+            animator.SetBool("isWalking", true);
         }
         else
         {
             velocity.x = Mathf.MoveTowards(velocity.x, 0, friction * Time.fixedDeltaTime);
+            animator.SetBool("isWalking", false);
         }
 
         rb.velocity = velocity;
