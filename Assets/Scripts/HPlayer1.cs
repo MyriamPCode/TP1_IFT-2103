@@ -24,6 +24,9 @@ public class HPlayer1 : MonoBehaviour
 
     public int playerIndex = 1;
 
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+
 
     private void Awake()
     {
@@ -38,6 +41,9 @@ public class HPlayer1 : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -98,6 +104,8 @@ public class HPlayer1 : MonoBehaviour
         {
             healthText.text = $"Vie : {playerHealth}";
         }
+
+       
     }
 
     private KeyCode GetJumpKey()
