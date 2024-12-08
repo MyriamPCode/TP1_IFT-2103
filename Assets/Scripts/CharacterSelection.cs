@@ -7,14 +7,14 @@ using UnityEngine.UI;
 
 public class CharacterSelection : MonoBehaviour
 {
-    public GameObject[] characters;
+    public Image[] characters;
     public Image[] characterImages; 
     private int selectedCharacterIndex = 0; 
 
     public Button leftButton;
     public Button rightButton;
 
-    private bool isSwitchingCharacter = false;
+    //private bool isSwitchingCharacter = false;
 
     private Animator animator;
 
@@ -51,36 +51,41 @@ public class CharacterSelection : MonoBehaviour
 
     void UpdateCharacterDisplay()
     {
-        foreach (GameObject character in characters)
+        foreach (Image img in characters)
         {
-            character.SetActive(false);
+            img.gameObject.SetActive(false);
         }
 
-        characters[selectedCharacterIndex].SetActive(true);
+        // Activer l'image du personnage sélectionné
+        characters[selectedCharacterIndex].gameObject.SetActive(true);
 
+        // Désactiver toutes les images d'affichage
         foreach (Image img in characterImages)
         {
             img.gameObject.SetActive(false);
         }
 
+        // Activer l'image correspondante dans characterImages
         characterImages[selectedCharacterIndex].gameObject.SetActive(true);
 
+        // Sauvegarder l'index du personnage sélectionné
         PlayerPrefs.SetInt("SelectedCharacter", selectedCharacterIndex);
-        PlayerPrefs.Save(); 
+        PlayerPrefs.Save();
     }
 
     void SetCharacterAnimatorController(int characterIndex)
     {
-        // Charger et appliquer l'Animator Controller correspondant au personnage sélectionné
         switch (characterIndex)
         {
             case 0:
-                animator.runtimeAnimatorController = Resources.Load("Character1_Animator") as RuntimeAnimatorController;
+                animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Roi_Animations");
                 break;
             case 1:
-                animator.runtimeAnimatorController = Resources.Load("Character2_Animator") as RuntimeAnimatorController;
+                animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("PersoVert_Animations");
                 break;
-            // Ajoutez des cases pour d'autres personnages si nécessaire
+            case 2:
+                animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Chauve_Animations");
+                break;
             default:
                 break;
         }
