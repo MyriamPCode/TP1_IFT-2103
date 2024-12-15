@@ -12,15 +12,28 @@ public class MainSceneCharacterDisplay : MonoBehaviour
 
     private int selectedCharacterIndex;
 
+    public SpriteRenderer player2SpriteRenderer;  
+    public Sprite[] player2Sprites;  
+    public Animator player2Animator;  
+    public RuntimeAnimatorController[] player2Animators;
+    private int selectedCharacterIndexPlayer2;
+
     void Start()
     {
-        selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);  
+        selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);
+        selectedCharacterIndexPlayer2 = PlayerPrefs.GetInt("SelectedCharacterPlayer2", 0);
 
         if (selectedCharacterIndex < 0 || selectedCharacterIndex >= characterSprites.Length)
         {
             selectedCharacterIndex = 0; 
             PlayerPrefs.SetInt("SelectedCharacter", selectedCharacterIndex);  
             PlayerPrefs.Save();
+        }
+
+        if (selectedCharacterIndexPlayer2 < 0 || selectedCharacterIndexPlayer2 >= player2Sprites.Length)
+        {
+            selectedCharacterIndexPlayer2 = 0;  
+            PlayerPrefs.SetInt("SelectedCharacterPlayer2", selectedCharacterIndexPlayer2);  
         }
 
         UpdateCharacterDisplay();
@@ -53,6 +66,19 @@ public class MainSceneCharacterDisplay : MonoBehaviour
         else
         {
             Debug.LogWarning("Le tableau des sprites de personnages est vide ou l'index est invalide.");
+        }
+
+        if (player2Sprites != null && player2Sprites.Length > 0 && selectedCharacterIndexPlayer2 >= 0 && selectedCharacterIndexPlayer2 < player2Sprites.Length)
+        {
+            if (player2SpriteRenderer != null)
+            {
+                player2SpriteRenderer.sprite = player2Sprites[selectedCharacterIndexPlayer2];
+            }
+
+            if (player2Animator != null && player2Animators != null && player2Animators.Length > selectedCharacterIndexPlayer2)
+            {
+                player2Animator.runtimeAnimatorController = player2Animators[selectedCharacterIndexPlayer2];
+            }
         }
     }
 }
