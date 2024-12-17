@@ -24,6 +24,9 @@ public class HPlayer1 : MonoBehaviour
 
     public int playerIndex = 1;
 
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+
 
     private void Awake()
     {
@@ -32,11 +35,15 @@ public class HPlayer1 : MonoBehaviour
             Instance = this;
             rb = GetComponent<Rigidbody2D>();
             rb.gravityScale = 3f;
+            rb.freezeRotation = true;
         }
         else
         {
             Destroy(gameObject);
         }
+
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -67,13 +74,24 @@ public class HPlayer1 : MonoBehaviour
         velocity.x = horizontalMovement * moveSpeed;
         rb.velocity = velocity;
 
+        if (horizontalMovement < 0)
+        {
+            spriteRenderer.flipX = true;  
+        }
+        else if (horizontalMovement > 0)
+        {
+            spriteRenderer.flipX = false;  
+        }
+
         if (horizontalMovement != 0)
         {
             velocity.x = horizontalMovement * moveSpeed;
+            animator.SetBool("isWalking", true);
         }
         else
         {
             velocity.x = Mathf.MoveTowards(velocity.x, 0, friction * Time.fixedDeltaTime);
+            animator.SetBool("isWalking", false);
         }
 
         rb.velocity = velocity;
@@ -97,6 +115,8 @@ public class HPlayer1 : MonoBehaviour
         {
             healthText.text = $"Vie : {playerHealth}";
         }
+
+       
     }
 
     private KeyCode GetJumpKey()
