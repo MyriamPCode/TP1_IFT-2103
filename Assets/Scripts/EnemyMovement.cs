@@ -13,6 +13,10 @@ public class EnemyMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public TMP_Text deathMessage;
 
+    [SerializeField] private AudioClip hurtSound;
+    [SerializeField] private AudioClip deadSound;
+
+
     private bool isFastState = false; 
 
     void Start()
@@ -44,28 +48,35 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+private void OnCollisionEnter2D(Collision2D collision)
+{
+    if (collision.gameObject.CompareTag("Respawn")) // 确保碰到的是玩家
     {
-        if (collision.gameObject.CompareTag("Respawn"))
+        // 判断玩家的相对速度是否是向下的
+        if (collision.relativeVelocity.y < 0) // y 轴速度小于 0，说明玩家是从上往下碰到的
         {
-            ContactPoint2D[] contactPoints = collision.contacts;
-
-            foreach (var point in contactPoints)
-            {
-                if (point.point.y > transform.position.y) 
-                {
-                    Destroy(gameObject);
-                    Debug.Log("Enemy destroyed!");
-                    EnemyManager.instance.EnemyDestroyed(); 
-                    return;
-                }
-            }
-
-            Debug.Log("Player die, restart");
+            Debug.Log("Enemy destroyed from top!");
+            SoundFXManager.instance.PlaySoundFXClip(hurtSound, transform, 1f);
+            Destroy(gameObject); // 销毁敌人自己
+            EnemyManager.instance.EnemyDestroyed();
+        }
+        else
+        {
+            Debug.Log("Player died, hit enemy body.");
             ShowDeathMessage();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SoundFXManager.instance.PlaySoundFXClip(deadSound, transform, 1f);
+            Invoke("RestartScene", deadSound.length);
         }
     }
+}
+
+
+
+    void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 
     void ShowDeathMessage()
     {
