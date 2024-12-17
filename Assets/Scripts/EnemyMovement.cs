@@ -13,6 +13,10 @@ public class EnemyMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public TMP_Text deathMessage;
 
+    [SerializeField] private AudioClip hurtSound;
+    [SerializeField] private AudioClip deadSound;
+
+
     private bool isFastState = false; 
 
     void Start()
@@ -54,6 +58,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 if (point.point.y > transform.position.y) 
                 {
+                    SoundFXManager.instance.PlaySoundFXClip(hurtSound, transform, 1f);
                     Destroy(gameObject);
                     Debug.Log("Enemy destroyed!");
                     EnemyManager.instance.EnemyDestroyed(); 
@@ -63,9 +68,17 @@ public class EnemyMovement : MonoBehaviour
 
             Debug.Log("Player die, restart");
             ShowDeathMessage();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SoundFXManager.instance.PlaySoundFXClip(deadSound, transform, 1f);
+            Invoke("RestartScene", deadSound.length);
+
         }
     }
+
+    void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 
     void ShowDeathMessage()
     {
