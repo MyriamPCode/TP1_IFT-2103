@@ -25,12 +25,12 @@ public class PixelManPlant_10 : MonoBehaviour
     {
         Debug.Log("Trigger detected with: " + other.gameObject.name);
 
-        if (other.gameObject.name == "Player1" && !player1HasEntered)
+        if (other.gameObject.CompareTag("Respawn") && !player1HasEntered)
         {
             player1HasEntered = true;
             LoadNextScene();
         }
-        else if (other.gameObject.name == "Player2" && !player2HasEntered)
+        else if (other.gameObject.CompareTag("Respawn") && !player2HasEntered)
         {
             player2HasEntered = true;
             LoadNextScene();
