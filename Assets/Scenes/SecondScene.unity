@@ -561,6 +561,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 141345819}
   m_CullTransparentMesh: 1
+--- !u!1 &168123197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 168123198}
+  - component: {fileID: 168123199}
+  m_Layer: 0
+  m_Name: SoundFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &168123198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168123197}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &168123199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168123197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2abccabd879d07b43a0ae1484859ad22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFXObject: {fileID: 6476455826641074968, guid: 27773ccdc614d88448d1480a3f15b2ca, type: 3}
 --- !u!1001 &218068544
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -569,6 +614,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1412097957690880611, guid: 516815c5adc885a4c868be77dafb776b, type: 3}
+      propertyPath: moveSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156950974497916303, guid: 516815c5adc885a4c868be77dafb776b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156950974497916303, guid: 516815c5adc885a4c868be77dafb776b, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156950974497916303, guid: 516815c5adc885a4c868be77dafb776b, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.26
+      objectReference: {fileID: 0}
     - target: {fileID: 2178549128339401952, guid: 516815c5adc885a4c868be77dafb776b, type: 3}
       propertyPath: m_Name
       value: HPlayer2
@@ -651,6 +712,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2415098082452359635, guid: 516815c5adc885a4c868be77dafb776b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5734718777706646056, guid: 516815c5adc885a4c868be77dafb776b, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1089,11 +1154,11 @@ Transform:
   m_GameObject: {fileID: 430639491}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.23937738, y: -0.9062152, z: 8.5492}
-  m_LocalScale: {x: 5.1295204, y: 4.2746, z: 0.85492}
+  m_LocalPosition: {x: 16.16, y: -0.7199999, z: 0}
+  m_LocalScale: {x: 6, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1689457208}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &430639495
 BoxCollider2D:
@@ -1184,8 +1249,8 @@ MonoBehaviour:
   xMin: 16.16
   xMax: 18.44164
   deathMessage: {fileID: 20716346}
-  hurtSound: {fileID: 0}
-  deadSound: {fileID: 0}
+  hurtSound: {fileID: 8300000, guid: 0319e367bd54d154ba2f413aace8d18d, type: 3}
+  deadSound: {fileID: 8300000, guid: a891914e858df7e45a135e49a32743ad, type: 3}
 --- !u!1 &472406366
 GameObject:
   m_ObjectHideFlags: 0
@@ -5272,6 +5337,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 140265335309369635, guid: f6a55b300fa92a74f8c7eb5cc7461425, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 140265335309369635, guid: f6a55b300fa92a74f8c7eb5cc7461425, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.26
+      objectReference: {fileID: 0}
     - target: {fileID: 587198427427252049, guid: f6a55b300fa92a74f8c7eb5cc7461425, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.02
@@ -5315,6 +5388,14 @@ PrefabInstance:
     - target: {fileID: 2679884249697934938, guid: f6a55b300fa92a74f8c7eb5cc7461425, type: 3}
       propertyPath: m_Name
       value: HPlayer1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171188941499699439, guid: f6a55b300fa92a74f8c7eb5cc7461425, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720992638833506494, guid: f6a55b300fa92a74f8c7eb5cc7461425, type: 3}
+      propertyPath: moveSpeed
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5562,9 +5643,7 @@ Transform:
   m_LocalPosition: {x: 15.88, y: 0.34, z: -10}
   m_LocalScale: {x: 1.1697, y: 1.1697, z: 1.1697}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1974512557}
-  - {fileID: 430639493}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1692150524
@@ -6785,11 +6864,11 @@ Transform:
   m_GameObject: {fileID: 1974512552}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0430026, y: 0.68906546, z: 8.5492}
-  m_LocalScale: {x: 5.1295204, y: 4.2746, z: 0.85492}
+  m_LocalPosition: {x: 14.66, y: 1.1459999, z: 0}
+  m_LocalScale: {x: 6, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1689457208}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1974512558
 MonoBehaviour:
@@ -6808,8 +6887,8 @@ MonoBehaviour:
   xMin: 14.66
   xMax: 15.80982
   deathMessage: {fileID: 20716346}
-  hurtSound: {fileID: 0}
-  deadSound: {fileID: 0}
+  hurtSound: {fileID: 8300000, guid: 0319e367bd54d154ba2f413aace8d18d, type: 3}
+  deadSound: {fileID: 8300000, guid: a891914e858df7e45a135e49a32743ad, type: 3}
 --- !u!1 &2071580729
 GameObject:
   m_ObjectHideFlags: 0
@@ -7038,13 +7117,16 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 1022097925}
   - {fileID: 541550581}
   - {fileID: 94238162}
   - {fileID: 854644624}
   - {fileID: 1919633345}
   - {fileID: 225136142}
-  - {fileID: 1022097925}
   - {fileID: 1689457208}
+  - {fileID: 1974512557}
+  - {fileID: 430639493}
+  - {fileID: 168123198}
   - {fileID: 724751818}
   - {fileID: 1606752970}
   - {fileID: 218068544}
