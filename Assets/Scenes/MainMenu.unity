@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 482545761}
   - component: {fileID: 482545760}
   - component: {fileID: 482545759}
+  - component: {fileID: 482545762}
   m_Layer: 5
   m_Name: ButtonQuitGame
   m_TagString: Untagged
@@ -364,6 +365,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482545757}
   m_CullTransparentMesh: 1
+--- !u!114 &482545762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482545757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d227a4a6e46e7544cb0e0eaf2d3e3866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverTransparency: 0.5
+  transitionSpeed: 0.2
+  hoverSound: {fileID: 0}
+  clickSound: {fileID: 0}
 --- !u!1 &516622105
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,6 +955,7 @@ GameObject:
   - component: {fileID: 1067604308}
   - component: {fileID: 1067604307}
   - component: {fileID: 1067604306}
+  - component: {fileID: 1067604309}
   m_Layer: 5
   m_Name: ButtonStartLocal
   m_TagString: Untagged
@@ -1059,6 +1077,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067604304}
   m_CullTransparentMesh: 1
+--- !u!114 &1067604309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067604304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d227a4a6e46e7544cb0e0eaf2d3e3866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverTransparency: 0.5
+  transitionSpeed: 0.2
+  hoverSound: {fileID: 0}
+  clickSound: {fileID: 0}
 --- !u!1 &1223383914
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,6 +1238,7 @@ GameObject:
   - component: {fileID: 1354393573}
   - component: {fileID: 1354393572}
   - component: {fileID: 1354393571}
+  - component: {fileID: 1354393574}
   m_Layer: 5
   m_Name: ButtonSettings
   m_TagString: Untagged
@@ -1325,6 +1360,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354393569}
   m_CullTransparentMesh: 1
+--- !u!114 &1354393574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354393569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d227a4a6e46e7544cb0e0eaf2d3e3866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverTransparency: 0.5
+  transitionSpeed: 0.2
+  hoverSound: {fileID: 0}
+  clickSound: {fileID: 0}
 --- !u!1 &1359591030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1545,6 +1596,7 @@ GameObject:
   - component: {fileID: 1650631317}
   - component: {fileID: 1650631316}
   - component: {fileID: 1650631315}
+  - component: {fileID: 1650631318}
   m_Layer: 5
   m_Name: ButtonStartGame
   m_TagString: Untagged
@@ -1666,6 +1718,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650631313}
   m_CullTransparentMesh: 1
+--- !u!114 &1650631318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650631313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d227a4a6e46e7544cb0e0eaf2d3e3866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverTransparency: 0.5
+  transitionSpeed: 0.2
+  hoverSound: {fileID: 0}
+  clickSound: {fileID: 0}
 --- !u!1 &1714982880
 GameObject:
   m_ObjectHideFlags: 0
@@ -1723,7 +1791,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'IFT2103A24 TP2
+  m_text: 'IFT2103A24 TP3
 
     Equipe 17'
   m_isRightToLeft: 0
@@ -2127,7 +2195,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Options
+  m_text: "Param\xE8tres"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 724aac704adf71148b43d3de4acb9724, type: 2}
   m_sharedMaterial: {fileID: 3086472336079085382, guid: 724aac704adf71148b43d3de4acb9724, type: 2}
