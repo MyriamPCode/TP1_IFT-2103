@@ -20,8 +20,8 @@ public class InputManager : MonoBehaviour
     public KeyboardLayout currentLayoutForPlayer2 = KeyboardLayout.QWERTY;
 
     public List<KeyBinding> keyBindings = new List<KeyBinding>();
-    public HPlayer1 player1; 
-    public HPlayer2 player2;
+    public Player player1; 
+    public Player player2;
 
     private void Awake()
     {
@@ -99,13 +99,13 @@ public class InputManager : MonoBehaviour
             switch (action)
             {
                 case "MoveLeft":
-                    HPlayer1.Instance.MovePlayer(Vector2.left);
+                    Player.Instance.MovePlayer(Vector2.left);
                     break;
                 case "MoveRight":
-                    HPlayer1.Instance.MovePlayer(Vector2.right);
+                    Player.Instance.MovePlayer(Vector2.right);
                     break;
                 case "Jump":
-                    HPlayer1.Instance.Jump(); 
+                    Player.Instance.Jump(); 
                     break;
             }
         }
@@ -114,13 +114,13 @@ public class InputManager : MonoBehaviour
             switch (action)
             {
                 case "MoveLeft":
-                    HPlayer2.Instance.MovePlayer(Vector2.left);
+                    Player.Instance.MovePlayer(Vector2.left);
                     break;
                 case "MoveRight":
-                    HPlayer2.Instance.MovePlayer(Vector2.right);
+                    Player.Instance.MovePlayer(Vector2.right);
                     break;
                 case "Jump":
-                    HPlayer2.Instance.Jump(); 
+                    Player.Instance.Jump(); 
                     break;
             }
         }

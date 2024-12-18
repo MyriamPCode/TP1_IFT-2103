@@ -11,17 +11,13 @@ public class LogicManager : MonoBehaviour
 
     public GameObject settingsWindowPrefab;
 
-    private GameObject hplayer1;
-    private GameObject hplayer2;
-    private GameObject aiplayer1;
-    private GameObject aiplayer2;
+    private GameObject player1;
+    private GameObject player2;
 
-    // Configuration des joueurs
     [System.Serializable]
     public class PlayerConfig
     {
-        public bool isHuman; // Si true, le joueur est humain, sinon c'est une IA.
-        public GameObject playerPrefab; // Préfab à utiliser pour ce joueur.
+        public GameObject playerPrefab;
     }
 
     public PlayerConfig player1Config;
@@ -52,28 +48,11 @@ public class LogicManager : MonoBehaviour
 
     private void InitializePlayers()
     {
-        // Instanciation des joueurs en fonction de leur configuration
-        if (player1Config.isHuman)
-        {
-            player1Instance = Instantiate(player1Config.playerPrefab);
-            hplayer1 = player1Instance;
-        }
-        else
-        {
-            player1Instance = Instantiate(player1Config.playerPrefab);
-            aiplayer1 = player1Instance;
-        }
-
-        if (player2Config.isHuman)
-        {
-            player2Instance = Instantiate(player2Config.playerPrefab);
-            hplayer2 = player2Instance;
-        }
-        else
-        {
-            player2Instance = Instantiate(player2Config.playerPrefab);
-            aiplayer2 = player2Instance;
-        }
+        player1Instance = Instantiate(player1Config.playerPrefab);
+        player1 = player1Instance;
+        
+        player2Instance = Instantiate(player2Config.playerPrefab);
+        player2 = player2Instance;
     }
 
     public void Pause()
@@ -108,30 +87,17 @@ public class LogicManager : MonoBehaviour
             rb.isKinematic = true;
         }
 
-        HPlayer1 playerScript1 = player.GetComponent<HPlayer1>();
+        Player playerScript1 = player.GetComponent<Player>();
         if (playerScript1 != null)
         {
             playerScript1.moveSpeed = 0f;
             playerScript1.jumpForce = 0f;
         }
-        HPlayer2 playerScript2 = player.GetComponent<HPlayer2>();
+        Player playerScript2 = player.GetComponent<Player>();
         if (playerScript2 != null)
         {
             playerScript2.moveSpeed = 0f;
             playerScript2.jumpForce = 0f;
-        }
-
-        AIPlayer1 aiScript1 = player.GetComponent<AIPlayer1>();
-        if (aiScript1 != null)
-        {
-            aiScript1.moveSpeed = 0f;
-            aiScript1.jumpForce = 0f;
-        }
-        AIPlayer2 aiScript2 = player.GetComponent<AIPlayer2>();
-        if (aiScript2 != null)
-        {
-            aiScript2.moveSpeed = 0f;
-            aiScript2.jumpForce = 0f;
         }
     }
 
