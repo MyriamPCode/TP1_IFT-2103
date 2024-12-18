@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
-public class HPlayer2 : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    public static HPlayer2 Instance { get; private set; }
-    public float moveSpeed = 1f;
-    public float jumpForce = 3f;
+    public static Player Instance { get; private set; }
+    public float moveSpeed = 1f;      
+    public float jumpForce = 3f;        
     public LayerMask groundLayer;
 
     private bool isGrounded;
-    private Rigidbody2D rb;
+    private Rigidbody2D rb; 
 
-    public float friction = 0.5f;
+    public float friction = 0.5f; 
 
     private Vector2 spawnPoint;
     private static int playerHealth = 100;
@@ -21,10 +22,11 @@ public class HPlayer2 : MonoBehaviour
 
     public LogicManager logic;
 
-    public int playerIndex = 2;
+    public int playerIndex;
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+
 
     private void Awake()
     {
@@ -47,21 +49,18 @@ public class HPlayer2 : MonoBehaviour
     private void Start()
     {
         spawnPoint = transform.position;
-
         logic = FindObjectOfType<LogicManager>();
+
         if (healthText != null)
         {
             healthText.text = $"Vie : {playerHealth}";
         }
-
     }
 
-    private bool IsGrounded()
+    private bool IsGrounded() 
     {
         float rayLength = 0.05f;
-
         RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, -0.5f, 0), Vector2.down, rayLength, groundLayer);
-
         return hit.collider != null;
     }
 
@@ -77,11 +76,11 @@ public class HPlayer2 : MonoBehaviour
 
         if (horizontalMovement < 0)
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = true;  
         }
         else if (horizontalMovement > 0)
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = false;  
         }
 
         if (horizontalMovement != 0)
@@ -96,24 +95,18 @@ public class HPlayer2 : MonoBehaviour
         }
 
         rb.velocity = velocity;
-
     }
 
     void Update()
     {
         if (transform.position.y < -5f)
         {
-            Respawn();
+            Respawn(); 
         }
 
-
-        foreach (var binding in InputManager.Instance.keyBindings)
+        if (isGrounded && Input.GetKeyDown(GetJumpKey()))
         {
-            if (binding.playerID == playerIndex && binding.actionName == "Jump" && Input.GetKeyDown(binding.key))
-            {
-                Jump();
-                break;
-            }
+            Jump();
         }
 
         CheckCollisions();
@@ -122,8 +115,14 @@ public class HPlayer2 : MonoBehaviour
         {
             healthText.text = $"Vie : {playerHealth}";
         }
+
+       
     }
 
+    private KeyCode GetJumpKey()
+    {
+        return InputManager.Instance.keyBindings.Find(kb => kb.actionName == "Jump" && kb.playerID == playerIndex).key;
+    }
 
     private void CheckCollisions()
     {
@@ -139,13 +138,9 @@ public class HPlayer2 : MonoBehaviour
         }
     }
 
-
     private void Respawn()
     {
-        Debug.Log("Respawn at spawn point");
-
         transform.position = spawnPoint;
-
         rb.velocity = Vector2.zero;
     }
 
@@ -158,9 +153,10 @@ public class HPlayer2 : MonoBehaviour
     private float GetCustomHorizontalInput()
     {
         float horizontalMovement = 0f;
+
         foreach (var keyBinding in InputManager.Instance.keyBindings)
         {
-            if (keyBinding.playerID == playerIndex) // Si la cl� appartient au bon joueur
+            if (keyBinding.playerID == playerIndex) 
             {
                 if (keyBinding.actionName == "MoveLeft" && Input.GetKey(keyBinding.key))
                 {
@@ -172,6 +168,7 @@ public class HPlayer2 : MonoBehaviour
                 }
             }
         }
+
         return horizontalMovement;
     }
 

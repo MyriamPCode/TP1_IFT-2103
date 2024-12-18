@@ -8,36 +8,15 @@ public class PlayerNameManager : MonoBehaviour
     public InputField player1InputField;
     public InputField player2InputField;
 
-    public Text player1ControllerText;
-    public Text player1DifficultyText;
-    public Text player2DifficultyText;
+    public Dropdown player1KeyboardLayoutDropdown;
 
     public string player1Name = "Joueur 1";
     public string player2Name = "Joueur 2";
 
-    public Dropdown player1TypeDropdown;
-    public Dropdown player2TypeDropdown;
-
-    public bool player1IsHuman = true;
-    public bool player2IsHuman = true;
-    public bool player1IsEasy = true;
-    public bool player2IsEasy = true;
-
-    public Dropdown player1KeyboardLayoutDropdown;
-    public Dropdown player1DifficultyDropdown;
-    public Dropdown player2DifficultyDropdown;
 
     private void Start()
     {
         player1KeyboardLayoutDropdown.gameObject.SetActive(true);
-        player1DifficultyDropdown.gameObject.SetActive(false);
-        player2DifficultyDropdown.gameObject.SetActive(false);
-        player1ControllerText.gameObject.SetActive(true);
-        player1DifficultyText.gameObject.SetActive(false);
-        player2DifficultyText.gameObject.SetActive(false);
-
-        player1TypeDropdown.onValueChanged.AddListener(OnPlayer1TypeChanged);
-        player2TypeDropdown.onValueChanged.AddListener(OnPlayer2TypeChanged);
     }
 
     public void OnPlayer1NameSubmitted(string playerName)
@@ -66,25 +45,6 @@ public class PlayerNameManager : MonoBehaviour
         return player2Name;
     }
 
-    private void OnPlayer1TypeChanged(int index)
-    {
-        player1IsHuman = (index == 0);  // Mettez à jour le booléen
-        player1KeyboardLayoutDropdown.gameObject.SetActive(player1IsHuman);
-        player1ControllerText.gameObject.SetActive(player1IsHuman);
-        player1DifficultyDropdown.gameObject.SetActive(!player1IsHuman);
-        player1DifficultyText.gameObject.SetActive(!player1IsHuman);
-    }
-
-
-    private void OnPlayer2TypeChanged(int index)
-    {
-        player2IsHuman = (index == 0);
-        player2DifficultyDropdown.gameObject.SetActive(!player2IsHuman);
-        player1DifficultyText.gameObject.SetActive(!player2IsHuman);
-    }
-
-
-    // Fonction pour commencer le jeu, selon les choix de l'utilisateur
     public void StartGame()
     {
         SceneLoader.LoadScene("MainScene");
