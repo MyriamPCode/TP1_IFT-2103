@@ -14,7 +14,6 @@ public class SettingsWindow : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"SettingsWindow.Instance dans Start: {SettingsWindow.Instance}");
         joueur1KeyboardLayoutDropdown.onValueChanged.AddListener(OnJoueur1KeyboardLayoutChanged);
 
         LoadKeyboardPreferences();
@@ -22,18 +21,6 @@ public class SettingsWindow : MonoBehaviour
 
     private void LoadKeyboardPreferences()
     {
-        if (inputManager == null)
-        {
-            Debug.LogError("inputManager est null dans LoadKeyboardPreferences!");
-            return;
-        }
-
-        if (joueur1KeyboardLayoutDropdown == null)
-        {
-            Debug.LogError("Le Dropdown pour le clavier du joueur 1 n'est pas assigné !");
-            return;
-        }
-
         inputManager.LoadKeyboardPreferenceForPlayer(1);  
 
         joueur1KeyboardLayoutDropdown.value = (inputManager.currentLayoutForPlayer1 == KeyboardLayout.AZERTY) ? 0 : 1;
@@ -54,24 +41,15 @@ public class SettingsWindow : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             gameObject.SetActive(false);
-            Debug.Log("SettingsWindow instance cr��e");
         }
         else
         {
             Destroy(gameObject);
-            Debug.LogWarning("Une autre instance de SettingsWindow a �t� d�truite");
         }
     }
 
     public void OpenSettings()
     {
-        if (inputManager == null)
-        {
-            Debug.LogError("inputManager est nul lors de l'ouverture des param�tres.");
-            return;
-        }
-
-        Debug.Log($"Nombre de mappages de touches : {inputManager.keyBindings.Count}");
         UpdateKeyBindingsDisplay();
 
         LoadKeyboardPreferences();
@@ -90,7 +68,6 @@ public class SettingsWindow : MonoBehaviour
     {
         if (inputManager.keyBindings.Count > actionTexts.Length || inputManager.keyBindings.Count > changeKeyButtons.Length)
         {
-            Debug.LogError("Les tableaux actionTexts ou changeKeyButtons ne sont pas correctement configur�s. V�rifiez leurs tailles.");
             return; 
         }
 
@@ -116,7 +93,6 @@ public class SettingsWindow : MonoBehaviour
             if (binding.actionName == action)
             {
                 binding.key = newKey;
-                Debug.Log($"Changement de la touche pour {action} en {newKey}");
                 break;
             }
         }
@@ -129,7 +105,6 @@ public class SettingsWindow : MonoBehaviour
             PlayerPrefs.SetString(binding.actionName, binding.key.ToString());
         }
         PlayerPrefs.Save();
-        Debug.Log("Param�tres sauvegard�s");
     }
 
 

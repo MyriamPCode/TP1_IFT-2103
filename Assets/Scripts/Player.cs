@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 
     private Vector2 spawnPoint;
     private static int playerHealth = 100;
-    public  TextMeshProUGUI healthText;
+    public PlayerDamage playerDamage;
 
     public LogicManager logic;
 
@@ -50,11 +50,7 @@ public class Player : MonoBehaviour
     {
         spawnPoint = transform.position;
         logic = FindObjectOfType<LogicManager>();
-
-        if (healthText != null)
-        {
-            healthText.text = $"Vie : {playerHealth}";
-        }
+        playerDamage = GetComponent<PlayerDamage>();
     }
 
     private bool IsGrounded() 
@@ -110,13 +106,6 @@ public class Player : MonoBehaviour
         }
 
         CheckCollisions();
-        
-        if (healthText != null)
-        {
-            healthText.text = $"Vie : {playerHealth}";
-        }
-
-       
     }
 
     private KeyCode GetJumpKey()
@@ -142,6 +131,7 @@ public class Player : MonoBehaviour
     {
         transform.position = spawnPoint;
         rb.velocity = Vector2.zero;
+        playerDamage.FlashOnRespawn();
     }
 
     public void MovePlayer(Vector2 direction)
@@ -187,6 +177,8 @@ public class Player : MonoBehaviour
         playerHealth -= 50;
         playerHealth = Mathf.Max(playerHealth, 0);
 
+        playerDamage.FlashOnDamage();
+
         if (playerHealth == 0)
         {
             Respawn();
@@ -194,11 +186,4 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void UpdateHealthUI()
-    {
-        if (healthText != null)
-        {
-            healthText.text = $"Vie : {playerHealth}";
-        }
-    }
 }
