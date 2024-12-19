@@ -7300,10 +7300,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1907869922}
         m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
-        m_MethodName: SetHairColorToBlue
-        m_Mode: 1
+        m_MethodName: SetTorsoSkin
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7637,7 +7637,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.0575, y: -5.43}
+  m_AnchoredPosition: {x: 1.0574999, y: -5.4300003}
   m_SizeDelta: {x: -2.115, y: -10.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1569389311
@@ -8967,7 +8967,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.3525, y: -3.93}
+  m_AnchoredPosition: {x: -1.352499, y: -3.9300003}
   m_SizeDelta: {x: -2.7, y: -13.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1807857619
@@ -9432,7 +9432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Library: []
-  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 9850ce58068acc8488b578c85efdbd16, type: 3}
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: edba0688ad5a91645ac82442075c474b, type: 3}
 --- !u!114 &1907869922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9449,7 +9449,9 @@ MonoBehaviour:
   skins:
   - {fileID: 7108339969198208228, guid: fd3d8e967209b934087b02f3cd5c5e2b, type: 3}
   - {fileID: 7108339969198208228, guid: 134d76c65a3a5364ebeba06102073bb2, type: 3}
-  torsoSkins: []
+  torsoSkins:
+  - {fileID: 7108339969198208228, guid: edba0688ad5a91645ac82442075c474b, type: 3}
+  - {fileID: 7108339969198208228, guid: a1964d05bb23f334287c6e13d5149602, type: 3}
   legsSkins:
   - {fileID: 7108339969198208228, guid: 9850ce58068acc8488b578c85efdbd16, type: 3}
   - {fileID: 7108339969198208228, guid: 5bd317cd089333b4f8512d7749e755e3, type: 3}
