@@ -592,81 +592,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2066069845}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &206877910
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 206877913}
-  - component: {fileID: 206877912}
-  - component: {fileID: 206877911}
-  m_Layer: 5
-  m_Name: ImagePersonnage (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &206877911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 206877910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 2f06ed31a9bec894eb1ccca478a1c13e, type: 2}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 1952111010, guid: 5bc9cd840de15284e96543d819c886b8, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &206877912
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 206877910}
-  m_CullTransparentMesh: 1
---- !u!224 &206877913
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 206877910}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.0606, y: 2.0606, z: 2.0606}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 485478704}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -21, y: -29}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &211107364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -729,11 +654,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -619
+      value: -569
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -245
+      value: -248
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2385,13 +2310,10 @@ RectTransform:
   - {fileID: 1295501682}
   - {fileID: 766726605}
   - {fileID: 765730081}
-  - {fileID: 1836770192}
   - {fileID: 420322130}
   - {fileID: 1817586447}
   - {fileID: 1579880077}
   - {fileID: 682223861}
-  - {fileID: 1146976687}
-  - {fileID: 206877913}
   - {fileID: 1162273828}
   - {fileID: 1412638037}
   - {fileID: 2066081118}
@@ -2523,7 +2445,7 @@ GameObject:
   - component: {fileID: 486873937}
   - component: {fileID: 486873936}
   m_Layer: 5
-  m_Name: TextPeauJ1
+  m_Name: TextPersoCompletJ1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3006,7 +2928,7 @@ GameObject:
   - component: {fileID: 606867021}
   - component: {fileID: 606867020}
   m_Layer: 5
-  m_Name: 'TextCheveuxJ1  '
+  m_Name: 'TextTorseJ1  '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3454,7 +3376,7 @@ GameObject:
   - component: {fileID: 682223863}
   - component: {fileID: 682223862}
   m_Layer: 5
-  m_Name: 'tonGaucheVetementsJ1 '
+  m_Name: 'tonPreviousCouleursJambesJ1 '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4069,9 +3991,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characters:
-  - {fileID: 1836770191}
-  - {fileID: 1146976686}
-  - {fileID: 206877910}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 390330538}
   - {fileID: 955223403}
   - {fileID: 601736406}
@@ -4088,13 +4010,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characters:
-  - {fileID: 1836770193}
-  - {fileID: 1146976688}
-  - {fileID: 206877911}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   characterImages:
-  - {fileID: 1836770193}
-  - {fileID: 1146976688}
-  - {fileID: 206877911}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   leftButton: {fileID: 1817586448}
   rightButton: {fileID: 420322131}
   charactersPlayer2:
@@ -5788,81 +5710,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145710743}
   m_CullTransparentMesh: 1
---- !u!1 &1146976686
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1146976687}
-  - component: {fileID: 1146976689}
-  - component: {fileID: 1146976688}
-  m_Layer: 5
-  m_Name: ImagePersonnage (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1146976687
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1146976686}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.0606, y: 2.0606, z: 2.0606}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 485478704}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -21, y: -35}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1146976688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1146976686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 2f06ed31a9bec894eb1ccca478a1c13e, type: 2}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: -174758172, guid: 5bc9cd840de15284e96543d819c886b8, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1146976689
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1146976686}
-  m_CullTransparentMesh: 1
 --- !u!1 &1162273827
 GameObject:
   m_ObjectHideFlags: 0
@@ -5876,7 +5723,7 @@ GameObject:
   - component: {fileID: 1162273830}
   - component: {fileID: 1162273829}
   m_Layer: 5
-  m_Name: ButtonCouleurPeauJ1
+  m_Name: ButtonCouleurPersoNextJ1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6401,23 +6248,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: df58b9cec1f1fc44d8588ab5c5412b94, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.54038
+      value: 0.3646106
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: df58b9cec1f1fc44d8588ab5c5412b94, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.54038
+      value: 0.3646106
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: df58b9cec1f1fc44d8588ab5c5412b94, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.54038
+      value: 0.3646106
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: df58b9cec1f1fc44d8588ab5c5412b94, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.24
+      value: -9.4398
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: df58b9cec1f1fc44d8588ab5c5412b94, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.22
+      value: -4.3592
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: df58b9cec1f1fc44d8588ab5c5412b94, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7230,7 +7077,7 @@ GameObject:
   - component: {fileID: 1412638039}
   - component: {fileID: 1412638038}
   m_Layer: 5
-  m_Name: 'ButtonCouleurCheveuxJ1 '
+  m_Name: 'ButtonCouleurTorseNextJ1 '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7302,8 +7149,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1907869922}
         m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
-        m_MethodName: SetTorsoSkin
-        m_Mode: 3
+        m_MethodName: NextTorso
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7697,7 +7544,7 @@ GameObject:
   - component: {fileID: 1579880079}
   - component: {fileID: 1579880078}
   m_Layer: 5
-  m_Name: tonGaucheCheveuxJ1
+  m_Name: tonCouleurPersoPreviousJ1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8439,7 +8286,7 @@ GameObject:
   - component: {fileID: 1759865300}
   - component: {fileID: 1759865299}
   m_Layer: 5
-  m_Name: 'TextVetementsJ1 '
+  m_Name: 'TextJambesJ1 '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9145,81 +8992,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817586446}
   m_CullTransparentMesh: 1
---- !u!1 &1836770191
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1836770192}
-  - component: {fileID: 1836770194}
-  - component: {fileID: 1836770193}
-  m_Layer: 5
-  m_Name: ImagePersonnage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1836770192
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1836770191}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.0606, y: 2.0606, z: 2.0606}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 485478704}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -84, y: -31}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1836770193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1836770191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 2f06ed31a9bec894eb1ccca478a1c13e, type: 2}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 938835881, guid: 5bc9cd840de15284e96543d819c886b8, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1836770194
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1836770191}
-  m_CullTransparentMesh: 1
 --- !u!1 &1844384105
 GameObject:
   m_ObjectHideFlags: 0
@@ -9449,12 +9221,15 @@ MonoBehaviour:
   skins:
   - {fileID: 7108339969198208228, guid: fd3d8e967209b934087b02f3cd5c5e2b, type: 3}
   - {fileID: 7108339969198208228, guid: 134d76c65a3a5364ebeba06102073bb2, type: 3}
+  - {fileID: 7108339969198208228, guid: 644b88930395e3243a83d329ec82b6ad, type: 3}
   torsoSkins:
   - {fileID: 7108339969198208228, guid: edba0688ad5a91645ac82442075c474b, type: 3}
   - {fileID: 7108339969198208228, guid: a1964d05bb23f334287c6e13d5149602, type: 3}
+  - {fileID: 7108339969198208228, guid: fe0265b1e1210a740aa36db12ad6aa28, type: 3}
   legsSkins:
   - {fileID: 7108339969198208228, guid: 9850ce58068acc8488b578c85efdbd16, type: 3}
   - {fileID: 7108339969198208228, guid: 5bd317cd089333b4f8512d7749e755e3, type: 3}
+  - {fileID: 7108339969198208228, guid: 4c116012f3f58b3468cba285e32a9542, type: 3}
 --- !u!114 &1907869923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9924,7 +9699,7 @@ GameObject:
   - component: {fileID: 2066081120}
   - component: {fileID: 2066081119}
   m_Layer: 5
-  m_Name: 'ButtonCouleurVetementsJ1 '
+  m_Name: 'ButtonCouleurJambesNextJ1 '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
