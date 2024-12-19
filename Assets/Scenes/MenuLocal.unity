@@ -416,7 +416,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 74940499}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1489682029}
+        m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
+        m_MethodName: PreviousTorso
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &74940499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,7 +549,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 87706782}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1489682029}
+        m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
+        m_MethodName: NextLegs
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &87706782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1069,8 +1093,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 0.0000046047903
+  m_labelHash: 0.000020269406
   m_SpriteKey: 0
   m_SpriteHash: 204314781
 --- !u!1 &300627132 stripped
@@ -1090,8 +1114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 4.06858e-37
+  m_labelHash: 1.3736496e-37
   m_SpriteKey: 0
   m_SpriteHash: 774644591
 --- !u!1 &302677914
@@ -1580,7 +1604,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 360449500}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1489682029}
+        m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
+        m_MethodName: NextTorso
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &360449500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2747,7 +2783,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 493916129}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1489682029}
+        m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
+        m_MethodName: NextSkin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &493916129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3360,7 +3408,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 679576663}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1489682029}
+        m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
+        m_MethodName: PreviousLegs
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &679576663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9645,8 +9705,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 3.6362406e-31
+  m_labelHash: 4.5305305e-11
   m_SpriteKey: 0
   m_SpriteHash: 592960871
 --- !u!1 &942006629
@@ -10510,7 +10570,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1037711997}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1489682029}
+        m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
+        m_MethodName: PreviousSkin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1037711997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11473,6 +11545,10 @@ PrefabInstance:
       value: PersonnagePhotoshop
       objectReference: {fileID: 0}
     - target: {fileID: -7778536109456122716, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5878871683339923101, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+    - target: {fileID: -7778536109456122716, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
       propertyPath: m_SortingOrder
       value: 30
       objectReference: {fileID: 0}
@@ -11529,41 +11605,81 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7294502723498552786, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 101227606726278172, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+    - target: {fileID: -7294502723498552786, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
       propertyPath: m_SortingOrder
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: -4791112195246121634, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5125916550506094289, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
     - target: {fileID: -4791112195246121634, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
       propertyPath: m_SortingOrder
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -4472174751307326299, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7353483669036560074, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+    - target: {fileID: -4472174751307326299, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
       propertyPath: m_SortingOrder
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: -3647650494137102830, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5701747217699710729, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
     - target: {fileID: -3647650494137102830, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
       propertyPath: m_SortingOrder
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -1196260409215246817, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3507735535547283319, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+    - target: {fileID: -1196260409215246817, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
       propertyPath: m_SortingOrder
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 3653984866961928667, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4587081898910103206, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
     - target: {fileID: 3653984866961928667, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
       propertyPath: m_SortingOrder
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4705292264821905715, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5172512403599532979, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+    - target: {fileID: 4705292264821905715, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
       propertyPath: m_SortingOrder
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 7044118361987636074, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4533829304952873750, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
     - target: {fileID: 7044118361987636074, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
       propertyPath: m_SortingOrder
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7104323380659799222, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2090653298457797546, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+    - target: {fileID: 7104323380659799222, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
       propertyPath: m_SortingOrder
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 8871261730993878985, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -891896321068462581, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
     - target: {fileID: 8871261730993878985, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
       propertyPath: m_SortingOrder
       value: 30
@@ -11747,8 +11863,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 8.631897e-21
+  m_labelHash: 3.3934698e-25
   m_SpriteKey: 0
   m_SpriteHash: 658731953
 --- !u!1 &1626612966 stripped
@@ -11768,8 +11884,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 3.6362406e-31
+  m_labelHash: 8.5826395e-11
   m_SpriteKey: 0
   m_SpriteHash: 621745025
 --- !u!1 &1663359793
@@ -11971,8 +12087,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 3.6362406e-31
+  m_labelHash: 5.3365624e-31
   m_SpriteKey: 0
   m_SpriteHash: 4043319
 --- !u!1 &1723400662
@@ -12779,8 +12895,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 3.6362406e-31
+  m_labelHash: 1.735338e-28
   m_SpriteKey: 0
   m_SpriteHash: 808682729
 --- !u!1 &1817586446
@@ -12933,8 +13049,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 3.6362406e-31
+  m_labelHash: 6.3395926e-34
   m_SpriteKey: 0
   m_SpriteHash: 691721555
 --- !u!1 &1836770191
@@ -13163,8 +13279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 2.7800827e-22
+  m_labelHash: 4.676972e-32
   m_SpriteKey: 0
   m_SpriteHash: 681268055
 --- !u!1 &1930569617
@@ -13562,8 +13678,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 1.2812382e-24
+  m_labelHash: 2.4933804e-26
   m_SpriteKey: 0
   m_SpriteHash: 541145595
 --- !u!1 &2127594776 stripped
@@ -13583,8 +13699,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
+  m_CategoryHash: 3.6362406e-31
+  m_labelHash: 0.000012282405
   m_SpriteKey: 0
   m_SpriteHash: 979274973
 --- !u!1660057539 &9223372036854775807
