@@ -10,13 +10,9 @@ public class CameraSuivi : MonoBehaviour
 
     void Start()
     {
-        if (player != null)
+        if (player == null)
         {
-            Debug.Log(gameObject.name + " suit le joueur : " + player.name);
-        }
-        else
-        {
-            Debug.LogError(gameObject.name + " n'a pas de joueur assigné.");
+            Debug.LogError(gameObject.name + " n'a pas de joueur assignï¿½.");
         }
     }
 
