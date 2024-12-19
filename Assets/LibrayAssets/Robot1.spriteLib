@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: body
+    m_Hash: 463997874
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: corps
+      m_Hash: 179566747
+      m_Sprite: {fileID: -2845040173515926884, guid: c7a540b06e89362469810f025ecb37c0, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2845040173515926884, guid: c7a540b06e89362469810f025ecb37c0, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: brasgauche
+    m_Hash: 505613643
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: brasGauche
+      m_Hash: 428804221
+      m_Sprite: {fileID: 805108670423822445, guid: c7a540b06e89362469810f025ecb37c0, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 805108670423822445, guid: c7a540b06e89362469810f025ecb37c0, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: brasdroit
+    m_Hash: 398869267
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: BrasDroit
+      m_Hash: 351727284
+      m_Sprite: {fileID: 2238876002674502579, guid: c7a540b06e89362469810f025ecb37c0, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2238876002674502579, guid: c7a540b06e89362469810f025ecb37c0, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: "t\xEAte"
+    m_Hash: 216793449
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: "T\xEAte"
+      m_Hash: 221064813
+      m_Sprite: {fileID: -1544832842139915519, guid: c7a540b06e89362469810f025ecb37c0, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1544832842139915519, guid: c7a540b06e89362469810f025ecb37c0, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: jambegauche
+    m_Hash: 916095705
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: jambegauche
+      m_Hash: 916095705
+      m_Sprite: {fileID: -6030824285958159972, guid: c7a540b06e89362469810f025ecb37c0, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6030824285958159972, guid: c7a540b06e89362469810f025ecb37c0, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: jambedroite
+    m_Hash: 51016277
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: JambeDroite
+      m_Hash: 37419188
+      m_Sprite: {fileID: -8679357089680057676, guid: c7a540b06e89362469810f025ecb37c0, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8679357089680057676, guid: c7a540b06e89362469810f025ecb37c0, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 638702050987531682
+  m_Version: 1

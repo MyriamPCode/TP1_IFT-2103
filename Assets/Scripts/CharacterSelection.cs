@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
+using UnityEngine.U2D.Animation;
 using UnityEngine.UI;
 
 
 public class CharacterSelection : MonoBehaviour
 {
-    public Image[] characters;
-    public Image[] characterImages; 
-    private int selectedCharacterIndex = 0; 
+    public GameObject character1;  // GameObject pour le personnage 1
+    public GameObject character2;
+
+    public SpriteLibraryAsset[] characterSkins;  // index 0 pour le personnage 1, index 1 pour le personnage 2
+
+    // Index du personnage actuel
+    private int currentCharacterIndex = 0;  // 0 pour personnage 1, 1 pour personnage 2
+
+    // Référence à la SpriteLibrary du personnage
+    private SpriteLibrary spriteLibrary;
+
+    // Références aux boutons gauche et droite
     public Button leftButton;
     public Button rightButton;
-    private Animator animator;
 
     public Image[] charactersPlayer2;
     public Image[] characterImagesPlayer2;
@@ -23,40 +33,101 @@ public class CharacterSelection : MonoBehaviour
 
     void Start()
     {
-        selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacter", 0);
+        // Initialiser la SpriteLibrary
+        spriteLibrary = GetComponent<SpriteLibrary>();
+
+        // Mettre à jour l'affichage du personnage au début
+        UpdateCharacter();
+
+        // Ajouter des écouteurs pour les boutons gauche et droite
+        leftButton.onClick.AddListener(OnLeftArrowClicked);
+        rightButton.onClick.AddListener(OnRightArrowClicked);
+
         selectedCharacterIndexPlayer2 = PlayerPrefs.GetInt("SelectedCharacterPlayer2", 0);
 
-        if (selectedCharacterIndex < 0 || selectedCharacterIndex >= characters.Length)
-        {
-            selectedCharacterIndex = 0;
-        }
         if (selectedCharacterIndexPlayer2 < 0 || selectedCharacterIndexPlayer2 >= charactersPlayer2.Length)
         {
             selectedCharacterIndexPlayer2 = 0;
         }
 
-        animator = characters[selectedCharacterIndex].GetComponent<Animator>();
         animatorPlayer2 = charactersPlayer2[selectedCharacterIndexPlayer2].GetComponent<Animator>();
 
         UpdateCharacterDisplay();
 
-        leftButton.onClick.AddListener(() => PreviousCharacter(1));
-        rightButton.onClick.AddListener(() => NextCharacter(1));
         leftButtonPlayer2.onClick.AddListener(() => PreviousCharacter(2));
         rightButtonPlayer2.onClick.AddListener(() => NextCharacter(2));
     }
 
+    // Fonction appelée lorsque la flèche gauche est cliquée
+    public void OnLeftArrowClicked()
+    {
+        currentCharacterIndex = (currentCharacterIndex - 1 + characterSkins.Length) % characterSkins.Length;  // Passe au personnage précédent
+        UpdateCharacter();
+    }
+
+    // Fonction appelée lorsque la flèche droite est cliquée
+    public void OnRightArrowClicked()
+    {
+        currentCharacterIndex = (currentCharacterIndex + 1) % characterSkins.Length;  // Passe au personnage suivant
+        UpdateCharacter();
+    }
+
+    // Fonction pour mettre à jour le personnage selon l'index actuel
+    void UpdateCharacter()
+    {
+        // Vérification des GameObjects (personnages)
+        if (character1 == null || character2 == null)
+        {
+            Debug.LogError("Les GameObjects des personnages ne sont pas assignés !");
+            return;
+        }
+
+        // Vérification des SpriteLibraryAssets
+        if (characterSkins == null || characterSkins.Length == 0)
+        {
+            Debug.LogError("Les SpriteLibraryAssets ne sont pas assignées !");
+            return;
+        }
+
+        // Assurer que spriteLibrary est bien initialisé
+        SpriteLibrary spriteLibrary = character1.GetComponent<SpriteLibrary>();
+        if (spriteLibrary == null)
+        {
+            Debug.LogError("Le SpriteLibrary n'est pas attaché au personnage !");
+            return;
+        }
+
+        // Affecter la nouvelle SpriteLibraryAsset
+        spriteLibrary.spriteLibraryAsset = characterSkins[currentCharacterIndex];
+
+        // Vérification de la partie du corps à changer (exemple avec le torse)
+        SpriteResolver spriteResolver = character1.GetComponent<SpriteResolver>();
+        /*
+        if (spriteResolver != null)
+        {
+            spriteResolver.ResolveSpriteToSpriteRenderer("Torso");  // Assurez-vous que "Torso" est un label valide
+        }
+        else
+        {
+            Debug.LogError("Le SpriteResolver pour le personnage n'est pas attaché !");
+        }*/
+
+        // Activer ou désactiver les personnages
+        if (currentCharacterIndex == 0)
+        {
+            character1.SetActive(true);
+            character2.SetActive(false);
+        }
+        else
+        {
+            character1.SetActive(false);
+            character2.SetActive(true);
+        }
+    }
+
     public void NextCharacter(int player)
     {
-        if (player == 1)
-        {
-            selectedCharacterIndex++;
-            if (selectedCharacterIndex >= characters.Length)
-            {
-                selectedCharacterIndex = 0;
-            }
-        }
-        else if (player == 2)
+        if (player == 2)
         {
             selectedCharacterIndexPlayer2++;
             if (selectedCharacterIndexPlayer2 >= charactersPlayer2.Length)
@@ -69,15 +140,7 @@ public class CharacterSelection : MonoBehaviour
 
     public void PreviousCharacter(int player)
     {
-        if (player == 1)
-        {
-            selectedCharacterIndex--;
-            if (selectedCharacterIndex < 0)
-            {
-                selectedCharacterIndex = characters.Length - 1;
-            }
-        }
-        else if (player == 2)
+        if (player == 2)
         {
             selectedCharacterIndexPlayer2--;
             if (selectedCharacterIndexPlayer2 < 0)
@@ -90,21 +153,6 @@ public class CharacterSelection : MonoBehaviour
 
     void UpdateCharacterDisplay()
     {
-        //Joueur 1
-        foreach (Image img in characters)
-        {
-            img.gameObject.SetActive(false);
-        }
-
-        characters[selectedCharacterIndex].gameObject.SetActive(true);
-
-        foreach (Image img in characterImages)
-        {
-            img.gameObject.SetActive(false);
-        }
-
-        characterImages[selectedCharacterIndex].gameObject.SetActive(true);
-
         //Joueur 2
         foreach (Image img in charactersPlayer2)
         {
@@ -118,12 +166,9 @@ public class CharacterSelection : MonoBehaviour
         }
         characterImagesPlayer2[selectedCharacterIndexPlayer2].gameObject.SetActive(true);
 
-        // Sauvegarder l'index du personnage sélectionné
-        PlayerPrefs.SetInt("SelectedCharacter", selectedCharacterIndex);
         PlayerPrefs.SetInt("SelectedCharacterPlayer2", selectedCharacterIndexPlayer2);
         PlayerPrefs.Save();
 
-        SetCharacterAnimatorController(1, selectedCharacterIndex);
         SetCharacterAnimatorController(2, selectedCharacterIndexPlayer2);
     }
 
@@ -131,28 +176,7 @@ public class CharacterSelection : MonoBehaviour
     {
         Animator characterAnimator = null;
 
-        if (player == 1)
-        {
-            characterAnimator = characters[selectedCharacterIndex].GetComponent<Animator>();
-            if (characterAnimator != null)
-            {
-                switch (characterIndex)
-                {
-                    case 0:
-                        characterAnimator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Roi_Animations");
-                        break;
-                    case 1:
-                        characterAnimator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("PersoVert_Animations");
-                        break;
-                    case 2:
-                        characterAnimator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Chauve_Animations");
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-        else if (player == 2)
+        if (player == 2)
         {
             characterAnimator = charactersPlayer2[selectedCharacterIndexPlayer2].GetComponent<Animator>();
             if (characterAnimator != null)
@@ -171,6 +195,10 @@ public class CharacterSelection : MonoBehaviour
                     default:
                         break;
                 }
+            }
+            else
+            {
+                Debug.LogWarning("Animator component missing on player 2 character " + selectedCharacterIndexPlayer2);
             }
         }
     }
