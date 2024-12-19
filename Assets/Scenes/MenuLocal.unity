@@ -11578,6 +11578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2ab153bc9758d47a19eb04fd50b5d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customizationData: {fileID: 11400000, guid: 5034f226aeb139443bf06d5c371d59eb, type: 2}
   skins:
   - {fileID: 7108339969198208228, guid: cc76cadb77fcc9a43a18b3a9af2887a7, type: 3}
   - {fileID: 7108339969198208228, guid: 6204e098b8c17064f80c52e57ceaa799, type: 3}
