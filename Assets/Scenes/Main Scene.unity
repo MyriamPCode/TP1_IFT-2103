@@ -9080,6 +9080,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PersonnagePhotoshop
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.15536295
