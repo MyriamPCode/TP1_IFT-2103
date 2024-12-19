@@ -151,10 +151,6 @@ public class CharacterSelection : MonoBehaviour
                         break;
                 }
             }
-            else
-            {
-                Debug.LogWarning("Animator component missing on character " + selectedCharacterIndex);
-            }
         }
         else if (player == 2)
         {
@@ -176,10 +172,7 @@ public class CharacterSelection : MonoBehaviour
                         break;
                 }
             }
-            else
-            {
-                Debug.LogWarning("Animator component missing on player 2 character " + selectedCharacterIndexPlayer2);
-            }
         }
     }
 }
+

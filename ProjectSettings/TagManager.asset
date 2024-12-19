@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ennemy
+  - Plateforme
   layers:
   - Default
   - TransparentFX
