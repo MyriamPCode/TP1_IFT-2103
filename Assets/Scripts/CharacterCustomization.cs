@@ -10,15 +10,26 @@ using System;
 public class CharacterCustomization : MonoBehaviour
 {
 
-    public SpriteResolver legsResolver;
-
     public SpriteLibraryAsset[] skins;
     public SpriteLibraryAsset[] torsoSkins;
     public SpriteLibraryAsset[] legsSkins;
 
-    private int currentSkinIndex = 0;  // L'indice du skin actuel dans le tableau
-    private int currentTorsoIndex = 0; // L'indice du torse actuel
+    private int currentSkinIndex = 0;  
+    private int currentTorsoIndex = 0; 
     private int currentLegsIndex = 0;
+
+    public Transform legsTransform;
+    public Transform torsoTransform;
+
+    public Slider positionSliderX;  // Slider pour la position X des jambes ou du torse
+    public Slider positionSliderY;  // Slider pour la position Y des jambes ou du torse
+    public Slider scaleSliderX;     // Slider pour l'échelle X des jambes ou du torse
+    public Slider scaleSliderY;     // Slider pour l'échelle Y des jambes ou du torse
+    public Slider rotationSlider;   // Slider pour la rotation autour de l'axe Y (ou un autre axe)
+
+    public float maxPositionValue = 5f;
+    public float maxRotationValue = 360f;
+    public float maxScaleValue = 2f;
 
     public void SetPremierPersonnage()
     {
@@ -58,81 +69,139 @@ public class CharacterCustomization : MonoBehaviour
         GetComponent<SpriteLibrary>().spriteLibraryAsset = torsoSkins;
     }
 
-    /*
-    public void SetLegsSkin(int index)
-    {
-        if (index >= 0 && index < legsSkins.Length)
-        {
-            legsResolver.spriteLibraryAsset = legsSkins[index];
-        }
-        else
-        {
-            Debug.LogWarning("Index de skin de jambes invalide");
-        }
-    }
-    */
 
     public void NextSkin()
     {
-        currentSkinIndex++;  // Incrémenter l'indice pour passer au skin suivant
-        if (currentSkinIndex >= skins.Length)  // Si on dépasse le tableau
+        currentSkinIndex++; 
+        if (currentSkinIndex >= skins.Length)  
         {
-            currentSkinIndex = 0;  // Revenir au premier skin
+            currentSkinIndex = 0; 
         }
-        ChangeSkin(skins[currentSkinIndex]);  // Appliquer le skin suivant
+        ChangeSkin(skins[currentSkinIndex]); 
     }
 
     public void PreviousSkin()
     {
-        currentSkinIndex--;  // Décrémenter l'indice pour revenir au skin précédent
-        if (currentSkinIndex < 0)  // Si l'indice devient inférieur à 0
+        currentSkinIndex--; 
+        if (currentSkinIndex < 0) 
         {
-            currentSkinIndex = skins.Length - 1;  // Revenir au dernier skin
+            currentSkinIndex = skins.Length - 1; 
         }
-        ChangeSkin(skins[currentSkinIndex]);  // Appliquer le skin précédent
+        ChangeSkin(skins[currentSkinIndex]); 
     }
 
     public void NextTorso()
     {
-        currentTorsoIndex++;  // Incrémenter l'indice pour passer au torse suivant
-        if (currentTorsoIndex >= torsoSkins.Length)  // Si on dépasse le tableau
+        currentTorsoIndex++; 
+        if (currentTorsoIndex >= torsoSkins.Length) 
         {
-            currentTorsoIndex = 0;  // Revenir au premier torse
+            currentTorsoIndex = 0; 
         }
-        ChangeTorso(torsoSkins[currentTorsoIndex]);  // Appliquer le torse suivant
+        ChangeTorso(torsoSkins[currentTorsoIndex]);
     }
 
-    // Méthodes pour passer aux jambes suivantes (flèche droite)
     public void NextLegs()
     {
-        currentLegsIndex++;  // Incrémenter l'indice pour passer aux jambes suivantes
-        if (currentLegsIndex >= legsSkins.Length)  // Si on dépasse le tableau
+        currentLegsIndex++; 
+        if (currentLegsIndex >= legsSkins.Length) 
         {
-            currentLegsIndex = 0;  // Revenir aux premières jambes
+            currentLegsIndex = 0;  
         }
-        ChangeLegs(legsSkins[currentLegsIndex]);  // Appliquer les jambes suivantes
+        ChangeLegs(legsSkins[currentLegsIndex]); 
     }
 
-    // Méthodes pour revenir au torse précédent (flèche gauche)
     public void PreviousTorso()
     {
-        currentTorsoIndex--;  // Décrémenter l'indice pour revenir au torse précédent
-        if (currentTorsoIndex < 0)  // Si l'indice devient inférieur à 0
+        currentTorsoIndex--;  
+        if (currentTorsoIndex < 0)  
         {
-            currentTorsoIndex = torsoSkins.Length - 1;  // Revenir au dernier torse
+            currentTorsoIndex = torsoSkins.Length - 1; 
         }
-        ChangeTorso(torsoSkins[currentTorsoIndex]);  // Appliquer le torse précédent
+        ChangeTorso(torsoSkins[currentTorsoIndex]); 
     }
 
-    // Méthodes pour revenir aux jambes précédentes (flèche gauche)
     public void PreviousLegs()
     {
-        currentLegsIndex--;  // Décrémenter l'indice pour revenir aux jambes précédentes
-        if (currentLegsIndex < 0)  // Si l'indice devient inférieur à 0
+        currentLegsIndex--;  
+        if (currentLegsIndex < 0)  
         {
-            currentLegsIndex = legsSkins.Length - 1;  // Revenir aux dernières jambes
+            currentLegsIndex = legsSkins.Length - 1;
         }
-        ChangeLegs(legsSkins[currentLegsIndex]);  // Appliquer les jambes précédentes
+        ChangeLegs(legsSkins[currentLegsIndex]);  
+    }
+
+    public void SetLegsPosition()
+    {
+        float positionX = positionSliderX.value; // Lire la valeur du slider pour X
+        float positionY = positionSliderY.value; // Lire la valeur du slider pour Y
+        legsTransform.position = new Vector3(positionX, positionY, legsTransform.position.z); // Appliquer la nouvelle position
+    }
+
+    // Définir l'échelle des jambes
+    public void SetLegsScale()
+    {
+        float scaleX = scaleSliderX.value; // Lire la valeur du slider pour l'échelle X
+        float scaleY = scaleSliderY.value; // Lire la valeur du slider pour l'échelle Y
+        legsTransform.localScale = new Vector3(scaleX, scaleY, legsTransform.localScale.z); // Appliquer la nouvelle échelle
+    }
+
+    // Définir la rotation des jambes
+    public void SetLegsRotation()
+    {
+        float rotationY = rotationSlider.value; // Lire la valeur du slider pour la rotation Y
+        legsTransform.rotation = Quaternion.Euler(0f, rotationY, 0f); // Appliquer la rotation
+    }
+
+    // Répéter les mêmes méthodes pour le torse
+    public void SetTorsoPosition()
+    {
+        float positionX = positionSliderX.value; // Lire la valeur du slider pour X
+        float positionY = positionSliderY.value; // Lire la valeur du slider pour Y
+        torsoTransform.position = new Vector3(positionX, positionY, torsoTransform.position.z); // Appliquer la nouvelle position
+    }
+
+    public void SetTorsoScale()
+    {
+        float scaleX = scaleSliderX.value; // Lire la valeur du slider pour l'échelle X
+        float scaleY = scaleSliderY.value; // Lire la valeur du slider pour l'échelle Y
+        torsoTransform.localScale = new Vector3(scaleX, scaleY, torsoTransform.localScale.z); // Appliquer la nouvelle échelle
+    }
+
+    public void SetTorsoRotation()
+    {
+        float rotationY = rotationSlider.value; // Lire la valeur du slider pour la rotation Y
+        torsoTransform.rotation = Quaternion.Euler(0f, rotationY, 0f); // Appliquer la rotation
+    }
+
+    void Start()
+    {
+        // Initialiser les sliders avec des valeurs maximales et minimales
+        positionSliderX.minValue = -maxPositionValue;
+        positionSliderX.maxValue = maxPositionValue;
+        positionSliderY.minValue = -maxPositionValue;
+        positionSliderY.maxValue = maxPositionValue;
+
+        scaleSliderX.minValue = 0f;
+        scaleSliderX.maxValue = maxScaleValue;
+        scaleSliderY.minValue = 0f;
+        scaleSliderY.maxValue = maxScaleValue;
+
+        rotationSlider.minValue = 0f;
+        rotationSlider.maxValue = maxRotationValue;
+
+        // Attacher les méthodes aux sliders pour qu'elles soient appelées à chaque modification
+        positionSliderX.onValueChanged.AddListener(delegate { SetLegsPosition(); });
+        positionSliderY.onValueChanged.AddListener(delegate { SetLegsPosition(); });
+        scaleSliderX.onValueChanged.AddListener(delegate { SetLegsScale(); });
+        scaleSliderY.onValueChanged.AddListener(delegate { SetLegsScale(); });
+        rotationSlider.onValueChanged.AddListener(delegate { SetLegsRotation(); });
+
+        // Répéter l'attachement des méthodes pour le torse
+        positionSliderX.onValueChanged.AddListener(delegate { SetTorsoPosition(); });
+        positionSliderY.onValueChanged.AddListener(delegate { SetTorsoPosition(); });
+        scaleSliderX.onValueChanged.AddListener(delegate { SetTorsoScale(); });
+        scaleSliderY.onValueChanged.AddListener(delegate { SetTorsoScale(); });
+        rotationSlider.onValueChanged.AddListener(delegate { SetTorsoRotation(); });
     }
 }
 

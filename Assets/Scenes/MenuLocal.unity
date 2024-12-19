@@ -3564,10 +3564,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1907869922}
         m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
-        m_MethodName: UpdateScaleX
-        m_Mode: 4
+        m_MethodName: SetTorsoScale
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7877,6 +7877,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579880076}
   m_CullTransparentMesh: 1
+--- !u!4 &1584901803 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -823112272390648860, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+  m_PrefabInstance: {fileID: 211107364}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1663359793
 GameObject:
   m_ObjectHideFlags: 0
@@ -9417,7 +9422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Library: []
-  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: edba0688ad5a91645ac82442075c474b, type: 3}
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 9850ce58068acc8488b578c85efdbd16, type: 3}
 --- !u!114 &1907869922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9430,7 +9435,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2ab153bc9758d47a19eb04fd50b5d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  legsResolver: {fileID: 0}
   skins:
   - {fileID: 7108339969198208228, guid: fd3d8e967209b934087b02f3cd5c5e2b, type: 3}
   - {fileID: 7108339969198208228, guid: 134d76c65a3a5364ebeba06102073bb2, type: 3}
@@ -9443,6 +9447,16 @@ MonoBehaviour:
   - {fileID: 7108339969198208228, guid: 9850ce58068acc8488b578c85efdbd16, type: 3}
   - {fileID: 7108339969198208228, guid: 5bd317cd089333b4f8512d7749e755e3, type: 3}
   - {fileID: 7108339969198208228, guid: 4c116012f3f58b3468cba285e32a9542, type: 3}
+  legsTransform: {fileID: 1584901803}
+  torsoTransform: {fileID: 2144187557}
+  positionSliderX: {fileID: 0}
+  positionSliderY: {fileID: 0}
+  scaleSliderX: {fileID: 674343775}
+  scaleSliderY: {fileID: 0}
+  rotationSlider: {fileID: 0}
+  maxPositionValue: 5
+  maxRotationValue: 360
+  maxScaleValue: 2
 --- !u!114 &1907869923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10357,6 +10371,11 @@ MonoBehaviour:
   m_labelHash: 4.676972e-32
   m_SpriteKey: 0
   m_SpriteHash: 681268055
+--- !u!4 &2144187557 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3136231113435045107, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+  m_PrefabInstance: {fileID: 211107364}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
