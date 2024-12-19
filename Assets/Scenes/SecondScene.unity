@@ -10188,6 +10188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1919633345}
   - component: {fileID: 1919633346}
+  - component: {fileID: 1919633347}
   m_Layer: 0
   m_Name: LogicManager
   m_TagString: Untagged
@@ -10229,6 +10230,29 @@ MonoBehaviour:
     playerPrefab: {fileID: 1341580894}
   player2Config:
     playerPrefab: {fileID: 1755916845}
+--- !u!114 &1919633347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919633344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da89faa70bfbc89469e362daf61c413d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpriteRenderer: {fileID: 1341580901}
+  characterSprites: []
+  playerAnimator: {fileID: 1341580895}
+  characterAnimators: []
+  player2SpriteRenderer: {fileID: 1755916853}
+  player2Sprites: []
+  player2Animator: {fileID: 1755916847}
+  player2Animators:
+  - {fileID: 9100000, guid: f72f814e4742d5241a12aa4acb74deb9, type: 2}
+  - {fileID: 9100000, guid: 96d25e823e7eed246a773c0932ab414a, type: 2}
+  - {fileID: 9100000, guid: 83c9b051b4b90fa4e9de967b717e147e, type: 2}
 --- !u!1 &1929151438
 GameObject:
   m_ObjectHideFlags: 0
