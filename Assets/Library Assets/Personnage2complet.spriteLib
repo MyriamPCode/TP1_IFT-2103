@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: body
+    m_Hash: 463997874
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Corps
+      m_Hash: 192075679
+      m_Sprite: {fileID: 8387930554241943394, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8387930554241943394, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: brasgauche
+    m_Hash: 505613643
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: BrasGauche
+      m_Hash: 382864301
+      m_Sprite: {fileID: -4268774495001128429, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4268774495001128429, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: brasdroit
+    m_Hash: 398869267
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: BrasDroit
+      m_Hash: 351727284
+      m_Sprite: {fileID: -1520413644982208549, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1520413644982208549, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: "t\xEAte"
+    m_Hash: 216793449
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Bouche
+      m_Hash: 784120823
+      m_Sprite: {fileID: -8957213113863387393, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8957213113863387393, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+    - m_Name: oeilD
+      m_Hash: 776421693
+      m_Sprite: {fileID: -5210994462446896978, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5210994462446896978, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+    - m_Name: oeilG
+      m_Hash: 927862919
+      m_Sprite: {fileID: 320722670442244933, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 320722670442244933, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+    - m_Name: PupilleD
+      m_Hash: 139635530
+      m_Sprite: {fileID: -7377714196548885775, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7377714196548885775, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+    - m_Name: PupilleG
+      m_Hash: 291240688
+      m_Sprite: {fileID: 4100641205612667039, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4100641205612667039, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+    - m_Name: "T\xEAte"
+      m_Hash: 221064813
+      m_Sprite: {fileID: 1661941030200502640, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1661941030200502640, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: jambegauche
+    m_Hash: 916095705
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: JambeGauche
+      m_Hash: 933890104
+      m_Sprite: {fileID: -2927223453178114333, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2927223453178114333, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: jambedroite
+    m_Hash: 51016277
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: JambeDroite
+      m_Hash: 37419188
+      m_Sprite: {fileID: 2077922288809896176, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2077922288809896176, guid: 31cf3b9b65076b343bb0dbe8ca0bbc10, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 638702217397935195
+  m_Version: 1
