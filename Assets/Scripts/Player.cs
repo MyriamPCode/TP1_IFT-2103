@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 
     private Vector2 spawnPoint;
     private static int playerHealth = 100;
-    public PlayerDamage playerDamage;
+    public PlayerDamageFlash playerDamageFlash;
 
     public LogicManager logic;
 
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
     {
         spawnPoint = transform.position;
         logic = FindObjectOfType<LogicManager>();
-        playerDamage = GetComponent<PlayerDamage>();
+        playerDamageFlash = GetComponent<PlayerDamageFlash>();
     }
 
     private bool IsGrounded() 
@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
     {
         transform.position = spawnPoint;
         rb.velocity = Vector2.zero;
-        playerDamage.FlashOnRespawn();
+        playerDamageFlash.FlashOnRespawn();
     }
 
     public void MovePlayer(Vector2 direction)
@@ -177,7 +177,7 @@ public class Player : MonoBehaviour
         playerHealth -= 50;
         playerHealth = Mathf.Max(playerHealth, 0);
 
-        playerDamage.FlashOnDamage();
+        playerDamageFlash.FlashOnDamage();
 
         if (playerHealth == 0)
         {
