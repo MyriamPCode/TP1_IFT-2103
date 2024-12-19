@@ -1,27 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject[] characters; 
+    [Header("Joueur 1")]
+    public GameObject player1;          // GameObject du joueur 1
+    public GameObject player1HUD;      // HUD du joueur 1
 
-    void Start()
+    [Header("Joueur 2")]
+    public GameObject player2;          // GameObject du joueur 2
+    public GameObject player2HUD;      // HUD du joueur 2
+
+    private void Start()
     {
-        int selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacter", 0); 
-
-        if (selectedCharacterIndex < 0 || selectedCharacterIndex >= characters.Length)
+        // Active les joueurs et leurs HUDs
+        if (player1 != null && player1HUD != null)
         {
-            selectedCharacterIndex = 0;  
-            PlayerPrefs.SetInt("SelectedCharacter", selectedCharacterIndex);  
-            PlayerPrefs.Save();
+            player1.SetActive(true);   // Active l'objet du joueur 1
+            player1HUD.SetActive(true); // Active le HUD du joueur 1
+        }
+        else
+        {
+            Debug.LogError("Player 1 ou son HUD n'est pas assigné !");
         }
 
-        foreach (GameObject character in characters)
+        if (player2 != null && player2HUD != null)
         {
-            character.SetActive(false);
+            player2.SetActive(true);   // Active l'objet du joueur 2
+            player2HUD.SetActive(true); // Active le HUD du joueur 2
         }
-
-        characters[selectedCharacterIndex].SetActive(true);
+        else
+        {
+            Debug.LogError("Player 2 ou son HUD n'est pas assigné !");
+        }
     }
 }

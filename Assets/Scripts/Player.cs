@@ -7,8 +7,9 @@ using TMPro;
 public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
-    public float moveSpeed = 1f;      
-    public float jumpForce = 3f;        
+    public PlayerHUD playerHUD;
+    public float moveSpeed = 3f;      
+    public float jumpForce = 5f;        
     public LayerMask groundLayer;
 
     private bool isGrounded;
@@ -17,7 +18,7 @@ public class Player : MonoBehaviour
     public float friction = 0.5f; 
 
     private Vector2 spawnPoint;
-    private static int playerHealth = 100;
+    private static int playerHealth = 3;
     public PlayerDamageFlash playerDamageFlash;
 
     public LogicManager logic;
@@ -30,20 +31,23 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            rb = GetComponent<Rigidbody2D>();
-            rb.gravityScale = 3f;
-            rb.freezeRotation = true;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 3f;
+        rb.freezeRotation = true;
 
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        Player[] players = FindObjectsOfType<Player>();
+        foreach (Player player in players)
+        {
+            if (player != this && player.playerIndex == this.playerIndex)
+            {
+                Destroy(gameObject);
+                Debug.Log($"Clone du joueur {playerIndex} détruit.");
+                return;
+            }
+        }
     }
 
     private void Start()
@@ -124,6 +128,12 @@ public class Player : MonoBehaviour
                 logic.Victory();
                 break;
             }
+
+            if (hit.CompareTag("Ennemy"))
+            {
+                playerHUD.TakeDamage();
+                Destroy(hit.gameObject);
+            }
         }
     }
 
@@ -164,8 +174,10 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Applique une force verticale
+        animator.SetTrigger("Jump"); // Déclenche l'animation de saut si nécessaire
     }
+
 
     public static int GetPlayerHealth()
     {

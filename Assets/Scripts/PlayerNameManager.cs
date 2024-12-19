@@ -22,7 +22,7 @@ public class PlayerNameManager : MonoBehaviour
     public void OnPlayer1NameSubmitted(string playerName)
     {
         player1Name = string.IsNullOrEmpty(playerName) ? "Joueur 1" : playerName;
-        Debug.Log("Nom Joueur 1 : " + player1Name);
+        PlayerPrefs.SetString("PlayerName1", player1Name);
 
         player1InputField.interactable = false;
     }
@@ -30,7 +30,7 @@ public class PlayerNameManager : MonoBehaviour
     public void OnPlayer2NameSubmitted(string playerName)
     {
         player2Name = string.IsNullOrEmpty(playerName) ? "Joueur 2" : playerName;
-        Debug.Log("Nom Joueur 2 : " + player2Name);
+        PlayerPrefs.SetString("PlayerName2", player2Name);
 
         player2InputField.interactable = false;
     }

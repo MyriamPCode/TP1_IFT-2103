@@ -6,14 +6,16 @@ using UnityEngine.UI;
 public class MainMenuManager : MonoBehaviour
 {
     public Button buttonLocal;
-    public Button buttonHost;
     public Button buttonJoin;
+    public Button buttonHost;
+    public GameObject settingsWindowPrefab;
 
     private void Start()
     {
         buttonLocal.gameObject.SetActive(false);
         buttonHost.gameObject.SetActive(false);
         buttonJoin.gameObject.SetActive(false);
+        settingsWindowPrefab.gameObject.SetActive(false);
     }
 
     public void ShowSubMenu()
@@ -25,20 +27,29 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartLocalGame()
     {
-        Debug.Log("Chargement du menu local");
         SceneLoader.LoadScene("MenuLocal");
     }
 
-    public void StartOnlineGame()
+    public void ButtonSettings()
     {
-        Debug.Log("Chargement du menu en ligne");
-        SceneLoader.LoadScene("MenuEnLigne");
-    }
+        if (SettingsMainWindow.Instance != null)
+        {
+            SettingsMainWindow.Instance.OpenSettings();
+        }
+        else
+        {
+            Debug.LogWarning("SettingsWindow n'est pas encore instancié. Création de l'instance...");
 
-    public void OpenSettings()
-    {
-        Debug.Log("Chargement des paramètres");
-        // a coder
+            if (settingsWindowPrefab != null)
+            {
+                GameObject settingsWindow = Instantiate(settingsWindowPrefab);
+                settingsWindow.SetActive(true);
+            }
+            else
+            {
+                Debug.LogError("settingsWindowPrefab n'est pas assigné !");
+            }
+        }
     }
 
     public void QuitGame()
