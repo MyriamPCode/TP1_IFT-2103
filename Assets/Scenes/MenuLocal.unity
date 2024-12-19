@@ -8883,7 +8883,6 @@ GameObject:
   - component: {fileID: 776112858}
   - component: {fileID: 776112857}
   - component: {fileID: 776112856}
-  - component: {fileID: 776112859}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -8903,10 +8902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ea272bcbd9cc94c862f8e1e969d3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player1HUD: {fileID: 0}
-  player2: {fileID: 0}
-  player2HUD: {fileID: 0}
+  characters: []
 --- !u!114 &776112857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8919,14 +8915,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285d90af5bd8f3840ad1a2d037d0d474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characters:
-  - {fileID: 1836770193}
-  - {fileID: 1146976688}
-  - {fileID: 206877911}
-  characterImages:
-  - {fileID: 1836770193}
-  - {fileID: 1146976688}
-  - {fileID: 206877911}
+  character1: {fileID: 1489682028}
+  character2: {fileID: 0}
+  characterSkins: []
   leftButton: {fileID: 1817586448}
   rightButton: {fileID: 420322131}
   charactersPlayer2:
@@ -8954,22 +8945,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &776112859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 776112855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d2ab153bc9758d47a19eb04fd50b5d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  avatarImage: {fileID: 1836770193}
-  playerSkinColor: {r: 1, g: 1, b: 1, a: 1}
-  playerClothesColor: {r: 0, g: 0, b: 1, a: 1}
-  playerHairColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &779716337
 GameObject:
   m_ObjectHideFlags: 0
@@ -9558,7 +9533,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 776112859}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
         m_MethodName: ResetColors
         m_Mode: 1
@@ -10250,9 +10225,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1InputField: {fileID: 766726606}
   player2InputField: {fileID: 943352243}
-  player1KeyboardLayoutDropdown: {fileID: 765730082}
+  player1ControllerText: {fileID: 0}
+  player1DifficultyText: {fileID: 0}
+  player2DifficultyText: {fileID: 0}
   player1Name: Joueur 1
   player2Name: Joueur 2
+  player1TypeDropdown: {fileID: 0}
+  player2TypeDropdown: {fileID: 0}
+  player1IsHuman: 1
+  player2IsHuman: 1
+  player1IsEasy: 1
+  player2IsEasy: 1
+  player1KeyboardLayoutDropdown: {fileID: 765730082}
+  player1DifficultyDropdown: {fileID: 0}
+  player2DifficultyDropdown: {fileID: 0}
 --- !u!1 &996439309
 GameObject:
   m_ObjectHideFlags: 0
@@ -11455,13 +11441,55 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1489682029}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
 --- !u!4 &1489682027 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
   m_PrefabInstance: {fileID: 1489682026}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1489682028 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: ee932d07c174b58409ffcc657a5209a5, type: 3}
+  m_PrefabInstance: {fileID: 1489682026}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1489682029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489682028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d2ab153bc9758d47a19eb04fd50b5d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skins:
+  - {fileID: 7108339969198208228, guid: cc76cadb77fcc9a43a18b3a9af2887a7, type: 3}
+  - {fileID: 7108339969198208228, guid: 6204e098b8c17064f80c52e57ceaa799, type: 3}
+  - {fileID: 7108339969198208228, guid: 1070309f68325894484c6ffb412ad8cd, type: 3}
+  torsoSkins:
+  - {fileID: 7108339969198208228, guid: b23536cc7662de943b6a019973240483, type: 3}
+  - {fileID: 7108339969198208228, guid: ab2397abdfe0a3840a84f4fa2ed983bb, type: 3}
+  - {fileID: 7108339969198208228, guid: 0b4621957ac105444938becd37cbd663, type: 3}
+  legsSkins:
+  - {fileID: 7108339969198208228, guid: f1403ffbf715e524dba51262f5ef0095, type: 3}
+  - {fileID: 7108339969198208228, guid: 6a7a33cffae594e4dab1c9d765af5cc7, type: 3}
+  - {fileID: 7108339969198208228, guid: 2585b5baf35eae6409fc743e20be07f6, type: 3}
+  legsTransform: {fileID: 0}
+  torsoTransform: {fileID: 0}
+  positionSliderX: {fileID: 0}
+  positionSliderY: {fileID: 0}
+  scaleSliderX: {fileID: 0}
+  scaleSliderY: {fileID: 0}
+  rotationSlider: {fileID: 0}
+  maxPositionValue: 5
+  maxRotationValue: 360
+  maxScaleValue: 2
 --- !u!1 &1663359793
 GameObject:
   m_ObjectHideFlags: 0
@@ -12581,7 +12609,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1836770192
 RectTransform:
   m_ObjectHideFlags: 0
