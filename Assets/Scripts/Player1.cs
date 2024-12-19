@@ -4,26 +4,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Player : MonoBehaviour
+public class Player1 : MonoBehaviour
 {
-    public static Player Instance { get; private set; }
-    public PlayerHUD playerHUD;
-    public float moveSpeed = 3f;      
-    public float jumpForce = 5f;        
+    public static Player1 Instance { get; private set; }
+    public float moveSpeed = 1f;      
+    public float jumpForce = 3f;        
     public LayerMask groundLayer;
 
     private bool isGrounded;
     private Rigidbody2D rb; 
-
     public float friction = 0.5f; 
 
     private Vector2 spawnPoint;
     private static int playerHealth = 3;
-    public PlayerDamageFlash playerDamageFlash;
 
     public LogicManager logic;
 
-    public int playerIndex;
+    public int playerIndex = 1;
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -31,30 +28,26 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 3f;
-        rb.freezeRotation = true;
+        if (Instance == null)
+        {
+            Instance = this;
+            rb = GetComponent<Rigidbody2D>();
+            rb.gravityScale = 3f;
+            rb.freezeRotation = true;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        Player[] players = FindObjectsOfType<Player>();
-        foreach (Player player in players)
-        {
-            if (player != this && player.playerIndex == this.playerIndex)
-            {
-                Destroy(gameObject);
-                Debug.Log($"Clone du joueur {playerIndex} détruit.");
-                return;
-            }
-        }
     }
 
     private void Start()
     {
         spawnPoint = transform.position;
         logic = FindObjectOfType<LogicManager>();
-        playerDamageFlash = GetComponent<PlayerDamageFlash>();
     }
 
     private bool IsGrounded() 
@@ -131,7 +124,7 @@ public class Player : MonoBehaviour
 
             if (hit.CompareTag("Ennemy"))
             {
-                playerHUD.TakeDamage();
+                TakeDamage();
                 Destroy(hit.gameObject);
             }
         }
@@ -141,7 +134,6 @@ public class Player : MonoBehaviour
     {
         transform.position = spawnPoint;
         rb.velocity = Vector2.zero;
-        playerDamageFlash.FlashOnRespawn();
     }
 
     public void MovePlayer(Vector2 direction)
@@ -174,8 +166,7 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Applique une force verticale
-        animator.SetTrigger("Jump"); // Déclenche l'animation de saut si nécessaire
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
 
 
@@ -186,15 +177,13 @@ public class Player : MonoBehaviour
 
     public void TakeDamage()
     {
-        playerHealth -= 50;
+        playerHealth -= 1;
         playerHealth = Mathf.Max(playerHealth, 0);
-
-        playerDamageFlash.FlashOnDamage();
 
         if (playerHealth == 0)
         {
             Respawn();
-            playerHealth = 100;
+            playerHealth = 3;
         }
     }
 

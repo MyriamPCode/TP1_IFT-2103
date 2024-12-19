@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 2415098082452359635}
   - component: {fileID: 5089136999812957243}
   - component: {fileID: 5734718777706646056}
-  - component: {fileID: 7523810539279038264}
+  - component: {fileID: 4044787933011271858}
   - component: {fileID: 8567854830411989164}
   - component: {fileID: 4797136956853357880}
-  - component: {fileID: 1412097957690880611}
   - component: {fileID: 3507050339119308243}
   - component: {fileID: 2156950974497916303}
   m_Layer: 6
@@ -31,7 +30,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2178549128339401952}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.53331, y: 0.53331, z: 0.53331}
   m_ConstrainProportionsScale: 0
@@ -130,7 +129,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.65}
   serializedVersion: 2
   m_Radius: 0.32
---- !u!114 &7523810539279038264
+--- !u!114 &4044787933011271858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,27 +138,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 2178549128339401952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Script: {fileID: 11500000, guid: 591ea9abda382714a8568ddd24b7c0eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 7cb42cc7bfed1cf45b498e218a1ea782, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  playerHUD: {fileID: 0}
+  moveSpeed: 1
+  jumpForce: 3
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  friction: 0.5
+  logic: {fileID: 0}
+  playerIndex: 2
 --- !u!50 &8567854830411989164
 Rigidbody2D:
   serializedVersion: 4
@@ -195,27 +185,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2178549128339401952}
   m_CullTransparentMesh: 1
---- !u!114 &1412097957690880611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2178549128339401952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2a7a7f408406a54397451b0b2a4974d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  jumpForce: 5
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  friction: 0.5
-  healthText: {fileID: 0}
-  logic: {fileID: 0}
-  playerIndex: 2
 --- !u!95 &3507050339119308243
 Animator:
   serializedVersion: 5

@@ -7767,7 +7767,7 @@ MonoBehaviour:
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 976704354}
         m_TargetAssemblyTypeName: PlayerNameManager, Assembly-CSharp
         m_MethodName: OnPlayer1NameSubmitted
         m_Mode: 5
@@ -7862,13 +7862,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ea272bcbd9cc94c862f8e1e969d3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characters:
-  - {fileID: 1836770191}
-  - {fileID: 1146976686}
-  - {fileID: 206877910}
-  - {fileID: 390330538}
-  - {fileID: 955223403}
-  - {fileID: 601736406}
+  player1: {fileID: 0}
+  player1HUD: {fileID: 0}
+  player2: {fileID: 0}
+  player2HUD: {fileID: 0}
 --- !u!114 &776112857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8660,7 +8657,7 @@ MonoBehaviour:
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 976704354}
         m_TargetAssemblyTypeName: PlayerNameManager, Assembly-CSharp
         m_MethodName: OnPlayer2NameSubmitted
         m_Mode: 5

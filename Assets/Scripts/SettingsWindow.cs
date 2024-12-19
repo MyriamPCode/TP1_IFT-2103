@@ -10,20 +10,14 @@ public class SettingsWindow : MonoBehaviour
     public Button[] changeKeyButtons;
     public int actionIndex;
 
-    public TMP_Dropdown joueur1KeyboardLayoutDropdown;
-
     private void Start()
     {
-        joueur1KeyboardLayoutDropdown.onValueChanged.AddListener(OnJoueur1KeyboardLayoutChanged);
-
         LoadKeyboardPreferences();
     }
 
     private void LoadKeyboardPreferences()
     {
         inputManager.LoadKeyboardPreferenceForPlayer(1);  
-
-        joueur1KeyboardLayoutDropdown.value = (inputManager.currentLayoutForPlayer1 == KeyboardLayout.AZERTY) ? 0 : 1;
     }
 
     private void OnJoueur1KeyboardLayoutChanged(int index)

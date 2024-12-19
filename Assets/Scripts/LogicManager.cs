@@ -26,6 +26,8 @@ public class LogicManager : MonoBehaviour
     private GameObject player1Instance;
     private GameObject player2Instance;
 
+    public VictoryFireworks fireworksController;
+
     private void Start()
     {
         InitializePlayers();
@@ -74,7 +76,20 @@ public class LogicManager : MonoBehaviour
         DisablePlayerMovement(player1Instance);
         DisablePlayerMovement(player2Instance);
         victoryScreen.SetActive(true);
+        // ActivateFireworks();
     }
+
+    //private void ActivateFireworks()
+    //{
+      //  if (fireworksController != null)
+       // {
+       //     fireworksController.StartFireworks();
+       // }
+       // else
+       // {
+       //     Debug.LogWarning("FireworksController non assigné dans le LogicManager !");
+       // }
+   // }
 
     private void DisablePlayerMovement(GameObject player)
     {
@@ -87,13 +102,13 @@ public class LogicManager : MonoBehaviour
             rb.isKinematic = true;
         }
 
-        Player playerScript1 = player.GetComponent<Player>();
+        Player1 playerScript1 = player.GetComponent<Player1>();
         if (playerScript1 != null)
         {
             playerScript1.moveSpeed = 0f;
             playerScript1.jumpForce = 0f;
         }
-        Player playerScript2 = player.GetComponent<Player>();
+        Player2 playerScript2 = player.GetComponent<Player2>();
         if (playerScript2 != null)
         {
             playerScript2.moveSpeed = 0f;
