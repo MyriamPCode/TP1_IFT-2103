@@ -8926,10 +8926,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ea272bcbd9cc94c862f8e1e969d3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player1HUD: {fileID: 0}
-  player2: {fileID: 0}
-  player2HUD: {fileID: 0}
+  player1: {fileID: 1489682028}
+  player1HUD: {fileID: 1489682028}
+  player2: {fileID: 390330538}
+  player2HUD: {fileID: 390330538}
 --- !u!114 &776112857
 MonoBehaviour:
   m_ObjectHideFlags: 0
