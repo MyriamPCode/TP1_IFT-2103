@@ -47,7 +47,6 @@ public class PlayerHUD : MonoBehaviour
     {
         for (int i = 0; i < heartRenderers.Length; i++)
         {
-            // Change le sprite en fonction de la santé restante
             heartRenderers[i].sprite = i < currentHealth ? fullHeartSprite : emptyHeartSprite;
         }
     }
