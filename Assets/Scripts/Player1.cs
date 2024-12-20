@@ -11,7 +11,7 @@ public class Player1 : MonoBehaviour
     public float jumpForce = 3f;        
     public LayerMask groundLayer;
 
-    private bool isGrounded;
+    public bool isGrounded;
     private Rigidbody2D rb; 
     public float friction = 0.5f; 
 
@@ -50,7 +50,7 @@ public class Player1 : MonoBehaviour
         logic = FindObjectOfType<LogicManager>();
     }
 
-    private bool IsGrounded() 
+    public bool IsGrounded() 
     {
         float rayLength = 0.05f;
         RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, -0.5f, 0), Vector2.down, rayLength, groundLayer);

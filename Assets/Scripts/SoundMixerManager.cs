@@ -8,10 +8,12 @@ public class SoundMixerManager : MonoBehaviour
     [SerializeField] private Slider masterVolumeSlider;
     [SerializeField] private Slider soundFXVolumeSlider;
     [SerializeField] private Slider musicVolumeSlider;
+    [SerializeField] private Slider soundFoleysVolumeSlider;
 
     [SerializeField] private float defaultMasterVolume = 0.8f;
     [SerializeField] private float defaultSoundFXVolume = 1f;
     [SerializeField] private float defaultMusicVolume = 0.5f;
+    [SerializeField] private float defaultSoundFoleysVolume = 0.7f;
 
     private void Awake()
     {
@@ -24,6 +26,7 @@ public class SoundMixerManager : MonoBehaviour
         SetMasterVolume(defaultMasterVolume);
         SetSoundFXVolume(defaultSoundFXVolume);
         SetMusicVolume(defaultMusicVolume);
+        SetSoundFoleysVolume(defaultSoundFoleysVolume);
 
         if (masterVolumeSlider != null)
             masterVolumeSlider.value = defaultMasterVolume;
@@ -31,6 +34,8 @@ public class SoundMixerManager : MonoBehaviour
             soundFXVolumeSlider.value = defaultSoundFXVolume;
         if (musicVolumeSlider != null)
             musicVolumeSlider.value = defaultMusicVolume;
+        if (soundFoleysVolumeSlider != null)
+            soundFoleysVolumeSlider.value = defaultSoundFoleysVolume;
     }
 
     public void SetMasterVolume(float level)
@@ -52,5 +57,12 @@ public class SoundMixerManager : MonoBehaviour
         float dB = Mathf.Log10(level > 0.0001f ? level : 0.0001f) * 20f;
         audioMixer.SetFloat("MusicVolume", dB);
         Debug.Log($"MusicVolume set to {level} (dB: {dB})");
+    }
+
+    public void SetSoundFoleysVolume(float level)
+    {
+        float dB = Mathf.Log10(level > 0.0001f ? level : 0.0001f) * 20f;
+        audioMixer.SetFloat("FoleysVolume", dB);
+        Debug.Log($"SoundFoleysVolume set to {level} (dB: {dB})");
     }
 }
