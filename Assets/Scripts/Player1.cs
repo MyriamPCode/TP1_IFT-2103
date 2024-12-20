@@ -16,7 +16,7 @@ public class Player1 : MonoBehaviour
     public float friction = 0.5f; 
 
     private Vector2 spawnPoint;
-    private static int playerHealth = 3;
+    private static int playerHealth;
 
     public LogicManager logic;
 

@@ -1,31 +1,44 @@
 using UnityEngine;
+using TMPro;
 
 public class PlayerHUD : MonoBehaviour
 {
-    public SpriteRenderer[] heartRenderers; // Les SpriteRenderers des cœurs
-    public Sprite fullHeartSprite;         // Sprite pour un cœur plein
-    public Sprite emptyHeartSprite;        // Sprite pour un cœur vide
+    public TextMeshProUGUI playerNameText;
+    public int playerIndex;
+    public SpriteRenderer[] heartRenderers;
+    public Sprite fullHeartSprite;
+    public Sprite emptyHeartSprite;
 
-    public int maxHealth = 3;              // Santé maximale
-    private int currentHealth;             // Santé actuelle
+    public int maxHealth = 3;
+    private int currentHealth;
 
     private void Start()
     {
-        currentHealth = maxHealth;         // Initialise la santé
-        UpdateHearts();                    // Met à jour les sprites au démarrage
+        string playerName = PlayerPrefs.GetString($"PlayerName{playerIndex}", $"Joueur {playerIndex}");
+
+        if (playerNameText != null)
+        {
+            playerNameText.text = playerName; // Affiche le nom dans le HUD
+        }
+        else
+        {
+            Debug.LogWarning($"Texte pour le nom du joueur {playerIndex} non assigné !");
+        }
+
+        currentHealth = maxHealth;
+        UpdateHearts();
     }
 
     public void TakeDamage()
     {
         if (currentHealth > 0)
         {
-            currentHealth--;               // Réduit la santé
-            UpdateHearts();                // Met à jour les cœurs
+            currentHealth--;
+            UpdateHearts();
 
             if (currentHealth <= 0)
             {
                 Debug.Log("Le joueur est KO !");
-                // Vous pouvez ajouter une logique ici, comme un respawn ou une fin de partie
             }
         }
     }

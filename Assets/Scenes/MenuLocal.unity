@@ -626,7 +626,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 776112855}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
         m_Mode: 1
@@ -1744,7 +1744,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 776112857}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
         m_MethodName: NextCharacter
         m_Mode: 3
@@ -2400,7 +2400,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 776112857}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
         m_MethodName: PreviousCharacter
         m_Mode: 3
@@ -7831,104 +7831,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766726604}
   m_CullTransparentMesh: 1
---- !u!1 &776112855
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 776112858}
-  - component: {fileID: 776112857}
-  - component: {fileID: 776112856}
-  - component: {fileID: 776112859}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &776112856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 776112855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5ea272bcbd9cc94c862f8e1e969d3e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player1HUD: {fileID: 0}
-  player2: {fileID: 0}
-  player2HUD: {fileID: 0}
---- !u!114 &776112857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 776112855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 285d90af5bd8f3840ad1a2d037d0d474, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characters:
-  - {fileID: 1836770193}
-  - {fileID: 1146976688}
-  - {fileID: 206877911}
-  characterImages:
-  - {fileID: 1836770193}
-  - {fileID: 1146976688}
-  - {fileID: 206877911}
-  leftButton: {fileID: 1817586448}
-  rightButton: {fileID: 420322131}
-  charactersPlayer2:
-  - {fileID: 390330540}
-  - {fileID: 955223405}
-  - {fileID: 601736407}
-  characterImagesPlayer2:
-  - {fileID: 390330540}
-  - {fileID: 955223405}
-  - {fileID: 601736407}
-  leftButtonPlayer2: {fileID: 632431481}
-  rightButtonPlayer2: {fileID: 1791759511}
---- !u!4 &776112858
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 776112855}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1022.8715, y: 450.42874, z: -0.35677484}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &776112859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 776112855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d2ab153bc9758d47a19eb04fd50b5d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  avatarImage: {fileID: 1836770193}
-  playerSkinColor: {r: 1, g: 1, b: 1, a: 1}
-  playerClothesColor: {r: 0, g: 0, b: 1, a: 1}
-  playerHairColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &779716337
 GameObject:
   m_ObjectHideFlags: 0
@@ -8438,7 +8340,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 776112859}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
         m_MethodName: ResetColors
         m_Mode: 1
@@ -9131,8 +9033,6 @@ MonoBehaviour:
   player1InputField: {fileID: 766726606}
   player2InputField: {fileID: 943352243}
   player1KeyboardLayoutDropdown: {fileID: 765730082}
-  player1Name: Joueur 1
-  player2Name: Joueur 2
 --- !u!1 &996439309
 GameObject:
   m_ObjectHideFlags: 0
@@ -9493,7 +9393,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 776112859}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
         m_MethodName: SetSkinColorToRed
         m_Mode: 1
@@ -10150,7 +10050,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 776112859}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
         m_MethodName: SetHairColorToBlue
         m_Mode: 1
@@ -11240,7 +11140,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 776112857}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
         m_MethodName: NextCharacter
         m_Mode: 3
@@ -11507,7 +11407,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 776112857}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
         m_MethodName: PreviousCharacter
         m_Mode: 3
@@ -12227,7 +12127,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 776112859}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterCustomization, Assembly-CSharp
         m_MethodName: SetClothesColorToGreen
         m_Mode: 1
@@ -12285,4 +12185,3 @@ SceneRoots:
   - {fileID: 1388589899}
   - {fileID: 1038839847}
   - {fileID: 976704353}
-  - {fileID: 776112858}
