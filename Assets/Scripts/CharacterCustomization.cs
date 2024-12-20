@@ -9,6 +9,7 @@ using System;
 
 public class CharacterCustomization : MonoBehaviour
 {
+    public CharacterCustomizationData customizationData;
 
     public SpriteLibraryAsset[] skins;
     public SpriteLibraryAsset[] torsoSkins;
@@ -175,7 +176,7 @@ public class CharacterCustomization : MonoBehaviour
 
     void Start()
     {
-        // Initialiser les sliders avec des valeurs maximales et minimales
+
         positionSliderX.minValue = -maxPositionValue;
         positionSliderX.maxValue = maxPositionValue;
         positionSliderY.minValue = -maxPositionValue;
@@ -202,5 +203,82 @@ public class CharacterCustomization : MonoBehaviour
         scaleSliderX.onValueChanged.AddListener(delegate { SetTorsoScale(); });
         scaleSliderY.onValueChanged.AddListener(delegate { SetTorsoScale(); });
         rotationSlider.onValueChanged.AddListener(delegate { SetTorsoRotation(); });
+
+        LoadCustomization();
     }
+        public void SaveCustomization()
+        {
+            // Sauvegarder les valeurs de position, échelle, rotation et skins
+            customizationData.legsPositionX = legsTransform.position.x;
+            customizationData.legsPositionY = legsTransform.position.y;
+            customizationData.torsoPositionX = torsoTransform.position.x;
+            customizationData.torsoPositionY = torsoTransform.position.y;
+
+            customizationData.legsScaleX = legsTransform.localScale.x;
+            customizationData.legsScaleY = legsTransform.localScale.y;
+            customizationData.torsoScaleX = torsoTransform.localScale.x;
+            customizationData.torsoScaleY = torsoTransform.localScale.y;
+
+            customizationData.legsRotation = legsTransform.rotation.eulerAngles.y;
+            customizationData.torsoRotation = torsoTransform.rotation.eulerAngles.y;
+
+            customizationData.skinIndex = currentSkinIndex;
+            customizationData.torsoSkinIndex = currentTorsoIndex;
+            customizationData.legsSkinIndex = currentLegsIndex;
+
+            // Sauvegarder dans le PlayerPrefs (si tu veux le faire avec PlayerPrefs)
+            PlayerPrefs.SetInt("LegsPositionX", Mathf.FloorToInt(customizationData.legsPositionX));
+            PlayerPrefs.SetInt("LegsPositionY", Mathf.FloorToInt(customizationData.legsPositionY));
+            PlayerPrefs.SetInt("TorsoPositionX", Mathf.FloorToInt(customizationData.torsoPositionX));
+            PlayerPrefs.SetInt("TorsoPositionY", Mathf.FloorToInt(customizationData.torsoPositionY));
+            PlayerPrefs.SetInt("LegsScaleX", Mathf.FloorToInt(customizationData.legsScaleX * 100));
+            PlayerPrefs.SetInt("LegsScaleY", Mathf.FloorToInt(customizationData.legsScaleY * 100));
+            PlayerPrefs.SetInt("TorsoScaleX", Mathf.FloorToInt(customizationData.torsoScaleX * 100));
+            PlayerPrefs.SetInt("TorsoScaleY", Mathf.FloorToInt(customizationData.torsoScaleY * 100));
+            PlayerPrefs.SetInt("LegsRotation", Mathf.FloorToInt(customizationData.legsRotation));
+            PlayerPrefs.SetInt("TorsoRotation", Mathf.FloorToInt(customizationData.torsoRotation));
+            PlayerPrefs.SetInt("SkinIndex", customizationData.skinIndex);
+            PlayerPrefs.SetInt("TorsoSkinIndex", customizationData.torsoSkinIndex);
+            PlayerPrefs.SetInt("LegsSkinIndex", customizationData.legsSkinIndex);
+        }
+
+        public void LoadCustomization()
+        {
+            // Charger les valeurs sauvegardées si elles existent
+            if (PlayerPrefs.HasKey("LegsPositionX"))
+            {
+                customizationData.legsPositionX = PlayerPrefs.GetInt("LegsPositionX");
+                customizationData.legsPositionY = PlayerPrefs.GetInt("LegsPositionY");
+                customizationData.torsoPositionX = PlayerPrefs.GetInt("TorsoPositionX");
+                customizationData.torsoPositionY = PlayerPrefs.GetInt("TorsoPositionY");
+                customizationData.legsScaleX = PlayerPrefs.GetInt("LegsScaleX") / 100f;
+                customizationData.legsScaleY = PlayerPrefs.GetInt("LegsScaleY") / 100f;
+                customizationData.torsoScaleX = PlayerPrefs.GetInt("TorsoScaleX") / 100f;
+                customizationData.torsoScaleY = PlayerPrefs.GetInt("TorsoScaleY") / 100f;
+                customizationData.legsRotation = PlayerPrefs.GetInt("LegsRotation");
+                customizationData.torsoRotation = PlayerPrefs.GetInt("TorsoRotation");
+                customizationData.skinIndex = PlayerPrefs.GetInt("SkinIndex");
+                customizationData.torsoSkinIndex = PlayerPrefs.GetInt("TorsoSkinIndex");
+                customizationData.legsSkinIndex = PlayerPrefs.GetInt("LegsSkinIndex");
+            }
+
+            // Appliquer les valeurs chargées
+            legsTransform.position = new Vector3(customizationData.legsPositionX, customizationData.legsPositionY, legsTransform.position.z);
+            torsoTransform.position = new Vector3(customizationData.torsoPositionX, customizationData.torsoPositionY, torsoTransform.position.z);
+            legsTransform.localScale = new Vector3(customizationData.legsScaleX, customizationData.legsScaleY, legsTransform.localScale.z);
+            torsoTransform.localScale = new Vector3(customizationData.torsoScaleX, customizationData.torsoScaleY, torsoTransform.localScale.z);
+            legsTransform.rotation = Quaternion.Euler(0f, customizationData.legsRotation, 0f);
+            torsoTransform.rotation = Quaternion.Euler(0f, customizationData.torsoRotation, 0f);
+
+            // Appliquer les skins
+            ChangeSkin(skins[customizationData.skinIndex]);
+            ChangeTorso(torsoSkins[customizationData.torsoSkinIndex]);
+            ChangeLegs(legsSkins[customizationData.legsSkinIndex]);
+        }
+
+    public void OnSaveButtonClicked()
+    {
+        SaveCustomization();
+    }
+
 }
