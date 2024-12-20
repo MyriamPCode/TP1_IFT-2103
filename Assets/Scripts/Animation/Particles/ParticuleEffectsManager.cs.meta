@@ -3,7 +3,9 @@ guid: fa7175ffb3e22474fa1888891a1cedd5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - fireworksPrefab: {fileID: 5489439006941555822, guid: 400973adb17b84d49910c35252ef508d, type: 3}
+  - trailParticlesPrefab: {fileID: 8567826026783939459, guid: 2a6bf8461f6f8ac4a95e3704c6efbec6, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

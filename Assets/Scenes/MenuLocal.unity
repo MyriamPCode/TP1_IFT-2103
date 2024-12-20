@@ -2754,7 +2754,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 776112857}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
         m_MethodName: NextCharacter
         m_Mode: 3
@@ -3931,7 +3931,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 776112857}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
         m_MethodName: PreviousCharacter
         m_Mode: 3
@@ -10027,7 +10027,7 @@ MonoBehaviour:
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 976704354}
         m_TargetAssemblyTypeName: PlayerNameManager, Assembly-CSharp
         m_MethodName: OnPlayer1NameSubmitted
         m_Mode: 5
@@ -11315,7 +11315,7 @@ MonoBehaviour:
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 976704354}
         m_TargetAssemblyTypeName: PlayerNameManager, Assembly-CSharp
         m_MethodName: OnPlayer2NameSubmitted
         m_Mode: 5
@@ -11789,8 +11789,6 @@ MonoBehaviour:
   player1InputField: {fileID: 766726606}
   player2InputField: {fileID: 943352243}
   player1KeyboardLayoutDropdown: {fileID: 765730082}
-  player1Name: Joueur 1
-  player2Name: Joueur 2
 --- !u!1 &996439309
 GameObject:
   m_ObjectHideFlags: 0
@@ -14827,7 +14825,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 776112857}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
         m_MethodName: NextCharacter
         m_Mode: 3
@@ -15056,7 +15054,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 776112857}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
         m_MethodName: PreviousCharacter
         m_Mode: 3
@@ -16245,4 +16243,3 @@ SceneRoots:
   - {fileID: 1388589899}
   - {fileID: 1038839847}
   - {fileID: 976704353}
-  - {fileID: 776112858}

@@ -10,43 +10,50 @@ public class PlayerNameManager : MonoBehaviour
 
     public Dropdown player1KeyboardLayoutDropdown;
 
-    public string player1Name = "Joueur 1";
-    public string player2Name = "Joueur 2";
+    private string defaultPlayer1Name = "Joueur 1";
+    private string defaultPlayer2Name = "Joueur 2";
+
 
 
     private void Start()
     {
         player1KeyboardLayoutDropdown.gameObject.SetActive(true);
+
+        player1InputField.text = PlayerPrefs.GetString("PlayerName1", defaultPlayer1Name);
+        player2InputField.text = PlayerPrefs.GetString("PlayerName2", defaultPlayer2Name);
     }
 
     public void OnPlayer1NameSubmitted(string playerName)
     {
-        player1Name = string.IsNullOrEmpty(playerName) ? "Joueur 1" : playerName;
-        PlayerPrefs.SetString("PlayerName1", player1Name);
-
+        string validatedName = string.IsNullOrEmpty(playerName) ? defaultPlayer1Name : playerName;
+        PlayerPrefs.SetString("PlayerName1", validatedName);
         player1InputField.interactable = false;
     }
 
     public void OnPlayer2NameSubmitted(string playerName)
     {
-        player2Name = string.IsNullOrEmpty(playerName) ? "Joueur 2" : playerName;
-        PlayerPrefs.SetString("PlayerName2", player2Name);
-
+        string validatedName = string.IsNullOrEmpty(playerName) ? defaultPlayer2Name : playerName;
+        PlayerPrefs.SetString("PlayerName2", validatedName);
         player2InputField.interactable = false;
     }
 
-    public string getPlayer1Name()
+    public string GetPlayerName(int playerIndex)
     {
-        return player1Name;
-    }
-
-    public string getPlayer2Name()
-    {
-        return player2Name;
+        if (playerIndex == 1)
+            return PlayerPrefs.GetString("PlayerName1", "Joueur 1");
+        else if (playerIndex == 2)
+            return PlayerPrefs.GetString("PlayerName2", "Joueur 2");
+        else
+            return "Joueur Inconnu";
     }
 
     public void StartGame()
     {
+        if (string.IsNullOrEmpty(player1InputField.text))
+            PlayerPrefs.SetString("PlayerName1", defaultPlayer1Name);
+        if (string.IsNullOrEmpty(player2InputField.text))
+            PlayerPrefs.SetString("PlayerName2", defaultPlayer2Name);
+
         SceneLoader.LoadScene("MainScene");
     }
 
