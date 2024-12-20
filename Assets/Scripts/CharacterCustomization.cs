@@ -38,6 +38,16 @@ public class CharacterCustomization : MonoBehaviour
     public float maxRotationValue = 360f;
     public float maxScaleValue = 2f;
 
+    public GameObject head;
+    public GameObject torso;
+    public GameObject arms;
+    public GameObject legs;
+
+    public Sprite headSprite;
+    public Sprite torsoSprite;
+    public Sprite armsSprite;
+    public Sprite legsSprite;
+
     public void SetPremierPersonnage()
     {
         ChangeSkin(skins[0]);
@@ -209,6 +219,11 @@ public class CharacterCustomization : MonoBehaviour
         armsScaleSliderX.onValueChanged.AddListener(delegate { SetArmsScale(); });
         armsScaleSliderY.onValueChanged.AddListener(delegate { SetArmsScale(); });
         armsRotationSlider.onValueChanged.AddListener(delegate { SetArmsRotation(); });
+
+        head.GetComponent<SpriteRenderer>().sprite = headSprite;
+        torso.GetComponent<SpriteRenderer>().sprite = torsoSprite;
+        arms.GetComponent<SpriteRenderer>().sprite = armsSprite;
+        legs.GetComponent<SpriteRenderer>().sprite = legsSprite;
 
         LoadCustomization();
     }
