@@ -9,18 +9,15 @@ using UnityEngine.UI;
 
 public class CharacterSelection : MonoBehaviour
 {
-    public GameObject character1;  // GameObject pour le personnage 1
+    public GameObject character1;  
     public GameObject character2;
 
-    public SpriteLibraryAsset[] characterSkins;  // index 0 pour le personnage 1, index 1 pour le personnage 2
+    public SpriteLibraryAsset[] characterSkins;  
 
-    // Index du personnage actuel
-    private int currentCharacterIndex = 0;  // 0 pour personnage 1, 1 pour personnage 2
+    private int currentCharacterIndex = 0; 
 
-    // Référence à la SpriteLibrary du personnage
     private SpriteLibrary spriteLibrary;
 
-    // Références aux boutons gauche et droite
     public Button leftButton;
     public Button rightButton;
 
@@ -33,13 +30,10 @@ public class CharacterSelection : MonoBehaviour
 
     void Start()
     {
-        // Initialiser la SpriteLibrary
         spriteLibrary = GetComponent<SpriteLibrary>();
 
-        // Mettre à jour l'affichage du personnage au début
         UpdateCharacter();
 
-        // Ajouter des écouteurs pour les boutons gauche et droite
         leftButton.onClick.AddListener(OnLeftArrowClicked);
         rightButton.onClick.AddListener(OnRightArrowClicked);
 
@@ -58,38 +52,32 @@ public class CharacterSelection : MonoBehaviour
         rightButtonPlayer2.onClick.AddListener(() => NextCharacter(2));
     }
 
-    // Fonction appelée lorsque la flèche gauche est cliquée
     public void OnLeftArrowClicked()
     {
         currentCharacterIndex = (currentCharacterIndex - 1 + characterSkins.Length) % characterSkins.Length;  // Passe au personnage précédent
         UpdateCharacter();
     }
 
-    // Fonction appelée lorsque la flèche droite est cliquée
     public void OnRightArrowClicked()
     {
         currentCharacterIndex = (currentCharacterIndex + 1) % characterSkins.Length;  // Passe au personnage suivant
         UpdateCharacter();
     }
 
-    // Fonction pour mettre à jour le personnage selon l'index actuel
     void UpdateCharacter()
     {
-        // Vérification des GameObjects (personnages)
         if (character1 == null || character2 == null)
         {
             Debug.LogError("Les GameObjects des personnages ne sont pas assignés !");
             return;
         }
 
-        // Vérification des SpriteLibraryAssets
         if (characterSkins == null || characterSkins.Length == 0)
         {
             Debug.LogError("Les SpriteLibraryAssets ne sont pas assignées !");
             return;
         }
 
-        // Assurer que spriteLibrary est bien initialisé
         SpriteLibrary spriteLibrary = character1.GetComponent<SpriteLibrary>();
         if (spriteLibrary == null)
         {
@@ -97,22 +85,10 @@ public class CharacterSelection : MonoBehaviour
             return;
         }
 
-        // Affecter la nouvelle SpriteLibraryAsset
         spriteLibrary.spriteLibraryAsset = characterSkins[currentCharacterIndex];
 
-        // Vérification de la partie du corps à changer (exemple avec le torse)
         SpriteResolver spriteResolver = character1.GetComponent<SpriteResolver>();
-        /*
-        if (spriteResolver != null)
-        {
-            spriteResolver.ResolveSpriteToSpriteRenderer("Torso");  // Assurez-vous que "Torso" est un label valide
-        }
-        else
-        {
-            Debug.LogError("Le SpriteResolver pour le personnage n'est pas attaché !");
-        }*/
 
-        // Activer ou désactiver les personnages
         if (currentCharacterIndex == 0)
         {
             character1.SetActive(true);
