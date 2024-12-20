@@ -275,5 +275,10 @@ public class CharacterCustomization : MonoBehaviour
             ChangeTorso(torsoSkins[customizationData.torsoSkinIndex]);
             ChangeLegs(legsSkins[customizationData.legsSkinIndex]);
         }
-    
+
+    public void OnSaveButtonClicked()
+    {
+        SaveCustomization();
+    }
+
 }
