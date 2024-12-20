@@ -2192,15 +2192,15 @@ MonoBehaviour:
   m_FillRect: {fileID: 1282012497}
   m_HandleRect: {fileID: 133628801}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 1538997735}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: 
         m_Mode: 1
         m_Arguments:
@@ -3365,20 +3365,20 @@ MonoBehaviour:
   m_FillRect: {fileID: 1809721698}
   m_HandleRect: {fileID: 1576836555}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1538997736}
+        m_TargetAssemblyTypeName: SoundMixerManager, Assembly-CSharp
+        m_MethodName: SetSoundFXVolume
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3467,20 +3467,20 @@ MonoBehaviour:
   m_FillRect: {fileID: 789160463}
   m_HandleRect: {fileID: 276600654}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1538997736}
+        m_TargetAssemblyTypeName: SoundMixerManager, Assembly-CSharp
+        m_MethodName: SetMusicVolume
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3830,6 +3830,127 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1513428613}
   m_CullTransparentMesh: 1
+--- !u!1001 &1538997732
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 574946099540694909, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: audioMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 3163452dd19b3534fa43cdc3d7fd5aec, type: 2}
+    - target: {fileID: 4959147667621561646, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933526200802226091, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: musicVolumeSlider
+      value: 
+      objectReference: {fileID: 1400128521}
+    - target: {fileID: 7933526200802226091, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: defaultMusicVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933526200802226091, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: masterVolumeSlider
+      value: 
+      objectReference: {fileID: 1678215067}
+    - target: {fileID: 7933526200802226091, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: defaultMasterVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933526200802226091, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: soundFXVolumeSlider
+      value: 
+      objectReference: {fileID: 1368019742}
+    - target: {fileID: 7933526200802226091, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: defaultSoundFXVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201712877523426607, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201712877523426607, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201712877523426607, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201712877523426607, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201712877523426607, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201712877523426607, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201712877523426607, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201712877523426607, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201712877523426607, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9201712877523426607, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4959147667621561646, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1538997734}
+  m_SourcePrefab: {fileID: 100100000, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+--- !u!1 &1538997733 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4959147667621561646, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+  m_PrefabInstance: {fileID: 1538997732}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1538997734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538997733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dcb8ce6be7b968478ae2184294d1028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1538997735 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3310316621289059439, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+  m_PrefabInstance: {fileID: 1538997732}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1538997736 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7933526200802226091, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+  m_PrefabInstance: {fileID: 1538997732}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538997735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23bed535b224d194093f2867cfca757b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1576836554
 GameObject:
   m_ObjectHideFlags: 0
@@ -4138,20 +4259,20 @@ MonoBehaviour:
   m_FillRect: {fileID: 637221250}
   m_HandleRect: {fileID: 1681495144}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1538997736}
+        m_TargetAssemblyTypeName: SoundMixerManager, Assembly-CSharp
+        m_MethodName: SetMasterVolume
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5071,3 +5192,4 @@ SceneRoots:
   - {fileID: 651545780}
   - {fileID: 246355979}
   - {fileID: 2095576308}
+  - {fileID: 1538997732}
