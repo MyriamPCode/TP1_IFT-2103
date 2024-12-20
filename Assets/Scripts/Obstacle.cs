@@ -6,7 +6,6 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     private AudioSource audioSource;
-    private bool isTriggered = false;
     private bool player1HasEntered = false; 
     private bool player2HasEntered = false;  
 
@@ -30,7 +29,6 @@ public class Obstacle : MonoBehaviour
 
         if (other.gameObject.CompareTag("Respawn") && !player1HasEntered)
         {
-            isTriggered = true;
             player1HasEntered = true;
 
             if (audioSource != null)
@@ -44,7 +42,6 @@ public class Obstacle : MonoBehaviour
         
         else if (other.gameObject.CompareTag("Respawn") && !player2HasEntered)
         {
-            isTriggered = true;
             player2HasEntered = true;
 
             if (audioSource != null)

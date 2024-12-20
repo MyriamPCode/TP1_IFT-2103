@@ -16651,6 +16651,23 @@ Transform:
   - {fileID: 1251551584}
   m_Father: {fileID: 541550581}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &473515901 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4959147667621561646, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+  m_PrefabInstance: {fileID: 4835245534995561927}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &473515903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473515901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dcb8ce6be7b968478ae2184294d1028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &490520064
 GameObject:
   m_ObjectHideFlags: 0
@@ -28711,7 +28728,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1733544760}
   - component: {fileID: 1733544759}
-  - component: {fileID: 1733544758}
   - component: {fileID: 1733544757}
   m_Layer: 7
   m_Name: CameraPlayer1
@@ -28735,14 +28751,6 @@ MonoBehaviour:
   player: {fileID: 2006584589}
   smoothSpeed: 0.125
   offset: {x: 0, y: 0, z: -10}
---- !u!81 &1733544758
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1733544756}
-  m_Enabled: 1
 --- !u!20 &1733544759
 Camera:
   m_ObjectHideFlags: 0
@@ -31536,7 +31544,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4959147667621561646, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 473515903}
   m_SourcePrefab: {fileID: 100100000, guid: 925cef830ff0055448852645c6ca0bbd, type: 3}
 --- !u!1001 &5528743422325137681
 PrefabInstance:

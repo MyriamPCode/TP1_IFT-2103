@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using UnityEngine.Audio; 
 
 public class BackgroundMusicManager : MonoBehaviour
 {
@@ -9,29 +10,29 @@ public class BackgroundMusicManager : MonoBehaviour
     [System.Serializable]
     public class SceneMusic
     {
-        public string sceneName;   // 场景名称
-        public AudioClip musicClip; // 对应的背景音乐
+        public string sceneName;   
+        public AudioClip musicClip; 
     }
 
-    public List<SceneMusic> sceneMusicList = new List<SceneMusic>(); // 场景和音乐列表
-    private Dictionary<string, AudioClip> sceneMusicDict; // 字典用于快速查找
+    public List<SceneMusic> sceneMusicList = new List<SceneMusic>(); 
+    public AudioMixer audioMixer;
+    private Dictionary<string, AudioClip> sceneMusicDict; 
     private AudioSource audioSource;
 
     private void Awake()
     {
-        // Singleton 防止重复实例化
+        
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // 保持该对象在场景切换时不销毁
+            DontDestroyOnLoad(gameObject); 
         }
         else
         {
-            Destroy(gameObject); // 销毁重复的实例
+            Destroy(gameObject); 
             return;
         }
 
-        // 确保 AudioSource 存在
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
@@ -40,7 +41,6 @@ public class BackgroundMusicManager : MonoBehaviour
             audioSource.playOnAwake = false;
         }
 
-        // 初始化音乐字典
         sceneMusicDict = new Dictionary<string, AudioClip>();
         foreach (var sceneMusic in sceneMusicList)
         {
@@ -49,6 +49,9 @@ public class BackgroundMusicManager : MonoBehaviour
                 sceneMusicDict.Add(sceneMusic.sceneName, sceneMusic.musicClip);
             }
         }
+
+        AudioMixerGroup musicGroup = audioMixer.FindMatchingGroups("Music")[0];
+        audioSource.outputAudioMixerGroup = musicGroup;
     }
 
     void OnEnable()
@@ -70,10 +73,9 @@ public class BackgroundMusicManager : MonoBehaviour
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        // 查找当前场景对应的音乐
         if (sceneMusicDict.TryGetValue(currentSceneName, out AudioClip musicClip))
         {
-            if (audioSource.clip != musicClip) // 如果音乐不同，则切换音乐
+            if (audioSource.clip != musicClip) 
             {
                 audioSource.clip = musicClip;
                 audioSource.Play();
@@ -83,7 +85,7 @@ public class BackgroundMusicManager : MonoBehaviour
         else
         {
             Debug.LogWarning($"No background music assigned for scene: {currentSceneName}");
-            audioSource.Stop(); // 停止播放
+            audioSource.Stop(); 
         }
     }
 }
