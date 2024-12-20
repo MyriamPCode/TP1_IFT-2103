@@ -21,4 +21,13 @@ public class CharacterCustomizationData : ScriptableObject
     public int skinIndex;
     public int torsoSkinIndex;
     public int legsSkinIndex;
+
+    // Ajout des variables pour les bras
+    public float armsPositionX;
+    public float armsPositionY;
+
+    public float armsScaleX;
+    public float armsScaleY;
+
+    public float armsRotation;
 }
