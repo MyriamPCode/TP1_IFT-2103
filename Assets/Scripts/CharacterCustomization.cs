@@ -20,13 +20,19 @@ public class CharacterCustomization : MonoBehaviour
     private int currentLegsIndex = 0;
 
     public Transform legsTransform;
-    public Transform torsoTransform;
+    public Transform armsTransform;
 
-    public Slider positionSliderX;  // Slider pour la position X des jambes ou du torse
-    public Slider positionSliderY;  // Slider pour la position Y des jambes ou du torse
-    public Slider scaleSliderX;     // Slider pour l'échelle X des jambes ou du torse
-    public Slider scaleSliderY;     // Slider pour l'échelle Y des jambes ou du torse
-    public Slider rotationSlider;   // Slider pour la rotation autour de l'axe Y (ou un autre axe)
+    public Slider armsPositionSliderX;  // Slider pour la position X des bras
+    public Slider armsPositionSliderY;  // Slider pour la position Y des bras
+    public Slider armsScaleSliderX;     // Slider pour l'échelle X des bras
+    public Slider armsScaleSliderY;     // Slider pour l'échelle Y des bras
+    public Slider armsRotationSlider;
+
+    public Slider positionSliderX;  // Slider pour la position X des jambes 
+    public Slider positionSliderY;  // Slider pour la position Y des jambes 
+    public Slider scaleSliderX;     // Slider pour l'échelle X des jambes 
+    public Slider scaleSliderY;     // Slider pour l'échelle Y des jambes 
+    public Slider rotationSlider;   
 
     public float maxPositionValue = 5f;
     public float maxRotationValue = 360f;
@@ -133,45 +139,42 @@ public class CharacterCustomization : MonoBehaviour
 
     public void SetLegsPosition()
     {
-        float positionX = positionSliderX.value; // Lire la valeur du slider pour X
-        float positionY = positionSliderY.value; // Lire la valeur du slider pour Y
-        legsTransform.position = new Vector3(positionX, positionY, legsTransform.position.z); // Appliquer la nouvelle position
+        float positionX = positionSliderX.value; 
+        float positionY = positionSliderY.value; 
+        legsTransform.position = new Vector3(positionX, positionY, legsTransform.position.z); 
     }
 
-    // Définir l'échelle des jambes
     public void SetLegsScale()
     {
-        float scaleX = scaleSliderX.value; // Lire la valeur du slider pour l'échelle X
-        float scaleY = scaleSliderY.value; // Lire la valeur du slider pour l'échelle Y
-        legsTransform.localScale = new Vector3(scaleX, scaleY, legsTransform.localScale.z); // Appliquer la nouvelle échelle
+        float scaleX = scaleSliderX.value; 
+        float scaleY = scaleSliderY.value; 
+        legsTransform.localScale = new Vector3(scaleX, scaleY, legsTransform.localScale.z); 
     }
 
-    // Définir la rotation des jambes
     public void SetLegsRotation()
     {
-        float rotationY = rotationSlider.value; // Lire la valeur du slider pour la rotation Y
-        legsTransform.rotation = Quaternion.Euler(0f, rotationY, 0f); // Appliquer la rotation
+        float rotationY = rotationSlider.value; 
+        legsTransform.rotation = Quaternion.Euler(0f, rotationY, 0f); 
     }
 
-    // Répéter les mêmes méthodes pour le torse
-    public void SetTorsoPosition()
+    public void SetArmsPosition()
     {
-        float positionX = positionSliderX.value; // Lire la valeur du slider pour X
-        float positionY = positionSliderY.value; // Lire la valeur du slider pour Y
-        torsoTransform.position = new Vector3(positionX, positionY, torsoTransform.position.z); // Appliquer la nouvelle position
+        float positionX = armsPositionSliderX.value; 
+        float positionY = armsPositionSliderY.value; 
+        armsTransform.position = new Vector3(positionX, positionY, armsTransform.position.z);
     }
 
-    public void SetTorsoScale()
+    public void SetArmsScale()
     {
-        float scaleX = scaleSliderX.value; // Lire la valeur du slider pour l'échelle X
-        float scaleY = scaleSliderY.value; // Lire la valeur du slider pour l'échelle Y
-        torsoTransform.localScale = new Vector3(scaleX, scaleY, torsoTransform.localScale.z); // Appliquer la nouvelle échelle
+        float scaleX = armsScaleSliderX.value; 
+        float scaleY = armsScaleSliderY.value; 
+        armsTransform.localScale = new Vector3(scaleX, scaleY, armsTransform.localScale.z); 
     }
 
-    public void SetTorsoRotation()
+    public void SetArmsRotation()
     {
-        float rotationY = rotationSlider.value; // Lire la valeur du slider pour la rotation Y
-        torsoTransform.rotation = Quaternion.Euler(0f, rotationY, 0f); // Appliquer la rotation
+        float rotationY = armsRotationSlider.value; 
+        armsTransform.rotation = Quaternion.Euler(0f, rotationY, 0f); 
     }
 
     void Start()
@@ -190,61 +193,66 @@ public class CharacterCustomization : MonoBehaviour
         rotationSlider.minValue = 0f;
         rotationSlider.maxValue = maxRotationValue;
 
-        // Attacher les méthodes aux sliders pour qu'elles soient appelées à chaque modification
+        armsScaleSliderX.minValue = 0f;
+        armsScaleSliderX.maxValue = 2f;  
+        armsScaleSliderY.minValue = 0f;
+        armsScaleSliderY.maxValue = 2f;
+
         positionSliderX.onValueChanged.AddListener(delegate { SetLegsPosition(); });
         positionSliderY.onValueChanged.AddListener(delegate { SetLegsPosition(); });
         scaleSliderX.onValueChanged.AddListener(delegate { SetLegsScale(); });
         scaleSliderY.onValueChanged.AddListener(delegate { SetLegsScale(); });
         rotationSlider.onValueChanged.AddListener(delegate { SetLegsRotation(); });
 
-        // Répéter l'attachement des méthodes pour le torse
-        positionSliderX.onValueChanged.AddListener(delegate { SetTorsoPosition(); });
-        positionSliderY.onValueChanged.AddListener(delegate { SetTorsoPosition(); });
-        scaleSliderX.onValueChanged.AddListener(delegate { SetTorsoScale(); });
-        scaleSliderY.onValueChanged.AddListener(delegate { SetTorsoScale(); });
-        rotationSlider.onValueChanged.AddListener(delegate { SetTorsoRotation(); });
+        armsPositionSliderX.onValueChanged.AddListener(delegate { SetArmsPosition(); });
+        armsPositionSliderY.onValueChanged.AddListener(delegate { SetArmsPosition(); });
+        armsScaleSliderX.onValueChanged.AddListener(delegate { SetArmsScale(); });
+        armsScaleSliderY.onValueChanged.AddListener(delegate { SetArmsScale(); });
+        armsRotationSlider.onValueChanged.AddListener(delegate { SetArmsRotation(); });
 
         LoadCustomization();
     }
         public void SaveCustomization()
         {
-            // Sauvegarder les valeurs de position, échelle, rotation et skins
             customizationData.legsPositionX = legsTransform.position.x;
             customizationData.legsPositionY = legsTransform.position.y;
-            customizationData.torsoPositionX = torsoTransform.position.x;
-            customizationData.torsoPositionY = torsoTransform.position.y;
-
+            
             customizationData.legsScaleX = legsTransform.localScale.x;
             customizationData.legsScaleY = legsTransform.localScale.y;
-            customizationData.torsoScaleX = torsoTransform.localScale.x;
-            customizationData.torsoScaleY = torsoTransform.localScale.y;
+
 
             customizationData.legsRotation = legsTransform.rotation.eulerAngles.y;
-            customizationData.torsoRotation = torsoTransform.rotation.eulerAngles.y;
 
             customizationData.skinIndex = currentSkinIndex;
             customizationData.torsoSkinIndex = currentTorsoIndex;
             customizationData.legsSkinIndex = currentLegsIndex;
 
-            // Sauvegarder dans le PlayerPrefs (si tu veux le faire avec PlayerPrefs)
-            PlayerPrefs.SetInt("LegsPositionX", Mathf.FloorToInt(customizationData.legsPositionX));
+        customizationData.armsPositionX = armsTransform.position.x;
+        customizationData.armsPositionY = armsTransform.position.y;
+
+        customizationData.armsScaleX = armsTransform.localScale.x;
+        customizationData.armsScaleY = armsTransform.localScale.y;
+
+        customizationData.armsRotation = armsTransform.rotation.eulerAngles.y;
+
+        PlayerPrefs.SetInt("ArmsPositionX", Mathf.FloorToInt(customizationData.armsPositionX));
+        PlayerPrefs.SetInt("ArmsPositionY", Mathf.FloorToInt(customizationData.armsPositionY));
+        PlayerPrefs.SetInt("ArmsScaleX", Mathf.FloorToInt(customizationData.armsScaleX * 100));
+        PlayerPrefs.SetInt("ArmsScaleY", Mathf.FloorToInt(customizationData.armsScaleY * 100));
+        PlayerPrefs.SetInt("ArmsRotation", Mathf.FloorToInt(customizationData.armsRotation));
+
+        PlayerPrefs.SetInt("LegsPositionX", Mathf.FloorToInt(customizationData.legsPositionX));
             PlayerPrefs.SetInt("LegsPositionY", Mathf.FloorToInt(customizationData.legsPositionY));
-            PlayerPrefs.SetInt("TorsoPositionX", Mathf.FloorToInt(customizationData.torsoPositionX));
-            PlayerPrefs.SetInt("TorsoPositionY", Mathf.FloorToInt(customizationData.torsoPositionY));
             PlayerPrefs.SetInt("LegsScaleX", Mathf.FloorToInt(customizationData.legsScaleX * 100));
             PlayerPrefs.SetInt("LegsScaleY", Mathf.FloorToInt(customizationData.legsScaleY * 100));
-            PlayerPrefs.SetInt("TorsoScaleX", Mathf.FloorToInt(customizationData.torsoScaleX * 100));
-            PlayerPrefs.SetInt("TorsoScaleY", Mathf.FloorToInt(customizationData.torsoScaleY * 100));
             PlayerPrefs.SetInt("LegsRotation", Mathf.FloorToInt(customizationData.legsRotation));
-            PlayerPrefs.SetInt("TorsoRotation", Mathf.FloorToInt(customizationData.torsoRotation));
             PlayerPrefs.SetInt("SkinIndex", customizationData.skinIndex);
-            PlayerPrefs.SetInt("TorsoSkinIndex", customizationData.torsoSkinIndex);
             PlayerPrefs.SetInt("LegsSkinIndex", customizationData.legsSkinIndex);
+
         }
 
         public void LoadCustomization()
         {
-            // Charger les valeurs sauvegardées si elles existent
             if (PlayerPrefs.HasKey("LegsPositionX"))
             {
                 customizationData.legsPositionX = PlayerPrefs.GetInt("LegsPositionX");
@@ -262,15 +270,23 @@ public class CharacterCustomization : MonoBehaviour
                 customizationData.legsSkinIndex = PlayerPrefs.GetInt("LegsSkinIndex");
             }
 
-            // Appliquer les valeurs chargées
-            legsTransform.position = new Vector3(customizationData.legsPositionX, customizationData.legsPositionY, legsTransform.position.z);
-            torsoTransform.position = new Vector3(customizationData.torsoPositionX, customizationData.torsoPositionY, torsoTransform.position.z);
-            legsTransform.localScale = new Vector3(customizationData.legsScaleX, customizationData.legsScaleY, legsTransform.localScale.z);
-            torsoTransform.localScale = new Vector3(customizationData.torsoScaleX, customizationData.torsoScaleY, torsoTransform.localScale.z);
-            legsTransform.rotation = Quaternion.Euler(0f, customizationData.legsRotation, 0f);
-            torsoTransform.rotation = Quaternion.Euler(0f, customizationData.torsoRotation, 0f);
+        if (PlayerPrefs.HasKey("ArmsPositionX"))
+        {
+            customizationData.armsPositionX = PlayerPrefs.GetInt("ArmsPositionX");
+            customizationData.armsPositionY = PlayerPrefs.GetInt("ArmsPositionY");
+            customizationData.armsScaleX = PlayerPrefs.GetInt("ArmsScaleX") / 100f;
+            customizationData.armsScaleY = PlayerPrefs.GetInt("ArmsScaleY") / 100f;
+            customizationData.armsRotation = PlayerPrefs.GetInt("ArmsRotation");
 
-            // Appliquer les skins
+            armsTransform.position = new Vector3(customizationData.armsPositionX, customizationData.armsPositionY, armsTransform.position.z);
+            armsTransform.localScale = new Vector3(customizationData.armsScaleX, customizationData.armsScaleY, armsTransform.localScale.z);
+            armsTransform.rotation = Quaternion.Euler(0f, customizationData.armsRotation, 0f);
+        }
+
+        legsTransform.position = new Vector3(customizationData.legsPositionX, customizationData.legsPositionY, legsTransform.position.z);
+            legsTransform.localScale = new Vector3(customizationData.legsScaleX, customizationData.legsScaleY, legsTransform.localScale.z);
+            legsTransform.rotation = Quaternion.Euler(0f, customizationData.legsRotation, 0f);
+
             ChangeSkin(skins[customizationData.skinIndex]);
             ChangeTorso(torsoSkins[customizationData.torsoSkinIndex]);
             ChangeLegs(legsSkins[customizationData.legsSkinIndex]);
