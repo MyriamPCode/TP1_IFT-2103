@@ -8,9 +8,14 @@ public class LogicManager : MonoBehaviour
 
     public GameObject pauseMenu;
     public GameObject victoryScreen;
+    public AudioClip victorySound;
+    public AudioSource audioSource;
+    public ParticleSystem fireworks;
 
     public GameObject settingsWindowPrefab;
 
+    public GameObject player1HUD;
+    public GameObject player2HUD;
     private GameObject player1;
     private GameObject player2;
 
@@ -26,7 +31,7 @@ public class LogicManager : MonoBehaviour
     private GameObject player1Instance;
     private GameObject player2Instance;
 
-    public VictoryFireworks fireworksController;
+    
 
     private void Start()
     {
@@ -73,46 +78,73 @@ public class LogicManager : MonoBehaviour
 
     public void Victory()
     {
-        DisablePlayerMovement(player1Instance);
-        DisablePlayerMovement(player2Instance);
-        victoryScreen.SetActive(true);
-        // ActivateFireworks();
+        Debug.Log("Victoire !");
+
+        if (victoryScreen != null)
+        {
+            victoryScreen.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("Aucun écran de victoire assigné !");
+        }
+
+        DisablePlayerHUDs();
+        DisablePlayerMovement();
+        PlayFireworks();
+        PlayVictorySound();
     }
 
-    //private void ActivateFireworks()
-    //{
-      //  if (fireworksController != null)
-       // {
-       //     fireworksController.StartFireworks();
-       // }
-       // else
-       // {
-       //     Debug.LogWarning("FireworksController non assigné dans le LogicManager !");
-       // }
-   // }
-
-    private void DisablePlayerMovement(GameObject player)
+    private void DisablePlayerHUDs()
     {
-        if (player == null) return;
+        if (player1HUD != null) player1HUD.SetActive(false);
+        if (player2HUD != null) player2HUD.SetActive(false);
+    }
 
-        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-        if (rb != null)
+    private void DisablePlayerMovement()
+    {
+        if (player1 != null)
         {
-            rb.velocity = Vector2.zero;
-            rb.isKinematic = true;
+            Rigidbody2D rb1 = player1.GetComponent<Rigidbody2D>();
+            if (rb1 != null)
+            {
+                rb1.velocity = Vector2.zero;
+                rb1.isKinematic = true;
+            }
         }
 
-        Player1 playerScript1 = player.GetComponent<Player1>();
-        if (playerScript1 != null)
+        if (player2 != null)
         {
-            playerScript1.moveSpeed = 0f;
-            playerScript1.jumpForce = 0f;
+            Rigidbody2D rb2 = player2.GetComponent<Rigidbody2D>();
+            if (rb2 != null)
+            {
+                rb2.velocity = Vector2.zero;
+                rb2.isKinematic = true;
+            }
         }
-        Player2 playerScript2 = player.GetComponent<Player2>();
-        if (playerScript2 != null)
+    }
+
+    private void PlayFireworks()
+    {
+        if (fireworks != null)
         {
-            playerScript2.moveSpeed = 0f;
-            playerScript2.jumpForce = 0f;
+            fireworks.Play();
+        }
+        else
+        {
+            Debug.LogWarning("Aucun système de particules de feux d'artifice assigné !");
+        }
+    }
+
+    private void PlayVictorySound()
+    {
+        if (victorySound != null)
+        {
+            audioSource.PlayOneShot(victorySound);
+        }
+        else
+        {
+            Debug.LogWarning("Aucun son de victoire assigné !");
         }
     }
 
