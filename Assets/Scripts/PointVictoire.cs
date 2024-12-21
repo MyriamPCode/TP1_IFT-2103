@@ -1,21 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PointVictoire : MonoBehaviour
 {
-    void Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (GetComponent<BoxCollider2D>() == null)
+        if (collision.CompareTag("Player"))
         {
-            BoxCollider2D boxCollider = gameObject.AddComponent<BoxCollider2D>();
-            
-            boxCollider.offset = new Vector2(-0.0009982213f, 0f);
-
-            boxCollider.size = new Vector2(0.06016327f, 0.23f);
+            LogicManager logicManager = FindObjectOfType<LogicManager>();
+            if (logicManager != null)
+            {
+                logicManager.Victory();
+            }
+            else
+            {
+                Debug.LogWarning("LogicManager introuvable !");
+            }
         }
     }
-        
-    }
-
-
+}

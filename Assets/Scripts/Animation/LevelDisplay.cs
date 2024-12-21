@@ -16,7 +16,7 @@ public class LevelDisplay : MonoBehaviour
         }
         else if (sceneName == "SecondScene")
         {
-            levelText.text = "Niveau Halloween";
+            levelText.text = "Niveau 2";
         }
         else
         {
