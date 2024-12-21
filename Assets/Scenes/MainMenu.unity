@@ -5141,7 +5141,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2840813092458755329}
   - {fileID: 7181118383181090517}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5154,11 +5153,11 @@ Transform:
   m_GameObject: {fileID: 4736521202268527896}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 940.3196, y: 506.58887, z: -6.0140114}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1438924847533585496}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2925498191696194649
 GameObject:
@@ -5249,7 +5248,7 @@ MonoBehaviour:
   - sceneName: Main Scene
     musicClip: {fileID: 8300000, guid: a6883e621a21f654489b904b8333ff77, type: 3}
   - sceneName: SecondScene
-    musicClip: {fileID: 8300000, guid: a6883e621a21f654489b904b8333ff77, type: 3}
+    musicClip: {fileID: 8300000, guid: f95928066964ba14cba54afcf80cc3af, type: 3}
   audioMixer: {fileID: 24100000, guid: 3163452dd19b3534fa43cdc3d7fd5aec, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -5261,3 +5260,4 @@ SceneRoots:
   - {fileID: 2095576308}
   - {fileID: 1438924847533585496}
   - {fileID: 1501223442}
+  - {fileID: 2840813092458755329}

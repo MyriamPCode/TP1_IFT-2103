@@ -996,7 +996,7 @@ MonoBehaviour:
   - sceneName: Main Scene
     musicClip: {fileID: 8300000, guid: a6883e621a21f654489b904b8333ff77, type: 3}
   - sceneName: SecondScene
-    musicClip: {fileID: 8300000, guid: a6883e621a21f654489b904b8333ff77, type: 3}
+    musicClip: {fileID: 8300000, guid: f95928066964ba14cba54afcf80cc3af, type: 3}
   audioMixer: {fileID: 24100000, guid: 3163452dd19b3534fa43cdc3d7fd5aec, type: 2}
 --- !u!4 &1144880238894657724
 Transform:
