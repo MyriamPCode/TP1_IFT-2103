@@ -7,39 +7,47 @@ public class Footsteps : MonoBehaviour
     // Reference to the AudioSource components for both players' footstep sounds
     public AudioSource player1FootstepsSound;
     public AudioSource player2FootstepsSound;
-
     private Player1 player1; // Player 1's script
     private Player2 player2; // Player 2's script
-    private void Start()
+    
+    private void Awake()
     {
-        
-        Debug.Log("footstep manager started");
-        Player1 player1 = FindObjectOfType<Player1>();
-        Player2 player2 = FindObjectOfType<Player2>();
+        Debug.Log("Footstep manager started");
+        player1 = FindObjectOfType<Player1>();
+        player2 = FindObjectOfType<Player2>();
 
-        /*if (player1 == null && player2 == null)
+        if (player1 == null && player2 == null)
         {
-            Debug.Log("No players found. Switching to default sound behavior.");
-            // Play default background sound or leave the manager inactive
+            Debug.LogWarning("No players found. Switching to default sound behavior.");
             this.enabled = false;
         }
-        else
-        {
-            Debug.Log("players found");
-        }*/
     }
 
     // Update is called once per frame
     void Update()
     {
         // Update Player 1's footsteps
-        UpdateFootstepSound(player1, player1FootstepsSound, KeyCode.A, KeyCode.D, -1f);
+        if (player1 != null && player1FootstepsSound != null)
+        {
+            UpdateFootstepSound(player1, player1FootstepsSound, KeyCode.A, KeyCode.D, -1f, "Player 1");
+        }
+        else
+        {
+            Debug.LogWarning("Player 1 or its footstep sound is missing");
+        }
 
         // Update Player 2's footsteps
-        UpdateFootstepSound(player2, player2FootstepsSound, KeyCode.LeftArrow, KeyCode.RightArrow, 1f);
+        if (player2 != null && player2FootstepsSound != null)
+        {
+            UpdateFootstepSound(player2, player2FootstepsSound, KeyCode.LeftArrow, KeyCode.RightArrow, 1f, "Player 2");
+        }
+        else
+        {
+            Debug.LogWarning("Player 2 or its footstep sound is missing");
+        }
     }
 
-    private void UpdateFootstepSound(object player, AudioSource footstepsSound, KeyCode leftKey, KeyCode rightKey, float defaultPan)
+    private void UpdateFootstepSound(object player, AudioSource footstepsSound, KeyCode leftKey, KeyCode rightKey, float defaultPan, string playerName)
     {
         // Cast player to the appropriate type and check the isGrounded property
         bool isGrounded = false;
@@ -74,7 +82,7 @@ public class Footsteps : MonoBehaviour
         }
         else
         {
-            // Disable the AudioSource to stop the footstep sound
+
             footstepsSound.enabled = false;
         }
     }

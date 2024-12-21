@@ -4,32 +4,72 @@ using UnityEngine;
 
 public class ProximitySound : MonoBehaviour
 {
-    public AudioSource audioSource;
-    public Transform player1;
-    public Transform player2;
-    public float maxDistance = 3f;
+    public AudioSource audioSource;  // Reference to the audio source
+    public Transform player1;        // Reference to Player1
+    public Transform player2;        // Reference to Player2
+    public Transform obstacle;       // Reference to the Obstacle (Target Position)
+    public float maxDistance = 3f;   // Maximum distance for the sound to play
 
     private void Start()
     {
-        // Check if player1 or player2 exists
-        if (player1 == null && player2 == null)
+        // Validate AudioSource
+        if (audioSource == null)
         {
-            Debug.Log("No players found. Disabling ProximitySound.");
-            // Disable this script if no players are present
+            Debug.LogError("AudioSource is not assigned. Disabling ProximitySound.");
             this.enabled = false;
             return;
         }
-    }
 
+        // Check if at least one player exists
+        if (player1 == null && player2 == null)
+        {
+            Debug.LogWarning("No players found. Disabling ProximitySound.");
+            this.enabled = false;
+            return;
+        }
+
+        // Check if obstacle is assigned
+        if (obstacle == null)
+        {
+            Debug.LogError("Obstacle is not assigned. Disabling ProximitySound.");
+            this.enabled = false;
+            return;
+        }
+
+        Debug.Log($"ProximitySound initialized for object: {obstacle.name}");
+        Debug.Log($"Obstacle Position: {obstacle.position}");
+    }
 
     private void Update()
     {
-        // Calculate distances between the object and the players
-        float distanceToPlayer1 = Vector2.Distance(transform.position, player1.position);
-        float distanceToPlayer2 = Vector2.Distance(transform.position, player2.position);
+        // Ensure AudioSource is available
+        if (audioSource == null)
+        {
+            Debug.LogError("AudioSource is missing. Skipping Update.");
+            return;
+        }
 
-        // Find the closest distance
+        // Validate player positions
+        if (player1 == null && player2 == null)
+        {
+            Debug.LogWarning("Both players are missing. Disabling ProximitySound.");
+            this.enabled = false;
+            return;
+        }
+
+        // Log player and obstacle positions
+        Debug.Log($"Player1 Position: {player1.position}");
+        Debug.Log($"Player2 Position: {player2.position}");
+        Debug.Log($"Obstacle Position: {obstacle.position}");
+
+        // Calculate distances to players
+        float distanceToPlayer1 = player1 != null ? Vector3.Distance(obstacle.position, player1.position) : float.MaxValue;
+        float distanceToPlayer2 = player2 != null ? Vector3.Distance(obstacle.position, player2.position) : float.MaxValue;
+
+        // Determine the closest distance
         float closestDistance = Mathf.Min(distanceToPlayer1, distanceToPlayer2);
+
+        Debug.Log($"Closest distance to players: {closestDistance}");
 
         // Adjust volume and play sound if within range
         if (closestDistance <= maxDistance)

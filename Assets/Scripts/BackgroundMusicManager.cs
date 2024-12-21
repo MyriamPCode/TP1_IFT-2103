@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
-using UnityEngine.Audio; 
+using UnityEngine.Audio;
 
 public class BackgroundMusicManager : MonoBehaviour
 {
@@ -10,26 +10,25 @@ public class BackgroundMusicManager : MonoBehaviour
     [System.Serializable]
     public class SceneMusic
     {
-        public string sceneName;   
-        public AudioClip musicClip; 
+        public string sceneName;
+        public AudioClip musicClip;
     }
 
-    public List<SceneMusic> sceneMusicList = new List<SceneMusic>(); 
+    public List<SceneMusic> sceneMusicList = new List<SceneMusic>();
     public AudioMixer audioMixer;
-    private Dictionary<string, AudioClip> sceneMusicDict; 
+    private Dictionary<string, AudioClip> sceneMusicDict;
     private AudioSource audioSource;
 
     private void Awake()
     {
-        
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); 
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject); 
+            Destroy(gameObject);
             return;
         }
 
@@ -54,12 +53,12 @@ public class BackgroundMusicManager : MonoBehaviour
         audioSource.outputAudioMixerGroup = musicGroup;
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
@@ -75,17 +74,20 @@ public class BackgroundMusicManager : MonoBehaviour
 
         if (sceneMusicDict.TryGetValue(currentSceneName, out AudioClip musicClip))
         {
-            if (audioSource.clip != musicClip) 
+            if (audioSource.clip != musicClip)
             {
                 audioSource.clip = musicClip;
                 audioSource.Play();
                 Debug.Log($"Playing music for scene: {currentSceneName}");
             }
+            else
+            {
+                Debug.Log($"Music for scene {currentSceneName} is already playing.");
+            }
         }
         else
         {
             Debug.LogWarning($"No background music assigned for scene: {currentSceneName}");
-            audioSource.Stop(); 
         }
     }
 }

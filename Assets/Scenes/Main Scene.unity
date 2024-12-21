@@ -212,13 +212,13 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 85968082}
+        m_TargetAssemblyTypeName: SoundMixerManager, Assembly-CSharp
+        m_MethodName: SetMusicVolume
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -380,14 +380,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 3163452dd19b3534fa43cdc3d7fd5aec, type: 2}
-  masterVolumeSlider: {fileID: 0}
-  soundFXVolumeSlider: {fileID: 0}
-  musicVolumeSlider: {fileID: 0}
-  soundFoleysVolumeSlider: {fileID: 0}
-  defaultMasterVolume: 0.8
-  defaultSoundFXVolume: 1
+  masterVolumeSlider: {fileID: 365278467}
+  soundFXVolumeSlider: {fileID: 510520425}
+  musicVolumeSlider: {fileID: 33915026}
+  soundFoleysVolumeSlider: {fileID: 1258293194}
+  defaultMasterVolume: 0.5
+  defaultSoundFXVolume: 0.5
   defaultMusicVolume: 0.5
-  defaultSoundFoleysVolume: 0.7
+  defaultSoundFoleysVolume: 0.5
 --- !u!1 &87086442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,6 +1165,7 @@ MonoBehaviour:
   audioSource: {fileID: 1572083009}
   player1: {fileID: 1515087352}
   player2: {fileID: 1575979693}
+  obstacle: {fileID: 1572083005}
   maxDistance: 5
 --- !u!1 &213435536
 GameObject:
@@ -1223,7 +1224,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Menus
+  m_text: SFX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 724aac704adf71148b43d3de4acb9724, type: 2}
   m_sharedMaterial: {fileID: 3086472336079085382, guid: 724aac704adf71148b43d3de4acb9724, type: 2}
@@ -1406,7 +1407,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SFX
+  m_text: Musique
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 724aac704adf71148b43d3de4acb9724, type: 2}
   m_sharedMaterial: {fileID: 3086472336079085382, guid: 724aac704adf71148b43d3de4acb9724, type: 2}
@@ -2097,20 +2098,20 @@ MonoBehaviour:
   m_FillRect: {fileID: 1903850688}
   m_HandleRect: {fileID: 1995711996}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 85968082}
+        m_TargetAssemblyTypeName: SoundMixerManager, Assembly-CSharp
+        m_MethodName: SetMasterVolume
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2125,7 +2126,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 408948126}
-  - component: {fileID: 408948125}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -2133,18 +2133,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &408948125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 408948124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dcb8ce6be7b968478ae2184294d1028, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &408948126
 Transform:
   m_ObjectHideFlags: 0
@@ -2350,13 +2338,13 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 85968082}
+        m_TargetAssemblyTypeName: SoundMixerManager, Assembly-CSharp
+        m_MethodName: SetSoundFXVolume
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4880,7 +4868,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Musique
+  m_text: "G\xE9n\xE9ral"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 724aac704adf71148b43d3de4acb9724, type: 2}
   m_sharedMaterial: {fileID: 3086472336079085382, guid: 724aac704adf71148b43d3de4acb9724, type: 2}
@@ -6932,13 +6920,13 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 85968082}
+        m_TargetAssemblyTypeName: SoundMixerManager, Assembly-CSharp
+        m_MethodName: SetSoundFoleysVolume
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
